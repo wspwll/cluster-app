@@ -8,7 +8,9 @@ import {
   YAxis,
   Legend,
 } from "recharts";
-import points from "./data/points.json";
+// NEW: import both datasets
+import suvPoints from "./data/suv_points.json";
+import puPoints from "./data/pu_points.json";
 
 const COLORS = [
   "#1F77B4",
@@ -86,10 +88,16 @@ const lerp = (a, b, t) => a + (b - a) * t;
 // ---------------------------
 
 export default function App() {
-  // --- validate rows once ---
+  // NEW: which dataset is active
+  const [group, setGroup] = useState("SUV"); // "SUV" | "Pickup"
+
+  // NEW: pick the active raw points
+  const dataPoints = group === "SUV" ? suvPoints : puPoints;
+
+  // --- validate rows once per dataset ---
   const rows = useMemo(
     () =>
-      (points || []).filter(
+      (dataPoints || []).filter(
         (r) =>
           Number.isFinite(r.emb_x) &&
           Number.isFinite(r.emb_y) &&
@@ -97,7 +105,7 @@ export default function App() {
           r.model.length > 0 &&
           Number.isFinite(r.cluster)
       ),
-    []
+    [dataPoints]
   );
 
   // --- models + selection (buttons) ---
@@ -110,11 +118,16 @@ export default function App() {
   const [zoomCluster, setZoomCluster] = useState(null); // number | null
   const [centerT, setCenterT] = useState(0); // 0..1 collapse factor
 
+  // keep selections in sync with dataset changes
   useEffect(() => {
-    setSelectedModels((prev) =>
-      !prev?.length ? allModels : prev.filter((m) => allModels.includes(m))
-    );
+    setSelectedModels(allModels);
   }, [allModels]);
+
+  // reset zoom / collapse when switching dataset
+  useEffect(() => {
+    setZoomCluster(null);
+    setCenterT(0);
+  }, [group]);
 
   const toggleModel = (m) =>
     setSelectedModels((prev) =>
@@ -145,7 +158,6 @@ export default function App() {
   }, [availableClusters, zoomCluster]);
 
   // --- base frame for domains (DOES NOT depend on centerT) ---
-  // If zooming: just the selected cluster's original points; otherwise: all filtered.
   const domainBase = useMemo(
     () =>
       zoomCluster == null
@@ -277,7 +289,6 @@ export default function App() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-    // Critically: this effect depends ONLY on domain changes, NOT centerT:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetX[0], targetX[1], targetY[0], targetY[1]]);
 
@@ -292,7 +303,8 @@ export default function App() {
       }}
     >
       <h1 style={{ margin: 0, marginBottom: 12, color: "#FF5432" }}>
-        UMAP Scatter — Center Focus (axes fixed during collapse)
+        {group === "SUV" ? "SUV" : "Pickup"} UMAP Scatter — Center Focus (axes
+        fixed during collapse)
       </h1>
 
       {/* Controls */}
@@ -305,6 +317,41 @@ export default function App() {
           marginBottom: 12,
         }}
       >
+        {/* NEW: Dataset toggle */}
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          <div style={{ fontWeight: 600 }}>Dataset:</div>
+          <button
+            onClick={() => setGroup("SUV")}
+            style={{
+              background: group === "SUV" ? "#FF5432" : "#0b1220",
+              color: group === "SUV" ? "white" : "#cbd5e1",
+              border:
+                group === "SUV" ? "1px solid #FF5432" : "1px solid #334155",
+              borderRadius: 8,
+              padding: "6px 10px",
+              cursor: "pointer",
+              fontSize: 13,
+            }}
+          >
+            SUVs
+          </button>
+          <button
+            onClick={() => setGroup("Pickup")}
+            style={{
+              background: group === "Pickup" ? "#FF5432" : "#0b1220",
+              color: group === "Pickup" ? "white" : "#cbd5e1",
+              border:
+                group === "Pickup" ? "1px solid #FF5432" : "1px solid #334155",
+              borderRadius: 8,
+              padding: "6px 10px",
+              cursor: "pointer",
+              fontSize: 13,
+            }}
+          >
+            Pickups
+          </button>
+        </div>
+
         {/* Model buttons */}
         <div>
           <div style={{ marginBottom: 8, fontWeight: 600 }}>Models:</div>
@@ -437,7 +484,8 @@ export default function App() {
 
           <div style={{ fontSize: 12, opacity: 0.8 }}>
             Showing {plotDataCentered.length.toLocaleString()} points
-            {zoomCluster != null ? ` • Zoom: C${zoomCluster}` : ""}
+            {zoomCluster != null ? ` • Zoom: C${zoomCluster}` : ""} • Dataset:{" "}
+            {group}
           </div>
         </div>
 
