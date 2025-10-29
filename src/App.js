@@ -8,9 +8,9 @@ import {
   YAxis,
   Legend,
 } from "recharts";
-// NEW: import both datasets
 import suvPoints from "./data/suv_points.json";
 import puPoints from "./data/pu_points.json";
+import demosMapping from "./data/demos-mapping.json";
 
 const COLORS = [
   "#1F77B4",
@@ -36,7 +36,6 @@ function colorForKey(key, allKeys) {
   return COLORS[(idx >= 0 ? idx : 0) % COLORS.length];
 }
 
-// --- Centroid hotspot for easy clicking when not zoomed ---
 function CentroidDot({ cx, cy, payload, onClick }) {
   return (
     <g onClick={() => onClick?.(payload)} style={{ cursor: "pointer" }}>
@@ -62,7 +61,6 @@ function CentroidDot({ cx, cy, payload, onClick }) {
   );
 }
 
-// --------- Helpers ---------
 function paddedDomain(vals) {
   if (!vals.length) return [0, 1];
   let min = Math.min(...vals);
@@ -85,30 +83,48 @@ function tweenDomain(from, to, t) {
 }
 const lerp = (a, b, t) => a + (b - a) * t;
 
-// ---------------------------
-
 export default function App() {
-  // NEW: which dataset is active
   const [group, setGroup] = useState("SUV"); // "SUV" | "Pickup"
-
-  // NEW: pick the active raw points
   const dataPoints = group === "SUV" ? suvPoints : puPoints;
 
-  // --- validate rows once per dataset ---
-  const rows = useMemo(
-    () =>
-      (dataPoints || []).filter(
-        (r) =>
-          Number.isFinite(r.emb_x) &&
-          Number.isFinite(r.emb_y) &&
-          typeof r.model === "string" &&
-          r.model.length > 0 &&
-          Number.isFinite(r.cluster)
-      ),
-    [dataPoints]
-  );
+  // ---------- NORMALIZE ROWS (adds a .model field; coerces numerics) ----------
+  const rows = useMemo(() => {
+    const out = [];
+    for (const r of dataPoints || []) {
+      // accept either `model` or `BLD_DESC_RV_MODEL` (and a couple of common alternates)
+      const modelVal =
+        r?.model ??
+        r?.BLD_DESC_RV_MODEL ??
+        r?.Model ??
+        r?.model_name ??
+        r?.MODEL ??
+        null;
 
-  // --- models + selection (buttons) ---
+      // coerce numerics (some exports come as strings)
+      const x = Number(r?.emb_x);
+      const y = Number(r?.emb_y);
+      const cl = Number(r?.cluster);
+
+      if (
+        !modelVal ||
+        !Number.isFinite(x) ||
+        !Number.isFinite(y) ||
+        !Number.isFinite(cl)
+      ) {
+        continue; // skip invalid row
+      }
+
+      out.push({
+        ...r,
+        model: String(modelVal),
+        emb_x: x,
+        emb_y: y,
+        cluster: cl,
+      });
+    }
+    return out;
+  }, [dataPoints]);
+
   const allModels = useMemo(
     () => Array.from(new Set(rows.map((r) => r.model))).sort(),
     [rows]
@@ -116,14 +132,12 @@ export default function App() {
   const [selectedModels, setSelectedModels] = useState(allModels);
   const [colorMode, setColorMode] = useState("cluster"); // "cluster" | "model"
   const [zoomCluster, setZoomCluster] = useState(null); // number | null
-  const [centerT, setCenterT] = useState(0); // 0..1 collapse factor
+  const [centerT, setCenterT] = useState(0); // 0..1 collapse
 
-  // keep selections in sync with dataset changes
   useEffect(() => {
     setSelectedModels(allModels);
   }, [allModels]);
 
-  // reset zoom / collapse when switching dataset
   useEffect(() => {
     setZoomCluster(null);
     setCenterT(0);
@@ -136,13 +150,11 @@ export default function App() {
   const selectAll = () => setSelectedModels(allModels);
   const clearAll = () => setSelectedModels([]);
 
-  // --- filtered by models (base rows, untransformed) ---
   const filtered = useMemo(() => {
     const active = selectedModels?.length ? selectedModels : allModels;
     return rows.filter((r) => active.includes(r.model));
   }, [rows, selectedModels, allModels]);
 
-  // --- clusters present under current model filter ---
   const availableClusters = useMemo(
     () =>
       Array.from(new Set(filtered.map((r) => r.cluster)))
@@ -151,13 +163,11 @@ export default function App() {
     [filtered]
   );
 
-  // if zoomed cluster disappears due to model filtering, reset
   useEffect(() => {
     if (zoomCluster != null && !availableClusters.includes(zoomCluster))
       setZoomCluster(null);
   }, [availableClusters, zoomCluster]);
 
-  // --- base frame for domains (DOES NOT depend on centerT) ---
   const domainBase = useMemo(
     () =>
       zoomCluster == null
@@ -166,10 +176,8 @@ export default function App() {
     [filtered, zoomCluster]
   );
 
-  // --- grouping key and centroids computed on the PLOT FRAME (see below) ---
   const groupingKey = colorMode === "cluster" ? "cluster" : "model";
 
-  // --- plot frame: which actual points to display before centroid interpolation ---
   const plotFrame = useMemo(
     () =>
       zoomCluster == null
@@ -178,7 +186,6 @@ export default function App() {
     [filtered, zoomCluster]
   );
 
-  // --- centroids per group (over the plot frame so zoom respects correct groups) ---
   const centroidsByGroup = useMemo(() => {
     const acc = new Map();
     for (const r of plotFrame) {
@@ -195,7 +202,6 @@ export default function App() {
     return out;
   }, [plotFrame, colorMode]);
 
-  // --- apply center collapse (emb → centroid), BUT axes will not change with this ---
   const plotDataCentered = useMemo(() => {
     if (centerT <= 0) return plotFrame;
     const out = new Array(plotFrame.length);
@@ -214,7 +220,6 @@ export default function App() {
     return out;
   }, [plotFrame, centroidsByGroup, centerT, colorMode]);
 
-  // --- series grouping (based on transformed data for coloring/legend) ---
   const groupKeys = useMemo(() => {
     const g = new Set(plotDataCentered.map((r) => r[groupingKey]));
     let arr = Array.from(g);
@@ -234,7 +239,6 @@ export default function App() {
     return groupKeys.map((k) => ({ key: k, data: buckets.get(k) || [] }));
   }, [plotDataCentered, groupKeys, colorMode]);
 
-  // --- centroid hotspots (computed on ALL filtered to click before zoom) ---
   const clusterCentroidsForHotspots = useMemo(() => {
     const byCluster = new Map();
     for (const r of filtered) {
@@ -252,7 +256,6 @@ export default function App() {
     }));
   }, [filtered]);
 
-  // --- target domains based on the BASE (domainBase) ONLY (centerT does NOT affect) ---
   const targetX = useMemo(
     () => paddedDomain(domainBase.map((r) => r.emb_x)),
     [domainBase]
@@ -262,7 +265,6 @@ export default function App() {
     [domainBase]
   );
 
-  // --- animated domains (animate on zoom/filter changes, not on centerT changes) ---
   const [animX, setAnimX] = useState(targetX);
   const [animY, setAnimY] = useState(targetY);
   const rafRef = useRef(null);
@@ -276,7 +278,6 @@ export default function App() {
     startRef.current = performance.now();
     fromXRef.current = animX || targetX;
     fromYRef.current = animY || targetY;
-
     const step = (now) => {
       const t = Math.min(1, (now - startRef.current) / duration);
       setAnimX(tweenDomain(fromXRef.current, targetX, t));
@@ -284,13 +285,94 @@ export default function App() {
       if (t < 1) rafRef.current = requestAnimationFrame(step);
       else rafRef.current = null;
     };
-
     rafRef.current = requestAnimationFrame(step);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetX[0], targetX[1], targetY[0], targetY[1]]);
+
+  // -------------------- DEMOGRAPHICS --------------------
+  // Build NAME -> (START -> LABEL) map
+  const demoLookups = useMemo(() => {
+    const byField = new Map();
+    for (const row of demosMapping || []) {
+      const field = String(row?.NAME ?? "").trim();
+      if (!field) continue;
+      const start = row?.START;
+      const label = String(row?.LABEL ?? "").trim();
+      if (!byField.has(field)) byField.set(field, new Map());
+      const m = byField.get(field);
+      m.set(start, label);
+      m.set(String(start), label);
+      if (Number.isFinite(Number(start))) m.set(Number(start), label);
+    }
+    return byField;
+  }, []);
+
+  const scopeRows = useMemo(() => {
+    const base =
+      zoomCluster == null
+        ? filtered
+        : filtered.filter((r) => r.cluster === zoomCluster);
+    return base;
+  }, [filtered, zoomCluster]);
+
+  const demoSummary = useMemo(() => {
+    const total = scopeRows.length || 1;
+    const sections = [];
+
+    for (const [field, codeMap] of demoLookups.entries()) {
+      const counts = new Map();
+      let anyObserved = false;
+
+      for (const r of scopeRows) {
+        const rawVal = r?.[field];
+        if (rawVal === undefined || rawVal === null || String(rawVal) === "")
+          continue;
+        anyObserved = true;
+
+        let label = String(rawVal).trim();
+        if (codeMap.has(rawVal)) {
+          label = codeMap.get(rawVal);
+        } else if (codeMap.has(String(rawVal))) {
+          label = codeMap.get(String(rawVal));
+        } else if (codeMap.has(Number(rawVal))) {
+          label = codeMap.get(Number(rawVal));
+        } else {
+          // Try float-like strings
+          const asNum = Number(label);
+          if (Number.isFinite(asNum) && codeMap.has(asNum))
+            label = codeMap.get(asNum);
+          else if (codeMap.has(String(asNum)))
+            label = codeMap.get(String(asNum));
+          // else assume it's already a label
+        }
+
+        counts.set(label, (counts.get(label) || 0) + 1);
+      }
+
+      if (!anyObserved || counts.size === 0) continue;
+
+      const items = Array.from(counts.entries())
+        .map(([label, count]) => ({ label, count, pct: (count / total) * 100 }))
+        .sort((a, b) => b.count - a.count);
+
+      sections.push({ field, items, total });
+    }
+
+    sections.sort((a, b) => (b.items[0]?.pct || 0) - (a.items[0]?.pct || 0));
+    return sections;
+  }, [scopeRows, demoLookups]);
+
+  const scopeTitle = useMemo(() => {
+    if (zoomCluster != null) return `Cluster C${zoomCluster}`;
+    const sel = selectedModels;
+    if (!sel?.length || sel.length === allModels.length)
+      return "Selected Models (All)";
+    if (sel.length === 1) return `Model: ${sel[0]}`;
+    return `Models (${sel.length})`;
+  }, [zoomCluster, selectedModels, allModels.length]);
 
   return (
     <div
@@ -316,7 +398,7 @@ export default function App() {
           marginBottom: 12,
         }}
       >
-        {/* NEW: Dataset toggle */}
+        {/* Dataset toggle */}
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <div style={{ fontWeight: 600 }}>Dataset:</div>
           <button
@@ -413,7 +495,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Color mode + Cluster zoom buttons */}
+        {/* Color mode + Cluster zoom */}
         <div
           style={{
             display: "flex",
@@ -518,14 +600,9 @@ export default function App() {
         </div>
       </div>
 
-      {/* Chart + Placeholder Side by Side */}
+      {/* Chart + Demographics */}
       <div
-        style={{
-          display: "flex",
-          gap: 16,
-          alignItems: "stretch",
-          height: 500, // single height controller for BOTH panes
-        }}
+        style={{ display: "flex", gap: 16, alignItems: "stretch", height: 500 }}
       >
         {/* Chart */}
         <div
@@ -536,7 +613,7 @@ export default function App() {
             borderRadius: 12,
             padding: 10,
             height: "100%",
-            boxSizing: "border-box", // <-- include padding & border in the 100% height
+            boxSizing: "border-box",
           }}
         >
           <ResponsiveContainer width="100%" height="100%">
@@ -558,9 +635,7 @@ export default function App() {
                 stroke="#334155"
                 domain={animY}
               />
-
               <Legend wrapperStyle={{ color: "#e5e7eb" }} />
-
               {series.map(({ key, data }) => (
                 <Scatter
                   key={String(key)}
@@ -574,7 +649,6 @@ export default function App() {
                   }}
                 />
               ))}
-
               {zoomCluster == null && (
                 <Scatter
                   data={clusterCentroidsForHotspots}
@@ -596,24 +670,129 @@ export default function App() {
           </ResponsiveContainer>
         </div>
 
-        {/* Placeholder Box */}
+        {/* Demographics Panel */}
         <div
           style={{
-            width: 320,
+            width: 360,
             height: "100%",
             background: "#1e293b",
             border: "1px solid #334155",
             borderRadius: 12,
-            padding: 10, // match chart padding
+            padding: 12,
             color: "#cbd5e1",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontStyle: "italic",
-            boxSizing: "border-box", // <-- include padding & border in the 100% height
+            flexDirection: "column",
+            boxSizing: "border-box",
           }}
         >
-          Placeholder Panel
+          <div
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+              marginBottom: 8,
+            }}
+          >
+            <div style={{ fontWeight: 700, color: "#e5e7eb" }}>
+              Demographics
+            </div>
+            <div style={{ fontSize: 12, opacity: 0.8 }}>{scopeTitle}</div>
+          </div>
+
+          <div
+            style={{
+              overflowY: "auto",
+              paddingRight: 4,
+              gap: 12,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {demoSummary.length === 0 ? (
+              <div
+                style={{
+                  fontStyle: "italic",
+                  opacity: 0.8,
+                  padding: "8px 4px",
+                }}
+              >
+                No demographic fields observed in current scope.
+              </div>
+            ) : (
+              demoSummary.map((section) => (
+                <div
+                  key={section.field}
+                  style={{
+                    background: "#0b1220",
+                    border: "1px solid #334155",
+                    borderRadius: 8,
+                    padding: 10,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 700,
+                      marginBottom: 8,
+                      color: "#e5e7eb",
+                    }}
+                  >
+                    {section.field}
+                  </div>
+
+                  {section.items.map((it) => (
+                    <div
+                      key={`${section.field}::${it.label}`}
+                      style={{ marginBottom: 6 }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                          gap: 8,
+                        }}
+                      >
+                        <div style={{ fontSize: 12, color: "#cbd5e1" }}>
+                          {it.label}
+                        </div>
+                        <div
+                          style={{
+                            fontSize: 12,
+                            fontVariantNumeric: "tabular-nums",
+                            color: "#e5e7eb",
+                          }}
+                        >
+                          {it.pct.toFixed(1)}%{" "}
+                          <span style={{ opacity: 0.6 }}>
+                            ({it.count.toLocaleString()})
+                          </span>
+                        </div>
+                      </div>
+                      <div
+                        style={{
+                          height: 6,
+                          background: "#0f172a",
+                          border: "1px solid #334155",
+                          borderRadius: 999,
+                          overflow: "hidden",
+                          marginTop: 4,
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: `${Math.min(100, it.pct).toFixed(2)}%`,
+                            height: "100%",
+                            background: "#FF5432",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>
