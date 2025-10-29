@@ -519,73 +519,103 @@ export default function App() {
         </div>
       </div>
 
-      {/* Chart */}
+      {/* Chart + Placeholder Side by Side */}
       <div
         style={{
-          background: "#111827",
-          border: "1px solid #1f2937",
-          borderRadius: 12,
-          padding: 10,
-          height: 500,
+          display: "flex",
+          gap: 16,
+          alignItems: "stretch",
+          height: 500, // single height controller for BOTH panes
         }}
       >
-        <ResponsiveContainer width="100%" height="100%">
-          <ScatterChart margin={{ top: 8, right: 8, left: 8, bottom: 8 }}>
-            <CartesianGrid stroke="#1f2937" />
-            <XAxis
-              type="number"
-              dataKey="emb_x"
-              name="UMAP 1"
-              tick={{ fill: "#cbd5e1", fontSize: 12 }}
-              stroke="#334155"
-              domain={animX}
-            />
-            <YAxis
-              type="number"
-              dataKey="emb_y"
-              name="UMAP 2"
-              tick={{ fill: "#cbd5e1", fontSize: 12 }}
-              stroke="#334155"
-              domain={animY}
-            />
-
-            <Legend wrapperStyle={{ color: "#e5e7eb" }} />
-
-            {/* Points (centered by centerT, but axes fixed to domainBase) */}
-            {series.map(({ key, data }) => (
-              <Scatter
-                key={String(key)}
-                name={colorMode === "cluster" ? `C${key}` : key}
-                data={data}
-                fill={colorForKey(key, groupKeys)}
-                isAnimationActive={false}
-                onClick={(pt) => {
-                  const k = pt?.payload?.cluster;
-                  if (Number.isFinite(k)) setZoomCluster(k);
-                }}
+        {/* Chart */}
+        <div
+          style={{
+            flex: 1,
+            background: "#111827",
+            border: "1px solid #1f2937",
+            borderRadius: 12,
+            padding: 10,
+            height: "100%",
+            boxSizing: "border-box", // <-- include padding & border in the 100% height
+          }}
+        >
+          <ResponsiveContainer width="100%" height="100%">
+            <ScatterChart margin={{ top: 8, right: 8, left: 8, bottom: 8 }}>
+              <CartesianGrid stroke="#1f2937" />
+              <XAxis
+                type="number"
+                dataKey="emb_x"
+                name="UMAP 1"
+                tick={{ fill: "#cbd5e1", fontSize: 12 }}
+                stroke="#334155"
+                domain={animX}
               />
-            ))}
-
-            {/* Centroid hotspots (only when not zoomed) */}
-            {zoomCluster == null && (
-              <Scatter
-                data={clusterCentroidsForHotspots}
-                name=""
-                legendType="none"
-                isAnimationActive={false}
-                shape={(props) => (
-                  <CentroidDot
-                    {...props}
-                    onClick={(p) => {
-                      if (Number.isFinite(p?.cluster))
-                        setZoomCluster(p.cluster);
-                    }}
-                  />
-                )}
+              <YAxis
+                type="number"
+                dataKey="emb_y"
+                name="UMAP 2"
+                tick={{ fill: "#cbd5e1", fontSize: 12 }}
+                stroke="#334155"
+                domain={animY}
               />
-            )}
-          </ScatterChart>
-        </ResponsiveContainer>
+
+              <Legend wrapperStyle={{ color: "#e5e7eb" }} />
+
+              {series.map(({ key, data }) => (
+                <Scatter
+                  key={String(key)}
+                  name={colorMode === "cluster" ? `C${key}` : key}
+                  data={data}
+                  fill={colorForKey(key, groupKeys)}
+                  isAnimationActive={false}
+                  onClick={(pt) => {
+                    const k = pt?.payload?.cluster;
+                    if (Number.isFinite(k)) setZoomCluster(k);
+                  }}
+                />
+              ))}
+
+              {zoomCluster == null && (
+                <Scatter
+                  data={clusterCentroidsForHotspots}
+                  name=""
+                  legendType="none"
+                  isAnimationActive={false}
+                  shape={(props) => (
+                    <CentroidDot
+                      {...props}
+                      onClick={(p) => {
+                        if (Number.isFinite(p?.cluster))
+                          setZoomCluster(p.cluster);
+                      }}
+                    />
+                  )}
+                />
+              )}
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Placeholder Box */}
+        <div
+          style={{
+            width: 320,
+            height: "100%",
+            background: "#1e293b",
+            border: "1px solid #334155",
+            borderRadius: 12,
+            padding: 10, // match chart padding
+            color: "#cbd5e1",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontStyle: "italic",
+            boxSizing: "border-box", // <-- include padding & border in the 100% height
+          }}
+        >
+          Placeholder Panel
+        </div>
       </div>
     </div>
   );
