@@ -303,8 +303,7 @@ export default function App() {
       }}
     >
       <h1 style={{ margin: 0, marginBottom: 12, color: "#FF5432" }}>
-        {group === "SUV" ? "SUV" : "Pickup"} UMAP Scatter — Center Focus (axes
-        fixed during collapse)
+        {group === "SUV" ? "SUV" : "Pickup"} Interactive Clusters
       </h1>
 
       {/* Controls */}
