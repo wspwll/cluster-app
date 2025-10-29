@@ -319,19 +319,25 @@ export default function App() {
   }, [filtered, zoomCluster]);
 
   const demoSummary = useMemo(() => {
-    const total = scopeRows.length || 1;
     const sections = [];
 
     for (const [field, codeMap] of demoLookups.entries()) {
       const counts = new Map();
-      let anyObserved = false;
+      let validCount = 0;
+      let missingCount = 0;
 
       for (const r of scopeRows) {
         const rawVal = r?.[field];
-        if (rawVal === undefined || rawVal === null || String(rawVal) === "")
+        if (
+          rawVal === undefined ||
+          rawVal === null ||
+          String(rawVal).trim() === ""
+        ) {
+          missingCount++;
           continue;
-        anyObserved = true;
+        }
 
+        // Map code → label
         let label = String(rawVal).trim();
         if (codeMap.has(rawVal)) {
           label = codeMap.get(rawVal);
@@ -340,27 +346,50 @@ export default function App() {
         } else if (codeMap.has(Number(rawVal))) {
           label = codeMap.get(Number(rawVal));
         } else {
-          // Try float-like strings
           const asNum = Number(label);
           if (Number.isFinite(asNum) && codeMap.has(asNum))
             label = codeMap.get(asNum);
           else if (codeMap.has(String(asNum)))
             label = codeMap.get(String(asNum));
-          // else assume it's already a label
         }
 
         counts.set(label, (counts.get(label) || 0) + 1);
+        validCount++;
       }
 
-      if (!anyObserved || counts.size === 0) continue;
+      // If no values at all, skip this demographic
+      if (validCount + missingCount === 0) continue;
 
+      // Compute valid percentages first
+      const fieldTotal = validCount + missingCount;
       const items = Array.from(counts.entries())
-        .map(([label, count]) => ({ label, count, pct: (count / total) * 100 }))
+        .map(([label, count]) => ({
+          label,
+          count,
+          pct: (count / fieldTotal) * 100,
+        }))
         .sort((a, b) => b.count - a.count);
 
-      sections.push({ field, items, total });
+      // Add the "Unknown" group for missing responses
+      if (missingCount > 0) {
+        items.push({
+          label: "Unknown",
+          count: missingCount,
+          pct: (missingCount / fieldTotal) * 100,
+        });
+      }
+
+      // Ensure totals = 100% (minor rounding safeguard)
+      const sumPct = items.reduce((a, b) => a + b.pct, 0);
+      if (Math.abs(sumPct - 100) > 0.1) {
+        const diff = 100 - sumPct;
+        items[items.length - 1].pct += diff;
+      }
+
+      sections.push({ field, items, total: fieldTotal });
     }
 
+    // Sort sections by concentration (optional aesthetic)
     sections.sort((a, b) => (b.items[0]?.pct || 0) - (a.items[0]?.pct || 0));
     return sections;
   }, [scopeRows, demoLookups]);
