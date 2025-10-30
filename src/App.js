@@ -179,6 +179,11 @@ function CentroidDot({ cx, cy, payload, onClick }) {
     </g>
   );
 }
+
+function BigDot({ cx, cy, fill }) {
+  return <circle cx={cx} cy={cy} r={10} fill={fill} />;
+}
+
 function paddedDomain(vals) {
   if (!vals.length) return [0, 1];
   let min = Math.min(...vals);
@@ -516,6 +521,240 @@ function buildHistogram(rows, binCount = 12) {
   return { bins: data, min, max, total };
 }
 
+// ---- Attitudes: detect "agree" on Likert / label values ----
+const AGREE_LABELS = new Set([
+  "strongly agree",
+  "agree",
+  "somewhat agree",
+  "somewhatagree", // just in case
+  "sa",
+  "a",
+  "swa",
+]);
+
+function normalizeStr(v) {
+  return String(v ?? "")
+    .trim()
+    .toLowerCase();
+}
+
+/**
+ * Returns:
+ *   1  → agree (SA/A/SWA)
+ *   0  → not agree (neutral/disagree)
+ *  NaN → missing/unknown
+ */
+function agreeIndicator(raw) {
+  if (raw === null || raw === undefined) return NaN;
+
+  // If it's numeric Likert, try common scales:
+  const num = Number(raw);
+  if (Number.isFinite(num)) {
+    // 1–7 scale → 5/6/7 = agree
+    if (num >= 1 && num <= 7) return num >= 5 ? 1 : 0;
+    // 1–5 scale → 4/5 = agree
+    if (num >= 1 && num <= 5) return num >= 4 ? 1 : 0;
+    // percentages already? treat >=50 as "agree" presence is unknown per-respondent, so NaN
+    return NaN;
+  }
+
+  // String labels
+  const s = normalizeStr(raw);
+  if (!s) return NaN;
+
+  // exact/contains checks
+  if (AGREE_LABELS.has(s)) return 1;
+  if (
+    s.includes("strongly agree") ||
+    s === "stronglyagree" ||
+    s.includes("somewhat agree") ||
+    s === "somewhatagree" ||
+    s === "agree"
+  ) {
+    return 1;
+  }
+
+  // some datasets store like "7 - Strongly agree"
+  const m = s.match(/^(\d)\s*[-–]\s*(.*)$/);
+  if (m) {
+    const n = Number(m[1]);
+    if (Number.isFinite(n)) {
+      if (n >= 1 && n <= 7) return n >= 5 ? 1 : 0;
+      if (n >= 1 && n <= 5) return n >= 4 ? 1 : 0;
+    }
+  }
+
+  // neutral/other
+  return 0;
+}
+
+/** % Agree for a variable within a row set */
+function percentAgree(rows, varName) {
+  let agree = 0,
+    valid = 0;
+  for (const r of rows) {
+    const ind = agreeIndicator(r?.[varName]);
+    if (Number.isNaN(ind)) continue;
+    valid += 1;
+    agree += ind;
+  }
+  return valid > 0 ? (agree / valid) * 100 : NaN;
+}
+
+// --- Label resolution from demos-mapping.json (and common aliases) ---
+function getAttRaw(row, varName) {
+  // try the field as-is first
+  const v = row?.[varName];
+  if (v !== undefined && v !== null && String(v).trim() !== "") return v;
+
+  // common alias suffixes some exports create
+  const aliases = [
+    `${varName}_LABEL`,
+    `${varName}_TXT`,
+    `${varName}_TEXT`,
+    `${varName}_DESC`,
+    `${varName}_LAB`,
+  ];
+  for (const a of aliases) {
+    const va = row?.[a];
+    if (va !== undefined && va !== null && String(va).trim() !== "") return va;
+  }
+  return null;
+}
+
+function normalizeLabel(s) {
+  return String(s ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+/**
+ * Resolve a *display label* for the value in row[varName] using demos-mapping.
+ * - If value is a code present in the mapping (by number/string), return mapped label.
+ * - Otherwise, return the original value as a string label.
+ */
+function resolveMappedLabel(row, varName, demoLookups) {
+  const raw = getAttRaw(row, varName);
+  if (raw === null || raw === undefined) return null;
+
+  const codeMap = demoLookups.get(varName) || new Map();
+
+  // Direct map lookups (as-is, string, number)
+  if (codeMap.has(raw)) return codeMap.get(raw);
+  const asStr = String(raw);
+  if (codeMap.has(asStr)) return codeMap.get(asStr);
+  const asNum = Number(asStr);
+  if (Number.isFinite(asNum)) {
+    if (codeMap.has(asNum)) return codeMap.get(asNum);
+    if (codeMap.has(String(asNum))) return codeMap.get(String(asNum));
+  }
+
+  // No mapping? fall back to the raw value as a label
+  return asStr;
+}
+
+/** True if the label counts as "agree" for standard loyalty items */
+function isAgreeLabel(label) {
+  const s = normalizeLabel(label);
+
+  // Allow exact/typical forms
+  if (
+    s === "strongly agree" ||
+    s === "agree" ||
+    s === "somewhat agree" ||
+    s === "somewhatagree" ||
+    s === "sa" ||
+    s === "a" ||
+    s === "swa"
+  ) {
+    return true;
+  }
+
+  // Generic fallback: contains "agree" but NOT "disagree"
+  if (s.includes("agree") && !s.includes("disagree")) return true;
+
+  return false;
+}
+
+function percentAgreeMapped(
+  rows,
+  varName,
+  demoLookups,
+  { includeMissingInDenom = false } = {}
+) {
+  let agree = 0,
+    valid = 0,
+    missing = 0;
+
+  const specialLoyal = varName === "OL_MODEL_GRP";
+  for (const r of rows) {
+    const lab = resolveMappedLabel(r, varName, demoLookups);
+    if (!lab) {
+      missing += 1;
+      continue;
+    }
+
+    valid += 1;
+    if (specialLoyal) {
+      if (normalizeLabel(lab) === "loyal") agree += 1;
+    } else {
+      if (isAgreeLabel(lab)) agree += 1;
+    }
+  }
+
+  const denom = includeMissingInDenom ? valid + missing : valid;
+  return denom > 0 ? (agree / denom) * 100 : NaN;
+}
+
+/* ================== NEW: Policy-based agree % to match the card ================== */
+// Sets used for top-2 vs top-3
+const AGREE_TOP3 = new Set(["strongly agree", "agree", "somewhat agree"]);
+const AGREE_TOP2 = new Set(["strongly agree", "somewhat agree"]);
+
+// Decide which policy to use for a variable
+function agreePolicyFor(varName) {
+  if (varName === "OL_MODEL_GRP") return "LOYAL_ONLY";
+  if (/^STATE_/i.test(varName)) return "TOP2"; // STATE_* → top-2 box
+  return "TOP3"; // default
+}
+
+function isTopNAgree(label, policy) {
+  const s = normalizeLabel(label);
+  if (policy === "LOYAL_ONLY") return s === "loyal";
+  if (policy === "TOP2") return AGREE_TOP2.has(s);
+  return AGREE_TOP3.has(s); // default TOP3
+}
+
+/**
+ * Percent "agree" via mapped labels following per-variable policy.
+ * Set includeMissingInDenom=true to match the card's denominator (Unknown included).
+ */
+function percentAgreeMappedPolicy(
+  rows,
+  varName,
+  demoLookups,
+  { includeMissingInDenom = true } = {}
+) {
+  let agree = 0,
+    valid = 0,
+    missing = 0;
+  const policy = agreePolicyFor(varName);
+
+  for (const r of rows) {
+    const lab = resolveMappedLabel(r, varName, demoLookups);
+    if (!lab) {
+      missing++;
+      continue;
+    }
+    valid++;
+    if (isTopNAgree(lab, policy)) agree++;
+  }
+  const denom = includeMissingInDenom ? valid + missing : valid;
+  return denom > 0 ? (agree / denom) * 100 : NaN;
+}
+/* ================================================================================ */
+
 export default function App() {
   const [group, setGroup] = useState("SUV");
   const dataPoints = group === "SUV" ? suvPoints : puPoints;
@@ -732,6 +971,57 @@ export default function App() {
   useEffect(() => {
     if (demoModel && !modelsInScope.includes(demoModel)) setDemoModel(null);
   }, [modelsInScope, demoModel]);
+
+  // Attitudes selections (default to first in each group)
+  const LOYALTY_VARS = FIELD_GROUPS.Loyalty;
+  const WTP_VARS = FIELD_GROUPS["Willingness to Pay"];
+  const [attXVar, setAttXVar] = useState(LOYALTY_VARS[0]);
+  const [attYVar, setAttYVar] = useState(WTP_VARS[0]);
+
+  // Attitudes points computed from current scopeRows (includes state filter)
+  const attitudesPoints = useMemo(() => {
+    const gkey = colorMode === "cluster" ? "cluster" : "model";
+    const srcRows = demoModel
+      ? scopeRows.filter((r) => r.model === demoModel)
+      : scopeRows;
+    const byGroup = new Map();
+    for (const r of srcRows) {
+      const k = colorMode === "cluster" ? r.cluster : String(r.model);
+      if (!byGroup.has(k)) byGroup.set(k, []);
+      byGroup.get(k).push(r);
+    }
+
+    const order = groupKeys; // keep consistent colors with scatter/price chart
+    const pts = [];
+    for (const k of order) {
+      const rows = byGroup.get(k) || [];
+      // === use policy-based agree that matches the right-hand card ===
+      const x = percentAgreeMappedPolicy(rows, attXVar, demoLookups, {
+        includeMissingInDenom: true,
+      });
+      const y = percentAgreeMappedPolicy(rows, attYVar, demoLookups, {
+        includeMissingInDenom: true,
+      });
+      if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+      pts.push({
+        key: k,
+        name: colorMode === "cluster" ? `C${k}` : String(k),
+        x,
+        y,
+        n: rows.length,
+        color: colorForKey(k, order),
+      });
+    }
+    return pts;
+  }, [
+    scopeRows,
+    colorMode,
+    groupKeys,
+    attXVar,
+    attYVar,
+    demoLookups,
+    demoModel,
+  ]);
 
   const clusterCentroidsForHotspots = useMemo(() => {
     const byCluster = new Map();
@@ -1518,13 +1808,135 @@ export default function App() {
               flex: 1,
               minHeight: 300,
               boxSizing: "border-box",
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
             }}
           >
-            <div style={{ fontWeight: 700, marginBottom: 8 }}>
-              Attitudes Scatterplot
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                flexWrap: "wrap",
+              }}
+            >
+              <div style={{ fontWeight: 700 }}>Attitudes Scatterplot</div>
+              <div
+                style={{
+                  marginLeft: "auto",
+                  display: "flex",
+                  gap: 8,
+                  flexWrap: "wrap",
+                }}
+              >
+                <label
+                  style={{ display: "flex", alignItems: "center", gap: 6 }}
+                >
+                  <span style={{ fontSize: 12, opacity: 0.85 }}>
+                    X (Loyalty):
+                  </span>
+                  <select
+                    value={attXVar}
+                    onChange={(e) => setAttXVar(e.target.value)}
+                    style={{
+                      background: "#0b1220",
+                      color: "#e5e7eb",
+                      border: "1px solid #334155",
+                      padding: "6px 10px",
+                      borderRadius: 8,
+                      fontSize: 12,
+                    }}
+                  >
+                    {LOYALTY_VARS.map((v) => (
+                      <option key={v} value={v}>
+                        {v}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label
+                  style={{ display: "flex", alignItems: "center", gap: 6 }}
+                >
+                  <span style={{ fontSize: 12, opacity: 0.85 }}>Y (WTP):</span>
+                  <select
+                    value={attYVar}
+                    onChange={(e) => setAttYVar(e.target.value)}
+                    style={{
+                      background: "#0b1220",
+                      color: "#e5e7eb",
+                      border: "1px solid #334155",
+                      padding: "6px 10px",
+                      borderRadius: 8,
+                      fontSize: 12,
+                    }}
+                  >
+                    {WTP_VARS.map((v) => (
+                      <option key={v} value={v}>
+                        {v}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
             </div>
-            <div style={{ opacity: 0.7, fontSize: 13 }}>
-              Placeholder — attitudes / perceptions scatterplot
+
+            <div style={{ flex: 1, minHeight: 0 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <ScatterChart
+                  margin={{ top: 8, right: 12, bottom: 24, left: 12 }}
+                >
+                  <CartesianGrid stroke="#1f2937" />
+                  <XAxis
+                    type="number"
+                    dataKey="x"
+                    name={attXVar}
+                    tickFormatter={(v) => `${v.toFixed(0)}%`}
+                    tick={{ fill: "#cbd5e1", fontSize: 12 }}
+                    stroke="#334155"
+                    domain={[0, 100]}
+                  />
+                  <YAxis
+                    type="number"
+                    dataKey="y"
+                    name={attYVar}
+                    tickFormatter={(v) => `${v.toFixed(0)}%`}
+                    tick={{ fill: "#cbd5e1", fontSize: 12 }}
+                    stroke="#334155"
+                    domain={[0, 100]}
+                  />
+                  {/* No legend; color is consistent with main scatter */}
+                  <Tooltip
+                    cursor={{ stroke: "#334155" }}
+                    contentStyle={{
+                      background: "#0b1220",
+                      border: "1px solid #334155",
+                      color: "#e5e7eb",
+                      borderRadius: 8,
+                    }}
+                    formatter={(value, name, payload) => {
+                      if (name === "x")
+                        return [`${Number(value).toFixed(1)}%`, attXVar];
+                      if (name === "y")
+                        return [`${Number(value).toFixed(1)}%`, attYVar];
+                      return [value, name];
+                    }}
+                    labelFormatter={() => ""}
+                  />
+                  {attitudesPoints.map((pt) => (
+                    <Scatter
+                      key={`att-${pt.key}`}
+                      name={pt.name}
+                      data={[pt]}
+                      fill={pt.color}
+                      isAnimationActive={false}
+                      shape="circle"
+                      shape={<BigDot />}
+                    />
+                  ))}
+                </ScatterChart>
+              </ResponsiveContainer>
             </div>
           </div>
 
@@ -1704,11 +2116,6 @@ export default function App() {
                   );
                 })()}
               </ResponsiveContainer>
-            </div>
-
-            <div style={{ marginTop: 8, fontSize: 12, opacity: 0.7 }}>
-              % of respondents with a valid <code>FIN_PRICE_UNEDITED</code>{" "}
-              value in the current scope.
             </div>
           </div>
         </div>
