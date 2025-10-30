@@ -31,10 +31,8 @@ const COLORS = [
   "#3B82F6",
 ];
 
-// us-atlas topojson; react-simple-maps can pull it directly
 const US_TOPO = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
-// Minimal abbrev → state name map to join ADMARK_STATE to topo names
 const US_STATE_ABBR_TO_NAME = {
   AL: "Alabama",
   AK: "Alaska",
@@ -88,22 +86,32 @@ const US_STATE_ABBR_TO_NAME = {
   WY: "Wyoming",
   DC: "District of Columbia",
 };
-
 const US_STATE_NAME_SET = new Set(Object.values(US_STATE_ABBR_TO_NAME));
+
 function toStateName(labelRaw) {
   if (!labelRaw) return null;
   const s = String(labelRaw).trim();
-  const abbr = s.toUpperCase();
-  if (US_STATE_ABBR_TO_NAME[abbr]) return US_STATE_ABBR_TO_NAME[abbr]; // "CA" -> "California"
-  // case-insensitive match on full names
+
+  // Direct 2-letter -> full
+  const up = s.toUpperCase();
+  if (US_STATE_ABBR_TO_NAME[up]) return US_STATE_ABBR_TO_NAME[up];
+
+  // Full name match
   const lower = s.toLowerCase();
   for (const name of US_STATE_NAME_SET) {
     if (name.toLowerCase() === lower) return name;
   }
+
+  // Try to extract a 2-letter token from mixed strings
+  const two = (s.match(/\b[A-Z]{2}\b/g) || []).find(
+    (tok) => US_STATE_ABBR_TO_NAME[tok.toUpperCase()]
+  );
+  if (two) return US_STATE_ABBR_TO_NAME[two.toUpperCase()];
+
   return null;
 }
 
-// simple color lerp (dark slate → Harvest)
+// ---------- color helpers ----------
 function lerp(a, b, t) {
   return a + (b - a) * t;
 }
@@ -135,13 +143,13 @@ function blendHex(aHex, bHex, t) {
     b: lerp(a.b, b.b, t),
   });
 }
-
 function colorForKey(key, allKeys) {
   const keyStr = String(key);
   const idx = allKeys.findIndex((k) => String(k) === keyStr);
   return COLORS[(idx >= 0 ? idx : 0) % COLORS.length];
 }
 
+// ---------- chart helpers ----------
 function CentroidDot({ cx, cy, payload, onClick }) {
   return (
     <g onClick={() => onClick?.(payload)} style={{ cursor: "pointer" }}>
@@ -166,7 +174,6 @@ function CentroidDot({ cx, cy, payload, onClick }) {
     </g>
   );
 }
-
 function paddedDomain(vals) {
   if (!vals.length) return [0, 1];
   let min = Math.min(...vals);
@@ -188,11 +195,26 @@ function tweenDomain(from, to, t) {
   return [f0 + (t0 - f0) * e, f1 + (t1 - f1) * e];
 }
 
+// Keys we’ll scan for state-like values
+const STATE_KEYS = [
+  "ADMARK_STATE",
+  "admark_state",
+  "STATE",
+  "State",
+  "state",
+  "DM_STATE",
+  "DM_STATE_CODE",
+  "STATE_ABBR",
+  "state_abbr",
+  "ST",
+  "st",
+];
+
 export default function App() {
-  const [group, setGroup] = useState("SUV"); // "SUV" | "Pickup"
+  const [group, setGroup] = useState("SUV");
   const dataPoints = group === "SUV" ? suvPoints : puPoints;
 
-  // ---------- NORMALIZE ROWS ----------
+  // Normalize rows
   const rows = useMemo(() => {
     const out = [];
     for (const r of dataPoints || []) {
@@ -228,15 +250,14 @@ export default function App() {
     () => Array.from(new Set(rows.map((r) => r.model))).sort(),
     [rows]
   );
+
   const [selectedModels, setSelectedModels] = useState(allModels);
-  const [colorMode, setColorMode] = useState("cluster"); // "cluster" | "model"
-  const [zoomCluster, setZoomCluster] = useState(null); // number | null
-  const [centerT, setCenterT] = useState(0); // 0..1 collapse
+  const [colorMode, setColorMode] = useState("model");
+  const [zoomCluster, setZoomCluster] = useState(null);
+  const [centerT, setCenterT] = useState(0);
+  const [selectedStateName, setSelectedStateName] = useState(null);
 
-  useEffect(() => {
-    setSelectedModels(allModels);
-  }, [allModels]);
-
+  useEffect(() => setSelectedModels(allModels), [allModels]);
   useEffect(() => {
     setZoomCluster(null);
     setCenterT(0);
@@ -249,17 +270,91 @@ export default function App() {
   const selectAll = () => setSelectedModels(allModels);
   const clearAll = () => setSelectedModels([]);
 
-  const filtered = useMemo(() => {
+  // --- LOOKUP TABLES for demographics mapping (including ADMARK_STATE code → label) ---
+  const demoLookups = useMemo(() => {
+    const byField = new Map();
+    for (const row of demosMapping || []) {
+      const field = String(row?.NAME ?? "").trim();
+      if (!field) continue;
+      const start = row?.START;
+      const label = String(row?.LABEL ?? "").trim();
+      if (!byField.has(field)) byField.set(field, new Map());
+      const m = byField.get(field);
+      m.set(start, label);
+      m.set(String(start), label);
+      if (Number.isFinite(Number(start))) m.set(Number(start), label);
+    }
+    return byField;
+  }, []);
+
+  // Resolve a *full state name* from a row using demoLookups for ADMARK_STATE codes
+  const getRowStateName = useMemo(() => {
+    const codeMap = demoLookups.get("ADMARK_STATE") || new Map();
+    return (row) => {
+      for (const k of STATE_KEYS) {
+        if (row && row[k] != null && String(row[k]).trim() !== "") {
+          let raw = row[k];
+          let val = String(raw).trim();
+
+          // If this is the coded ADMARK_STATE column, translate via mapping first
+          if (k === "ADMARK_STATE") {
+            const mapped =
+              codeMap.get(raw) ||
+              codeMap.get(String(raw)) ||
+              codeMap.get(Number(raw));
+            if (mapped) val = String(mapped).trim();
+          }
+
+          // Try as abbr/full/mixed
+          const name =
+            toStateName(val) ||
+            US_STATE_ABBR_TO_NAME[String(val).toUpperCase()] ||
+            null ||
+            null;
+          if (name) return name;
+
+          // Last-ditch: scan for any 2-letter token
+          const two = (val.match(/\b[A-Z]{2}\b/g) || []).find(
+            (tok) => US_STATE_ABBR_TO_NAME[tok.toUpperCase()]
+          );
+          if (two) return US_STATE_ABBR_TO_NAME[two.toUpperCase()];
+        }
+      }
+      return null;
+    };
+  }, [demoLookups]);
+
+  // Model filter ONLY (scatter should not react to state selection)
+  const baseByModel = useMemo(() => {
     const active = selectedModels?.length ? selectedModels : allModels;
     return rows.filter((r) => active.includes(r.model));
   }, [rows, selectedModels, allModels]);
 
+  // Scatter frame (model filter + optional cluster zoom), NO state filter here
+  const plotFrame = useMemo(
+    () =>
+      zoomCluster == null
+        ? baseByModel
+        : baseByModel.filter((r) => r.cluster === zoomCluster),
+    [baseByModel, zoomCluster]
+  );
+
+  // Demographics scope (model filter + optional cluster zoom + OPTIONAL state filter)
+  const scopeRows = useMemo(() => {
+    const base =
+      zoomCluster == null
+        ? baseByModel
+        : baseByModel.filter((r) => r.cluster === zoomCluster);
+    if (!selectedStateName) return base;
+    return base.filter((r) => getRowStateName(r) === selectedStateName);
+  }, [baseByModel, zoomCluster, selectedStateName, getRowStateName]);
+
   const availableClusters = useMemo(
     () =>
-      Array.from(new Set(filtered.map((r) => r.cluster)))
-        .filter(Number.isFinite)
-        .sort((a, b) => a - b),
-    [filtered]
+      Array.from(new Set(baseByModel.map((r) => r.cluster))).sort(
+        (a, b) => a - b
+      ),
+    [baseByModel]
   );
 
   useEffect(() => {
@@ -267,24 +362,8 @@ export default function App() {
       setZoomCluster(null);
   }, [availableClusters, zoomCluster]);
 
-  const domainBase = useMemo(
-    () =>
-      zoomCluster == null
-        ? filtered
-        : filtered.filter((r) => r.cluster === zoomCluster),
-    [filtered, zoomCluster]
-  );
-
+  // Centroids for collapsing
   const groupingKey = colorMode === "cluster" ? "cluster" : "model";
-
-  const plotFrame = useMemo(
-    () =>
-      zoomCluster == null
-        ? filtered
-        : filtered.filter((r) => r.cluster === zoomCluster),
-    [filtered, zoomCluster]
-  );
-
   const centroidsByGroup = useMemo(() => {
     const acc = new Map();
     for (const r of plotFrame) {
@@ -338,26 +417,20 @@ export default function App() {
     return groupKeys.map((k) => ({ key: k, data: buckets.get(k) || [] }));
   }, [plotDataCentered, groupKeys, colorMode]);
 
-  // Models currently visible in the chart (respects selectedModels + zoomCluster)
   const modelsInScope = useMemo(() => {
     const set = new Set();
     for (const r of plotFrame) set.add(r.model);
     return Array.from(set).sort();
   }, [plotFrame]);
 
-  // Single-select model for Demographics panel (null = All)
   const [demoModel, setDemoModel] = useState(null);
-
-  // If zoom/filter changes hide the current demoModel, reset to All
   useEffect(() => {
-    if (demoModel && !modelsInScope.includes(demoModel)) {
-      setDemoModel(null);
-    }
+    if (demoModel && !modelsInScope.includes(demoModel)) setDemoModel(null);
   }, [modelsInScope, demoModel]);
 
   const clusterCentroidsForHotspots = useMemo(() => {
     const byCluster = new Map();
-    for (const r of filtered) {
+    for (const r of baseByModel) {
       const k = r.cluster;
       if (!byCluster.has(k)) byCluster.set(k, { sumX: 0, sumY: 0, n: 0 });
       const s = byCluster.get(k);
@@ -370,24 +443,23 @@ export default function App() {
       emb_x: s.sumX / s.n,
       emb_y: s.sumY / s.n,
     }));
-  }, [filtered]);
+  }, [baseByModel]);
 
+  // Axis tweening (based on plot frame)
   const targetX = useMemo(
-    () => paddedDomain(domainBase.map((r) => r.emb_x)),
-    [domainBase]
+    () => paddedDomain(plotFrame.map((r) => r.emb_x)),
+    [plotFrame]
   );
   const targetY = useMemo(
-    () => paddedDomain(domainBase.map((r) => r.emb_y)),
-    [domainBase]
+    () => paddedDomain(plotFrame.map((r) => r.emb_y)),
+    [plotFrame]
   );
-
   const [animX, setAnimX] = useState(targetX);
   const [animY, setAnimY] = useState(targetY);
   const rafRef = useRef(null);
   const startRef = useRef(0);
   const fromXRef = useRef(targetX);
   const fromYRef = useRef(targetY);
-
   useEffect(() => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
     const duration = 400;
@@ -408,48 +480,37 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetX[0], targetX[1], targetY[0], targetY[1]]);
 
-  // -------------------- DEMOGRAPHICS --------------------
-  const demoLookups = useMemo(() => {
-    const byField = new Map();
-    for (const row of demosMapping || []) {
-      const field = String(row?.NAME ?? "").trim();
-      if (!field) continue;
-      const start = row?.START;
-      const label = String(row?.LABEL ?? "").trim();
-      if (!byField.has(field)) byField.set(field, new Map());
-      const m = byField.get(field);
-      m.set(start, label);
-      m.set(String(start), label);
-      if (Number.isFinite(Number(start))) m.set(Number(start), label);
-    }
-    return byField;
-  }, []);
+  // ---------------- Demographics ----------------
+  // NOTE: 'stateAgg' is computed from the *demographics base* (NO state filter) so the map shading shows context.
+  const demoBaseRows = useMemo(() => {
+    // model + optional zoom, but NOT the selected state
+    return zoomCluster == null
+      ? baseByModel
+      : baseByModel.filter((r) => r.cluster === zoomCluster);
+  }, [baseByModel, zoomCluster]);
 
-  const scopeRows = useMemo(() => {
-    const base =
-      zoomCluster == null
-        ? filtered
-        : filtered.filter((r) => r.cluster === zoomCluster);
-    // If a model is selected for the demographics panel, filter to it
-    return demoModel ? base.filter((r) => r.model === demoModel) : base;
-  }, [filtered, zoomCluster, demoModel]);
+  // Map base = same as demoBaseRows, but narrowed to the selected model (if any)
+  const mapBaseRows = useMemo(() => {
+    return demoModel
+      ? demoBaseRows.filter((r) => r.model === demoModel)
+      : demoBaseRows;
+  }, [demoBaseRows, demoModel]);
 
-  // Build state → counts from ADMARK_STATE within current scopeRows (respects filters/zoom/demoModel)
+  // State → counts (within current map base; respects demoModel single-select)
   const stateAgg = useMemo(() => {
     const counts = new Map();
     let total = 0;
-    for (const r of scopeRows) {
-      const raw = String(r?.ADMARK_STATE ?? "")
-        .trim()
-        .toUpperCase();
-      if (!raw) continue;
-      const name = US_STATE_ABBR_TO_NAME[raw];
+
+    for (const r of mapBaseRows) {
+      const name = getRowStateName(r);
       if (!name) continue;
       counts.set(name, (counts.get(name) || 0) + 1);
       total += 1;
     }
+
     const pcts = new Map();
     let maxPct = 0;
+
     if (total > 0) {
       for (const [name, c] of counts.entries()) {
         const pct = (c / total) * 100;
@@ -457,11 +518,11 @@ export default function App() {
         if (pct > maxPct) maxPct = pct;
       }
     }
-    return { counts, pcts, total, maxPct };
-  }, [scopeRows]);
 
-  // Hover state for tooltip readout
-  const [hoverState, setHoverState] = useState(null); // { name, pct, count } | null
+    return { counts, pcts, total, maxPct };
+  }, [mapBaseRows, getRowStateName]);
+
+  const [hoverState, setHoverState] = useState(null);
 
   const demoSummary = useMemo(() => {
     const sections = [];
@@ -470,7 +531,12 @@ export default function App() {
       let validCount = 0;
       let missingCount = 0;
 
-      for (const r of scopeRows) {
+      // Optionally narrow to a single model for the card
+      const src = demoModel
+        ? scopeRows.filter((r) => r.model === demoModel)
+        : scopeRows;
+
+      for (const r of src) {
         const rawVal = r?.[field];
         if (
           rawVal === undefined ||
@@ -518,8 +584,9 @@ export default function App() {
         });
       }
 
+      // Normalize rounding drift to 100%
       const sumPct = items.reduce((a, b) => a + b.pct, 0);
-      if (Math.abs(sumPct - 100) > 0.1) {
+      if (Math.abs(sumPct - 100) > 0.1 && items.length > 0) {
         const diff = 100 - sumPct;
         items[items.length - 1].pct += diff;
       }
@@ -529,26 +596,9 @@ export default function App() {
 
     sections.sort((a, b) => (b.items[0]?.pct || 0) - (a.items[0]?.pct || 0));
     return sections;
-  }, [scopeRows, demoLookups]);
+  }, [scopeRows, demoModel, demoLookups]);
 
-  // Prefer the ADMARK_STATE section from demoSummary (exactly what the card shows)
-  const demoStateAgg = useMemo(() => {
-    const sec = demoSummary.find((s) => s.field === "ADMARK_STATE");
-    if (!sec) return null;
-
-    const pcts = new Map();
-    let maxPct = 0;
-    for (const it of sec.items) {
-      if (String(it.label).toLowerCase() === "unknown") continue;
-      const name = toStateName(it.label);
-      if (!name) continue;
-      const pct = Number(it.pct) || 0;
-      pcts.set(name, pct);
-      if (pct > maxPct) maxPct = pct;
-    }
-    return { pcts, maxPct, total: sec.total };
-  }, [demoSummary]);
-
+  // ---------- UI ----------
   return (
     <div
       style={{
@@ -559,9 +609,18 @@ export default function App() {
         color: "#e5e7eb",
       }}
     >
-      <h1 style={{ margin: 0, marginBottom: 12, color: "#FF5432" }}>
+      <h1 style={{ margin: 0, marginBottom: 8, color: "#FF5432" }}>
         {group === "SUV" ? "SUV" : "Pickup"} Interactive Clusters
       </h1>
+
+      {/* tiny status line */}
+      <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 12 }}>
+        Records (models filter): {baseByModel.length.toLocaleString()}
+        {zoomCluster != null ? ` • Zoom C${zoomCluster}` : ""}
+        {selectedStateName
+          ? ` • Demographics filtered to ${selectedStateName}`
+          : ""}
+      </div>
 
       {/* Controls */}
       <div
@@ -731,9 +790,7 @@ export default function App() {
                     cursor: "pointer",
                     fontSize: 13,
                   }}
-                >
-                  {`C${k}`}
-                </button>
+                >{`C${k}`}</button>
               );
             })}
           </div>
@@ -778,7 +835,7 @@ export default function App() {
       <div
         style={{ display: "flex", gap: 16, alignItems: "stretch", height: 500 }}
       >
-        {/* Chart */}
+        {/* Chart (NOT filtered by state) */}
         <div
           style={{
             flex: 1,
@@ -844,7 +901,7 @@ export default function App() {
           </ResponsiveContainer>
         </div>
 
-        {/* Demographics Panel */}
+        {/* Demographics Panel (FILTERED by selectedStateName) */}
         <div
           style={{
             width: 360,
@@ -872,7 +929,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Model focus (single-select, only models currently visible) */}
+          {/* Model focus (single-select) */}
           <div
             style={{
               display: "flex",
@@ -929,7 +986,18 @@ export default function App() {
               flexDirection: "column",
             }}
           >
-            {demoSummary.length === 0 ? (
+            {selectedStateName && scopeRows.length === 0 ? (
+              <div
+                style={{
+                  fontStyle: "italic",
+                  opacity: 0.85,
+                  padding: "8px 4px",
+                }}
+              >
+                No records for <b>{selectedStateName}</b> in current scope
+                (check ADMARK_STATE coding).
+              </div>
+            ) : demoSummary.length === 0 ? (
               <div
                 style={{
                   fontStyle: "italic",
@@ -960,7 +1028,6 @@ export default function App() {
                   >
                     {section.field}
                   </div>
-
                   {section.items.map((it) => (
                     <div
                       key={`${section.field}::${it.label}`}
@@ -1017,64 +1084,112 @@ export default function App() {
         </div>
       </div>
 
+      {/* Bottom row: Stacked (Attitudes over TP) + Map */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "3fr 2fr", // 60% (left) / 40% (right)
           gap: 16,
           marginTop: 16,
+          alignItems: "stretch",
         }}
       >
+        {/* LEFT: Attitudes (top) + Transaction Price (bottom) */}
         <div
           style={{
-            background: "#111827",
-            border: "1px solid #1f2937",
-            borderRadius: 12,
-            padding: 12,
-            minHeight: 220,
-            boxSizing: "border-box",
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+            minHeight: 640, // taller stack
           }}
         >
-          <div style={{ fontWeight: 700, marginBottom: 8 }}>
-            Transaction Price
+          {/* Attitudes Scatterplot (TOP) */}
+          <div
+            style={{
+              background: "#111827",
+              border: "1px solid #1f2937",
+              borderRadius: 12,
+              padding: 12,
+              flex: 1,
+              minHeight: 300,
+              boxSizing: "border-box",
+            }}
+          >
+            <div style={{ fontWeight: 700, marginBottom: 8 }}>
+              Attitudes Scatterplot
+            </div>
+            <div style={{ opacity: 0.7, fontSize: 13 }}>
+              Placeholder — attitudes / perceptions scatterplot
+            </div>
           </div>
-          <div style={{ opacity: 0.7, fontSize: 13 }}>
-            Placeholder — price paid histogram (line)
+
+          {/* Transaction Price (BOTTOM) */}
+          <div
+            style={{
+              background: "#111827",
+              border: "1px solid #1f2937",
+              borderRadius: 12,
+              padding: 12,
+              flex: 1,
+              minHeight: 300,
+              boxSizing: "border-box",
+            }}
+          >
+            <div style={{ fontWeight: 700, marginBottom: 8 }}>
+              Transaction Price
+            </div>
+            <div style={{ opacity: 0.7, fontSize: 13 }}>
+              Placeholder — price paid histogram (line)
+            </div>
           </div>
         </div>
 
+        {/* RIGHT: Geographic map (full height of column) */}
         <div
           style={{
             background: "#111827",
             border: "1px solid #1f2937",
             borderRadius: 12,
             padding: 12,
-            minHeight: 220,
+            minHeight: 640, // taller map
             boxSizing: "border-box",
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <div style={{ fontWeight: 700, marginBottom: 8 }}>
-            Attitudes Scatterplot
-          </div>
-          <div style={{ opacity: 0.7, fontSize: 13 }}>
-            Placeholder — attitudes / perceptions scatterplot
-          </div>
-        </div>
+          {selectedStateName && (
+            <button
+              onClick={() => setSelectedStateName(null)}
+              style={{
+                position: "absolute",
+                top: 10,
+                right: 12,
+                background: "#0b1220",
+                color: "#e5e7eb",
+                border: "1px solid #334155",
+                borderRadius: 8,
+                padding: "4px 8px",
+                fontSize: 12,
+                cursor: "pointer",
+              }}
+              title="Clear state filter"
+            >
+              Clear
+            </button>
+          )}
 
-        <div
-          style={{
-            background: "#111827",
-            border: "1px solid #1f2937",
-            borderRadius: 12,
-            padding: 12,
-            minHeight: 220,
-            boxSizing: "border-box",
-          }}
-        >
           <div style={{ fontWeight: 700, marginBottom: 8 }}>Geographic map</div>
 
-          {/* Map */}
-          <div style={{ height: 240, borderRadius: 8, overflow: "hidden" }}>
+          {/* Map grows to fill column */}
+          <div
+            style={{
+              flex: 1,
+              borderRadius: 8,
+              overflow: "hidden",
+              minHeight: 0, // allows flexed child to fill
+            }}
+          >
             <ComposableMap
               projection="geoAlbersUsa"
               style={{ width: "100%", height: "100%" }}
@@ -1084,24 +1199,26 @@ export default function App() {
                   geographies.map((geo) => {
                     const name = geo.properties.name;
 
-                    // ✅ Use ADMARK_STATE card data if available, else fallback
-                    const pctFromCard = demoStateAgg?.pcts.get(name);
-                    const pct =
-                      pctFromCard != null
-                        ? pctFromCard
-                        : stateAgg.pcts.get(name) || 0;
-                    const maxForScale = demoStateAgg
-                      ? demoStateAgg.maxPct
-                      : stateAgg.maxPct;
+                    // Shade by distribution across the current map base (respects demoModel)
+                    const pct = stateAgg.pcts.get(name) || 0;
                     const t =
-                      maxForScale > 0 ? Math.min(1, pct / maxForScale) : 0;
-                    const fill = blendHex("#0b1220", "#FF5432", t);
-                    const stroke = "#1f2937";
+                      stateAgg.maxPct > 0
+                        ? Math.min(1, pct / stateAgg.maxPct)
+                        : 0;
+
+                    const isSelected = selectedStateName === name;
+                    const baseFill = blendHex("#0b1220", "#FF5432", t);
+                    const fill = isSelected
+                      ? blendHex(baseFill, "#ffffff", 0.25)
+                      : baseFill;
+                    const stroke = isSelected ? "#FF5432" : "#1f2937";
+                    const strokeWidth = isSelected ? 2 : 0.75;
 
                     return (
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
+                        onClick={() => setSelectedStateName(name)}
                         onMouseEnter={() =>
                           setHoverState({
                             name,
@@ -1114,19 +1231,21 @@ export default function App() {
                           default: {
                             fill,
                             stroke,
-                            strokeWidth: 0.75,
+                            strokeWidth,
                             outline: "none",
+                            cursor: "pointer",
                           },
                           hover: {
                             fill: blendHex(fill, "#ffffff", 0.15),
                             stroke,
-                            strokeWidth: 1,
+                            strokeWidth: Math.max(1, strokeWidth),
                             outline: "none",
+                            cursor: "pointer",
                           },
                           pressed: {
                             fill,
                             stroke,
-                            strokeWidth: 1,
+                            strokeWidth: Math.max(1, strokeWidth),
                             outline: "none",
                           },
                         }}
@@ -1149,40 +1268,24 @@ export default function App() {
           >
             <div style={{ fontSize: 12, opacity: 0.85 }}>
               {hoverState
-                ? `${hoverState.name}: ${(() => {
-                    const p = demoStateAgg?.pcts.get(hoverState.name);
-                    return (p != null ? p : hoverState.pct).toFixed(1);
-                  })()}%${
+                ? `${hoverState.name}: ${hoverState.pct.toFixed(1)}%${
                     stateAgg.counts.get(hoverState.name) || 0
                       ? ` (${(
                           stateAgg.counts.get(hoverState.name) || 0
                         ).toLocaleString()})`
                       : ""
                   }`
-                : demoStateAgg
-                ? `States shown: ${demoStateAgg.pcts.size} • Source: Demographics card`
+                : selectedStateName
+                ? `Filtering Demographics to ${selectedStateName} • ${scopeRows.length.toLocaleString()} records`
                 : stateAgg.total > 0
                 ? `States shown: ${
                     stateAgg.counts.size
                   } • Records: ${stateAgg.total.toLocaleString()}`
                 : "No state data in current scope"}
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Lower</div>
-              <div
-                style={{
-                  width: 120,
-                  height: 10,
-                  borderRadius: 999,
-                  background: `linear-gradient(90deg, #0b1220 0%, ${blendHex(
-                    "#0b1220",
-                    "#FF5432",
-                    0.5
-                  )} 50%, #FF5432 100%)`,
-                }}
-              />
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Higher</div>
-            </div>
+            <div
+              style={{ display: "flex", alignItems: "center", gap: 8 }}
+            ></div>
           </div>
         </div>
       </div>
