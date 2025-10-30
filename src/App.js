@@ -7,6 +7,14 @@ import {
   XAxis,
   YAxis,
   Legend,
+  // histogram bits:
+  BarChart,
+  Bar,
+  Tooltip,
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
 } from "recharts";
 import suvPoints from "./data/suv_points.json";
 import puPoints from "./data/pu_points.json";
@@ -92,17 +100,14 @@ function toStateName(labelRaw) {
   if (!labelRaw) return null;
   const s = String(labelRaw).trim();
 
-  // Direct 2-letter -> full
   const up = s.toUpperCase();
   if (US_STATE_ABBR_TO_NAME[up]) return US_STATE_ABBR_TO_NAME[up];
 
-  // Full name match
   const lower = s.toLowerCase();
   for (const name of US_STATE_NAME_SET) {
     if (name.toLowerCase() === lower) return name;
   }
 
-  // Try to extract a 2-letter token from mixed strings
   const two = (s.match(/\b[A-Z]{2}\b/g) || []).find(
     (tok) => US_STATE_ABBR_TO_NAME[tok.toUpperCase()]
   );
@@ -210,6 +215,307 @@ const STATE_KEYS = [
   "st",
 ];
 
+/** ===== Field Groups for the right-side dropdown ===== */
+const FIELD_GROUPS = {
+  Demographics: [
+    "BLD_AGE_GRP",
+    "DEMO_EDUCATION",
+    "GENERATION_GRP",
+    "DEMO_GENDER1",
+    "BLD_HOBBY1_GRP",
+    "DEMO_INCOME",
+    "BLD_LIFESTAGE",
+    "DEMO_LOCATION",
+    "DEMO_MARITAL",
+    "DEMO_EMPLOY",
+    "ADMARK_STATE",
+    "BLD_CHILDREN",
+    "DEMO_EMPTY_NESTER",
+  ],
+  Financing: [
+    "FIN_PU_APR",
+    "FIN_PU_DOWN_PAY",
+    "FIN_PU_TRADE_IN",
+    "BLD_FIN_TOTAL_MONPAY",
+    "FIN_PRICE_UNEDITED",
+    "FIN_LE_LENGTH",
+    "FIN_PU_LENGTH",
+    "C1_PL",
+    "FIN_CREDIT",
+  ],
+
+  "Buying Behavior": ["PR_MOST", "C2S_MODEL_RESPONSE", "SRC_TOP1"],
+  Loyalty: [
+    "OL_MODEL_GRP",
+    "STATE_BUY_BEST",
+    "STATE_CONTINUE",
+    "STATE_FEEL_GOOD",
+    "STATE_REFER",
+    "STATE_PRESTIGE",
+    "STATE_EURO",
+    "STATE_AMER",
+    "STATE_ASIAN",
+    "STATE_SWITCH_FEAT",
+    "STATE_VALUES",
+  ],
+  "Willingness to Pay": [
+    "PV_TAX_INS",
+    "PV_SPEND_LUXURY",
+    "PV_PRESTIGE",
+    "PV_QUALITY",
+    "PV_RESALE",
+    "PV_INEXP_MAINTAIN",
+    "PV_AVOID",
+    "PV_SURVIVE",
+    "PV_PAY_MORE",
+    "PV_BREAKDOWN",
+    "PV_VALUE",
+    "PV_SPEND",
+    "PV_LEASE",
+    "PV_PUTOFF",
+    "STATE_BALANCE",
+    "STATE_WAIT",
+    "STATE_ENJOY_PRESTIGE",
+    "STATE_FIRST_YR",
+    "STATE_NO_LOW_PRICE",
+    "STATE_AUDIO",
+    "STATE_MON_PAY",
+    "STATE_SHOP_MANY",
+  ],
+};
+
+/** ---------- Financing helpers (formatting + numeric detection) ---------- */
+function coerceNumber(v) {
+  if (v === null || v === undefined) return NaN;
+  const n = Number(String(v).trim().replace(/,/g, ""));
+  return Number.isFinite(n) ? n : NaN;
+}
+function isLikelyPercentField(field) {
+  return /APR|PCT|PERCENT/i.test(field);
+}
+function isLikelyCurrencyField(field) {
+  return /DOWN|TRADE|PAY|MONPAY|PAYMENT|PRICE/i.test(field);
+}
+function isLikelyLengthField(field) {
+  return /LENGTH/i.test(field);
+}
+function formatFinValue(field, n) {
+  if (Number.isNaN(n)) return "—";
+  if (isLikelyPercentField(field)) return `${n.toFixed(1)}%`;
+  if (isLikelyCurrencyField(field)) {
+    return n.toLocaleString(undefined, {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    });
+  }
+  if (isLikelyLengthField(field)) return `${n.toFixed(0)} mo`;
+  return n.toLocaleString();
+}
+
+// ---- fixed-bucket histogram for FIN_PRICE_UNEDITED ----
+function coercePrice(v) {
+  if (v === null || v === undefined) return NaN;
+  const n = Number(String(v).replace(/[$,]/g, "").trim());
+  return Number.isFinite(n) ? n : NaN;
+}
+
+const BUCKET_MIN = 30000; // start of first 5k bucket
+const BUCKET_STEP = 5000; // 5k wide
+const OVER_MIN = 110000; // 110k+ catch-all
+
+function fmtK(n) {
+  return `$${Math.round(n / 1000)}k`;
+}
+function fmtKDec(n) {
+  return `$${(n / 1000).toFixed(1)}k`;
+}
+
+function bucketLabel(low, high) {
+  if (low === -Infinity) return "Under $30k";
+  if (high === Infinity) return "$110k+";
+  const displayHigh = high - 100;
+  return `${fmtK(low)} to ${fmtKDec(displayHigh)}`;
+}
+
+/**
+ * Build fixed 5k buckets (Under $30k, $30k to $34.9k, ... $110k+)
+ * Returns { data:[{label,count,pct,...}], totalValid }
+ */
+function buildFixedPriceBuckets_FIN(scopeRows) {
+  const vals = [];
+  for (const r of scopeRows) {
+    const n = coercePrice(r?.FIN_PRICE_UNEDITED);
+    if (Number.isFinite(n)) vals.push(n);
+  }
+  const totalValid = vals.length;
+
+  const ranges = [];
+  ranges.push({ low: -Infinity, high: BUCKET_MIN });
+  for (let low = BUCKET_MIN; low < OVER_MIN; low += BUCKET_STEP) {
+    const high = low + BUCKET_STEP;
+    ranges.push({ low, high });
+  }
+  ranges.push({ low: OVER_MIN, high: Infinity });
+
+  const buckets = ranges.map((r) => ({
+    label: bucketLabel(r.low, r.high),
+    low: r.low,
+    high: r.high,
+    count: 0,
+    pct: 0,
+  }));
+
+  for (const v of vals) {
+    let idx = -1;
+    if (v < BUCKET_MIN) idx = 0;
+    else if (v >= OVER_MIN) idx = buckets.length - 1;
+    else {
+      const stepIdx = Math.floor((v - BUCKET_MIN) / BUCKET_STEP);
+      idx =
+        1 +
+        Math.max(
+          0,
+          Math.min(stepIdx, (OVER_MIN - BUCKET_MIN) / BUCKET_STEP - 1)
+        );
+    }
+    if (idx >= 0) buckets[idx].count += 1;
+  }
+
+  if (totalValid > 0) {
+    for (const b of buckets) {
+      b.pct = (b.count / totalValid) * 100;
+    }
+  }
+
+  return { data: buckets, totalValid };
+}
+
+function getFixedBucketRanges() {
+  const ranges = [];
+  // Under $30k
+  ranges.push({
+    low: -Infinity,
+    high: BUCKET_MIN,
+    label: bucketLabel(-Infinity, BUCKET_MIN),
+  });
+  // $30k .. $109.9k in 5k steps
+  for (let low = BUCKET_MIN; low < OVER_MIN; low += BUCKET_STEP) {
+    const high = low + BUCKET_STEP;
+    ranges.push({ low, high, label: bucketLabel(low, high) });
+  }
+  // $110k+
+  ranges.push({
+    low: OVER_MIN,
+    high: Infinity,
+    label: bucketLabel(OVER_MIN, Infinity),
+  });
+  return ranges;
+}
+
+function buildBucketsForRows(rows) {
+  const ranges = getFixedBucketRanges();
+  const buckets = ranges.map((r) => ({ ...r, count: 0, pct: 0 }));
+
+  const vals = [];
+  for (const r of rows) {
+    const n = coercePrice(r?.FIN_PRICE_UNEDITED);
+    if (Number.isFinite(n)) vals.push(n);
+  }
+  const totalValid = vals.length;
+  if (totalValid === 0) return { data: [], totalValid: 0 };
+
+  for (const v of vals) {
+    let idx = -1;
+    if (v < BUCKET_MIN) {
+      idx = 0;
+    } else if (v >= OVER_MIN) {
+      idx = buckets.length - 1;
+    } else {
+      const stepIdx = Math.floor((v - BUCKET_MIN) / BUCKET_STEP);
+      idx =
+        1 +
+        Math.max(
+          0,
+          Math.min(stepIdx, (OVER_MIN - BUCKET_MIN) / BUCKET_STEP - 1)
+        );
+    }
+    if (idx >= 0) buckets[idx].count += 1;
+  }
+
+  for (const b of buckets) {
+    b.pct = totalValid > 0 ? (b.count / totalValid) * 100 : 0;
+  }
+
+  // Recharts-friendly rows
+  const data = buckets.map((b) => ({
+    label: b.label,
+    pct: b.pct,
+    count: b.count,
+  }));
+  return { data, totalValid };
+}
+
+/** Build series for AreaChart grouped by a key ('cluster' or 'model') */
+function buildPriceSeriesByGroup(rows, groupingKey, groupOrder) {
+  const byGroup = new Map();
+  for (const r of rows) {
+    const k = groupingKey === "cluster" ? r.cluster : String(r.model);
+    if (!byGroup.has(k)) byGroup.set(k, []);
+    byGroup.get(k).push(r);
+  }
+  const keys = groupOrder ?? Array.from(byGroup.keys());
+  const series = [];
+  for (const k of keys) {
+    const arr = byGroup.get(k) || [];
+    const { data } = buildBucketsForRows(arr);
+    if (data.length) series.push({ key: k, data });
+  }
+  return series;
+}
+
+// ---- histogram helpers (Transaction Price card) ----
+const PRICE_FIELDS = ["FIN_PRICE_UNEDITED", "PRICE_PAID", "TRANSACTION_PRICE"];
+function pickPrice(r) {
+  for (const f of PRICE_FIELDS) {
+    if (f in r) {
+      const n = coerceNumber(r[f]);
+      if (Number.isFinite(n)) return n;
+    }
+  }
+  return NaN;
+}
+function buildHistogram(rows, binCount = 12) {
+  const vals = rows.map(pickPrice).filter((n) => Number.isFinite(n));
+  if (vals.length < 2) return { bins: [], min: 0, max: 0, total: 0 };
+
+  const min = Math.min(...vals);
+  const max = Math.max(...vals);
+  const span = Math.max(1, max - min);
+  const width = span / binCount;
+
+  const bins = Array.from({ length: binCount }, (_, i) => ({
+    x0: min + i * width,
+    x1: min + (i + 1) * width,
+    count: 0,
+  }));
+
+  for (const v of vals) {
+    let idx = Math.floor((v - min) / width);
+    if (idx >= binCount) idx = binCount - 1;
+    bins[idx].count += 1;
+  }
+  const total = vals.length;
+
+  const data = bins.map((b) => ({
+    range: `${b.x0}`,
+    mid: (b.x0 + b.x1) / 2,
+    count: b.count,
+  }));
+
+  return { bins: data, min, max, total };
+}
+
 export default function App() {
   const [group, setGroup] = useState("SUV");
   const dataPoints = group === "SUV" ? suvPoints : puPoints;
@@ -257,6 +563,9 @@ export default function App() {
   const [centerT, setCenterT] = useState(0);
   const [selectedStateName, setSelectedStateName] = useState(null);
 
+  // Right-side category
+  const [selectedFieldGroup, setSelectedFieldGroup] = useState("Demographics");
+
   useEffect(() => setSelectedModels(allModels), [allModels]);
   useEffect(() => {
     setZoomCluster(null);
@@ -270,7 +579,7 @@ export default function App() {
   const selectAll = () => setSelectedModels(allModels);
   const clearAll = () => setSelectedModels([]);
 
-  // --- LOOKUP TABLES for demographics mapping (including ADMARK_STATE code → label) ---
+  // --- LOOKUP TABLES (incl. ADMARK_STATE code → label) ---
   const demoLookups = useMemo(() => {
     const byField = new Map();
     for (const row of demosMapping || []) {
@@ -287,7 +596,7 @@ export default function App() {
     return byField;
   }, []);
 
-  // Resolve a *full state name* from a row using demoLookups for ADMARK_STATE codes
+  // Resolve full state name from row
   const getRowStateName = useMemo(() => {
     const codeMap = demoLookups.get("ADMARK_STATE") || new Map();
     return (row) => {
@@ -296,7 +605,6 @@ export default function App() {
           let raw = row[k];
           let val = String(raw).trim();
 
-          // If this is the coded ADMARK_STATE column, translate via mapping first
           if (k === "ADMARK_STATE") {
             const mapped =
               codeMap.get(raw) ||
@@ -305,15 +613,12 @@ export default function App() {
             if (mapped) val = String(mapped).trim();
           }
 
-          // Try as abbr/full/mixed
           const name =
             toStateName(val) ||
             US_STATE_ABBR_TO_NAME[String(val).toUpperCase()] ||
-            null ||
             null;
           if (name) return name;
 
-          // Last-ditch: scan for any 2-letter token
           const two = (val.match(/\b[A-Z]{2}\b/g) || []).find(
             (tok) => US_STATE_ABBR_TO_NAME[tok.toUpperCase()]
           );
@@ -324,13 +629,13 @@ export default function App() {
     };
   }, [demoLookups]);
 
-  // Model filter ONLY (scatter should not react to state selection)
+  // Model filter ONLY (scatter not affected by state)
   const baseByModel = useMemo(() => {
     const active = selectedModels?.length ? selectedModels : allModels;
     return rows.filter((r) => active.includes(r.model));
   }, [rows, selectedModels, allModels]);
 
-  // Scatter frame (model filter + optional cluster zoom), NO state filter here
+  // Scatter frame (model + optional cluster zoom)
   const plotFrame = useMemo(
     () =>
       zoomCluster == null
@@ -339,7 +644,7 @@ export default function App() {
     [baseByModel, zoomCluster]
   );
 
-  // Demographics scope (model filter + optional cluster zoom + OPTIONAL state filter)
+  // Demographics scope (model + optional cluster zoom + optional state)
   const scopeRows = useMemo(() => {
     const base =
       zoomCluster == null
@@ -480,23 +785,19 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetX[0], targetX[1], targetY[0], targetY[1]]);
 
-  // ---------------- Demographics ----------------
-  // NOTE: 'stateAgg' is computed from the *demographics base* (NO state filter) so the map shading shows context.
+  // ---------------- Demographics (map context) ----------------
   const demoBaseRows = useMemo(() => {
-    // model + optional zoom, but NOT the selected state
     return zoomCluster == null
       ? baseByModel
       : baseByModel.filter((r) => r.cluster === zoomCluster);
   }, [baseByModel, zoomCluster]);
 
-  // Map base = same as demoBaseRows, but narrowed to the selected model (if any)
   const mapBaseRows = useMemo(() => {
     return demoModel
       ? demoBaseRows.filter((r) => r.model === demoModel)
       : demoBaseRows;
   }, [demoBaseRows, demoModel]);
 
-  // State → counts (within current map base; respects demoModel single-select)
   const stateAgg = useMemo(() => {
     const counts = new Map();
     let total = 0;
@@ -524,19 +825,67 @@ export default function App() {
 
   const [hoverState, setHoverState] = useState(null);
 
+  /** ===== Summary builder restricted to selected field group ===== */
   const demoSummary = useMemo(() => {
     const sections = [];
-    for (const [field, codeMap] of demoLookups.entries()) {
+
+    const fields = FIELD_GROUPS[selectedFieldGroup] || [];
+    const srcAll = demoModel
+      ? scopeRows.filter((r) => r.model === demoModel)
+      : scopeRows;
+
+    // Financing fields that should ALWAYS be categorical
+    const categoricalFinFields = new Set(["C1_PL", "FIN_CREDIT"]);
+
+    for (const field of fields) {
+      const codeMap = demoLookups.get(field) || new Map();
+
+      // Numeric aggregation for Financing fields not forced categorical
+      const isFinancingNumeric =
+        selectedFieldGroup === "Financing" && !categoricalFinFields.has(field);
+
+      if (isFinancingNumeric) {
+        let sum = 0;
+        let wsum = 0;
+        let nValid = 0;
+        let nMissing = 0;
+
+        for (const r of srcAll) {
+          const rawVal = r?.[field];
+          const num = coerceNumber(rawVal);
+          if (Number.isFinite(num)) {
+            sum += num;
+            wsum += 1;
+            nValid++;
+          } else {
+            nMissing++;
+          }
+        }
+
+        if (nValid > 0) {
+          const avg = wsum > 0 ? sum / wsum : NaN;
+          sections.push({
+            field,
+            mode: "numeric",
+            kpi: {
+              label: "Average",
+              value: avg,
+              display: formatFinValue(field, avg),
+              nValid,
+              nMissing,
+            },
+          });
+          continue;
+        }
+        // fall through to categorical if no numeric data
+      }
+
+      // ---------- Categorical (% of total) ----------
       const counts = new Map();
       let validCount = 0;
       let missingCount = 0;
 
-      // Optionally narrow to a single model for the card
-      const src = demoModel
-        ? scopeRows.filter((r) => r.model === demoModel)
-        : scopeRows;
-
-      for (const r of src) {
+      for (const r of srcAll) {
         const rawVal = r?.[field];
         if (
           rawVal === undefined ||
@@ -584,19 +933,22 @@ export default function App() {
         });
       }
 
-      // Normalize rounding drift to 100%
       const sumPct = items.reduce((a, b) => a + b.pct, 0);
       if (Math.abs(sumPct - 100) > 0.1 && items.length > 0) {
         const diff = 100 - sumPct;
         items[items.length - 1].pct += diff;
       }
 
-      sections.push({ field, items, total: fieldTotal });
+      sections.push({ field, mode: "categorical", items, total: fieldTotal });
     }
 
-    sections.sort((a, b) => (b.items[0]?.pct || 0) - (a.items[0]?.pct || 0));
+    sections.sort((a, b) => {
+      if (a.mode !== b.mode) return a.mode === "numeric" ? -1 : 1;
+      return (b.items?.[0]?.pct || 0) - (a.items?.[0]?.pct || 0);
+    });
+
     return sections;
-  }, [scopeRows, demoModel, demoLookups]);
+  }, [scopeRows, demoModel, demoLookups, selectedFieldGroup]);
 
   // ---------- UI ----------
   return (
@@ -831,7 +1183,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* Chart + Demographics */}
+      {/* Chart + Right Panel */}
       <div
         style={{ display: "flex", gap: 16, alignItems: "stretch", height: 500 }}
       >
@@ -901,7 +1253,7 @@ export default function App() {
           </ResponsiveContainer>
         </div>
 
-        {/* Demographics Panel (FILTERED by selectedStateName) */}
+        {/* Right Panel: Category dropdown + sections (FILTERED by selectedStateName) */}
         <div
           style={{
             width: 360,
@@ -916,17 +1268,35 @@ export default function App() {
             boxSizing: "border-box",
           }}
         >
+          {/* Header row with category dropdown */}
           <div
             style={{
               display: "flex",
-              alignItems: "baseline",
+              alignItems: "center",
               justifyContent: "space-between",
               marginBottom: 8,
+              gap: 8,
             }}
           >
-            <div style={{ fontWeight: 700, color: "#e5e7eb" }}>
-              Demographics
-            </div>
+            <select
+              value={selectedFieldGroup}
+              onChange={(e) => setSelectedFieldGroup(e.target.value)}
+              style={{
+                background: "#0b1220",
+                color: "#e5e7eb",
+                border: "1px solid #334155",
+                padding: "6px 10px",
+                borderRadius: 8,
+                fontWeight: 700,
+              }}
+              title="Choose category"
+            >
+              {Object.keys(FIELD_GROUPS).map((k) => (
+                <option key={k} value={k}>
+                  {k}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Model focus (single-select) */}
@@ -977,6 +1347,7 @@ export default function App() {
             })}
           </div>
 
+          {/* Sections list */}
           <div
             style={{
               overflowY: "auto",
@@ -1005,7 +1376,7 @@ export default function App() {
                   padding: "8px 4px",
                 }}
               >
-                No demographic fields observed in current scope.
+                No fields observed in current scope.
               </div>
             ) : (
               demoSummary.map((section) => (
@@ -1028,55 +1399,89 @@ export default function App() {
                   >
                     {section.field}
                   </div>
-                  {section.items.map((it) => (
+
+                  {/* Numeric KPI (Financing averages) */}
+                  {section.mode === "numeric" ? (
                     <div
-                      key={`${section.field}::${it.label}`}
-                      style={{ marginBottom: 6 }}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        background: "#111827",
+                        border: "1px solid #1f2937",
+                        borderRadius: 8,
+                        padding: "10px 12px",
+                      }}
                     >
+                      <div style={{ fontSize: 12, opacity: 0.8 }}>Average</div>
                       <div
                         style={{
-                          display: "flex",
-                          alignItems: "baseline",
-                          justifyContent: "space-between",
-                          gap: 8,
+                          fontSize: 18,
+                          fontWeight: 800,
+                          color: "#FF5432",
                         }}
                       >
-                        <div style={{ fontSize: 12, color: "#cbd5e1" }}>
-                          {it.label}
-                        </div>
-                        <div
-                          style={{
-                            fontSize: 12,
-                            fontVariantNumeric: "tabular-nums",
-                            color: "#e5e7eb",
-                          }}
-                        >
-                          {it.pct.toFixed(1)}%{" "}
-                          <span style={{ opacity: 0.6 }}>
-                            ({it.count.toLocaleString()})
-                          </span>
-                        </div>
+                        {section.kpi.display}
                       </div>
-                      <div
-                        style={{
-                          height: 6,
-                          background: "#0f172a",
-                          border: "1px solid #334155",
-                          borderRadius: 999,
-                          overflow: "hidden",
-                          marginTop: 4,
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: `${Math.min(100, it.pct).toFixed(2)}%`,
-                            height: "100%",
-                            background: "#FF5432",
-                          }}
-                        />
+                      <div style={{ fontSize: 11, opacity: 0.7 }}>
+                        n={section.kpi.nValid.toLocaleString()}
+                        {section.kpi.nMissing
+                          ? ` • missing=${section.kpi.nMissing.toLocaleString()}`
+                          : ""}
                       </div>
                     </div>
-                  ))}
+                  ) : (
+                    // Categorical (% of total)
+                    section.items.map((it) => (
+                      <div
+                        key={`${section.field}::${it.label}`}
+                        style={{ marginBottom: 6 }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "baseline",
+                            justifyContent: "space-between",
+                            gap: 8,
+                          }}
+                        >
+                          <div style={{ fontSize: 12, color: "#cbd5e1" }}>
+                            {it.label}
+                          </div>
+                          <div
+                            style={{
+                              fontSize: 12,
+                              fontVariantNumeric: "tabular-nums",
+                              color: "#e5e7eb",
+                            }}
+                          >
+                            {it.pct.toFixed(1)}%{" "}
+                            <span style={{ opacity: 0.6 }}>
+                              ({it.count.toLocaleString()})
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            height: 6,
+                            background: "#0f172a",
+                            border: "1px solid #334155",
+                            borderRadius: 999,
+                            overflow: "hidden",
+                            marginTop: 4,
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: `${Math.min(100, it.pct).toFixed(2)}%`,
+                              height: "100%",
+                              background: "#FF5432",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               ))
             )}
@@ -1100,7 +1505,7 @@ export default function App() {
             display: "flex",
             flexDirection: "column",
             gap: 16,
-            minHeight: 640, // taller stack
+            minHeight: 640,
           }}
         >
           {/* Attitudes Scatterplot (TOP) */}
@@ -1133,13 +1538,177 @@ export default function App() {
               flex: 1,
               minHeight: 300,
               boxSizing: "border-box",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <div style={{ fontWeight: 700, marginBottom: 8 }}>
               Transaction Price
             </div>
-            <div style={{ opacity: 0.7, fontSize: 13 }}>
-              Placeholder — price paid histogram (line)
+
+            {/* Fixed $5k buckets (% of respondents) using FIN_PRICE_UNEDITED and current scope */}
+            <div style={{ flex: 1, minHeight: 0 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                {(() => {
+                  // Respect model focus in the right-hand card
+                  const priceRows = demoModel
+                    ? scopeRows.filter((r) => r.model === demoModel)
+                    : scopeRows;
+
+                  // Use the same grouping key as the scatter
+                  const groupingKey =
+                    colorMode === "cluster" ? "cluster" : "model";
+
+                  // IMPORTANT: use the scatter's groupKeys for identical color mapping
+                  const orderKeys = groupKeys;
+
+                  const series = buildPriceSeriesByGroup(
+                    priceRows,
+                    groupingKey,
+                    orderKeys
+                  );
+
+                  if (!series.length) {
+                    return (
+                      <div style={{ fontSize: 12, opacity: 0.75 }}>
+                        No FIN_PRICE_UNEDITED data available in current scope.
+                      </div>
+                    );
+                  }
+
+                  // Dynamic Y max across all series
+                  const maxPct = series.reduce(
+                    (m, s) =>
+                      Math.max(
+                        m,
+                        ...s.data.map((d) =>
+                          Number.isFinite(d.pct) ? d.pct : 0
+                        )
+                      ),
+                    0
+                  );
+                  const yMax = Math.ceil((maxPct + 2) / 5) * 5; // round up to nearest 5
+                  const pctFmt = (v) => `${v.toFixed(0)}%`;
+
+                  // Unified x labels (fixed-price buckets)
+                  const xLabels = series[0].data.map((d) => d.label);
+
+                  return (
+                    <AreaChart
+                      margin={{ top: 8, right: 8, left: 8, bottom: 56 }}
+                    >
+                      <CartesianGrid stroke="#1f2937" />
+                      <XAxis
+                        dataKey="label"
+                        type="category"
+                        allowDuplicatedCategory={false}
+                        tick={{ fill: "#cbd5e1", fontSize: 11 }}
+                        stroke="#334155"
+                        interval={0}
+                        angle={-20}
+                        textAnchor="end"
+                        height={52}
+                        ticks={xLabels}
+                      />
+                      <YAxis
+                        domain={[0, yMax]}
+                        tickFormatter={pctFmt}
+                        tick={{ fill: "#cbd5e1", fontSize: 12 }}
+                        stroke="#334155"
+                        allowDecimals={false}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          background: "#0b1220",
+                          border: "1px solid #334155",
+                          color: "#e5e7eb",
+                          borderRadius: 8,
+                        }}
+                        formatter={(value, name, payload) => {
+                          const pct = Number(value);
+                          const count = payload?.payload?.count ?? 0;
+                          return [
+                            `${pct.toFixed(1)}% (${count.toLocaleString()})`,
+                            name,
+                          ];
+                        }}
+                        labelFormatter={(label) => label}
+                      />
+                      {/* No Legend on purpose */}
+
+                      <defs>
+                        {orderKeys.map((k) => {
+                          const id = `priceFill_${String(k).replace(
+                            /\s+/g,
+                            "_"
+                          )}`;
+                          const col = colorForKey(k, orderKeys);
+                          return (
+                            <linearGradient
+                              key={id}
+                              id={id}
+                              x1="0"
+                              y1="0"
+                              x2="0"
+                              y2="1"
+                            >
+                              <stop
+                                offset="0%"
+                                stopColor={col}
+                                stopOpacity={0.22}
+                              />
+                              <stop
+                                offset="100%"
+                                stopColor={col}
+                                stopOpacity={0}
+                              />
+                            </linearGradient>
+                          );
+                        })}
+                      </defs>
+
+                      {series.map((s) => {
+                        const col = colorForKey(s.key, orderKeys); // exact same mapping as scatter
+                        const fillId = `url(#priceFill_${String(s.key).replace(
+                          /\s+/g,
+                          "_"
+                        )})`;
+                        const name =
+                          colorMode === "cluster" ? `C${s.key}` : String(s.key);
+                        return (
+                          <React.Fragment key={`series-${String(s.key)}`}>
+                            <Area
+                              type="monotone"
+                              name={name}
+                              data={s.data}
+                              dataKey="pct"
+                              fill={fillId}
+                              stroke="none"
+                              isAnimationActive={false}
+                            />
+                            <Line
+                              type="monotone"
+                              name={name}
+                              data={s.data}
+                              dataKey="pct"
+                              stroke={col}
+                              strokeWidth={2}
+                              dot={false}
+                              activeDot={false}
+                              isAnimationActive={false}
+                            />
+                          </React.Fragment>
+                        );
+                      })}
+                    </AreaChart>
+                  );
+                })()}
+              </ResponsiveContainer>
+            </div>
+
+            <div style={{ marginTop: 8, fontSize: 12, opacity: 0.7 }}>
+              % of respondents with a valid <code>FIN_PRICE_UNEDITED</code>{" "}
+              value in the current scope.
             </div>
           </div>
         </div>
@@ -1151,7 +1720,7 @@ export default function App() {
             border: "1px solid #1f2937",
             borderRadius: 12,
             padding: 12,
-            minHeight: 640, // taller map
+            minHeight: 640,
             boxSizing: "border-box",
             position: "relative",
             display: "flex",
@@ -1181,13 +1750,12 @@ export default function App() {
 
           <div style={{ fontWeight: 700, marginBottom: 8 }}>Geographic map</div>
 
-          {/* Map grows to fill column */}
           <div
             style={{
               flex: 1,
               borderRadius: 8,
               overflow: "hidden",
-              minHeight: 0, // allows flexed child to fill
+              minHeight: 0,
             }}
           >
             <ComposableMap
@@ -1199,7 +1767,6 @@ export default function App() {
                   geographies.map((geo) => {
                     const name = geo.properties.name;
 
-                    // Shade by distribution across the current map base (respects demoModel)
                     const pct = stateAgg.pcts.get(name) || 0;
                     const t =
                       stateAgg.maxPct > 0
@@ -1257,7 +1824,6 @@ export default function App() {
             </ComposableMap>
           </div>
 
-          {/* Legend + readout */}
           <div
             style={{
               marginTop: 10,
@@ -1283,9 +1849,7 @@ export default function App() {
                   } • Records: ${stateAgg.total.toLocaleString()}`
                 : "No state data in current scope"}
             </div>
-            <div
-              style={{ display: "flex", alignItems: "center", gap: 8 }}
-            ></div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }} />
           </div>
         </div>
       </div>
