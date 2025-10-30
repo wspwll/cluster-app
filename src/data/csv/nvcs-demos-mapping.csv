@@ -1,0 +1,172 @@
+﻿NAME,START,LABEL
+BLD_AGE_GRP,               1,Under 20
+BLD_AGE_GRP,               2,20 To 24
+BLD_AGE_GRP,               3,25 To 29
+BLD_AGE_GRP,               4,30 To 34
+BLD_AGE_GRP,               5,35 To 39
+BLD_AGE_GRP,               6,40 To 44
+BLD_AGE_GRP,               7,45 To 49
+BLD_AGE_GRP,               8,50 To 54
+BLD_AGE_GRP,               9,55 To 59
+BLD_AGE_GRP,              10,60 To 64
+BLD_AGE_GRP,              11,65 To 69
+BLD_AGE_GRP,              12,70 To 74
+BLD_AGE_GRP,              13,75 And Over
+DEMO_EDUCATION,               1,Grade school
+DEMO_EDUCATION,               2,Some high school
+DEMO_EDUCATION,               3,High school graduate
+DEMO_EDUCATION,               4,Some trade school
+DEMO_EDUCATION,               5,Trade school graduate
+DEMO_EDUCATION,               6,Some community college
+DEMO_EDUCATION,               7,Graduate with two-year degree
+DEMO_EDUCATION,               8,Some university
+DEMO_EDUCATION,               9,Graduate with bachelor's degree
+DEMO_EDUCATION,              10,Some post-graduate study
+DEMO_EDUCATION,              11,Post-graduate degree
+DEMO_EDUCATION,              12,Other
+DEMO_EDUCATION,              13,High School
+DEMO_EDUCATION,              14,Trade School
+DEMO_EDUCATION,              15,Community College
+DEMO_EDUCATION,              16,Bacheolor's/4-yr degree
+GENERATION_GRP,               1,Millennials (1979-1994)
+GENERATION_GRP,               2,Gen X (1965-1978)
+GENERATION_GRP,               3,Trailing-Edge Boomers (1960-1964)
+GENERATION_GRP,               4,Leading-Edge Boomers (1946-1959)
+GENERATION_GRP,               5,Matures (< 1946)
+GENERATION_GRP,               6,Gen Z (>1994)
+DEMO_GENDER1,               1,Male
+DEMO_GENDER1,               2,Female
+DEMO_GENDER1,               3,Other
+BLD_HOBBY1_GRP,               1,Leisure Activities
+BLD_HOBBY1_GRP,               2,Competitive Sports
+BLD_HOBBY1_GRP,               3,Physical Activities
+BLD_HOBBY1_GRP,               4,Water Activities/Sports
+BLD_HOBBY1_GRP,               5,Cold Weather Activities
+BLD_HOBBY1_GRP,               6,Hands-On Activities
+BLD_HOBBY1_GRP,               7,Outdoor Activities
+BLD_HOBBY1_GRP,               8,Activities in the Air
+BLD_HOBBY1_GRP,               9,Professional & Social Activities
+BLD_HOBBY1_GRP,              10,Other Activities
+BLD_HOBBY1_GRP,              11,Miscellaneous Activities
+DEMO_INCOME,               1,"$15,000 or less"
+DEMO_INCOME,               2,"$15,001-$20,000"
+DEMO_INCOME,               3,"$20,001-$25,000"
+DEMO_INCOME,               4,"$25,001-$30,000"
+DEMO_INCOME,               5,"$30,001-$35,000"
+DEMO_INCOME,               6,"$35,001-$40,000"
+DEMO_INCOME,               7,"$40,001-$45,000"
+DEMO_INCOME,               8,"$45,001-$50,000"
+DEMO_INCOME,               9,"$50,001-$55,000"
+DEMO_INCOME,              10,"$55,001-$65,000"
+DEMO_INCOME,              11,"$65,001-$75,000"
+DEMO_INCOME,              12,"$75,001-$85,000"
+DEMO_INCOME,              13,"$85,001-$100,000"
+DEMO_INCOME,              14,"$100,001-$125,000"
+DEMO_INCOME,              15,"$125,001-$150,000"
+DEMO_INCOME,              16,"$150,001-$200,000"
+DEMO_INCOME,              17,"$200,001-$300,000"
+DEMO_INCOME,              18,"$300,001-$400,000"
+DEMO_INCOME,              19,"Over $400,000"
+BLD_LIFESTAGE,               1,Married With Children - Youngest Child Under 6 Years Of Age
+BLD_LIFESTAGE,               2,Married With Children - Youngest Child 6 To 12 Years Of Age
+BLD_LIFESTAGE,               3,Married With Children - Youngest Child 13 To 17 Years Of Age
+BLD_LIFESTAGE,               4,Married Without Children Under 45 Years Of Age
+BLD_LIFESTAGE,               5,Married Without Children 45 To 59 Years Of Age
+BLD_LIFESTAGE,               6,Married Without Children 60 Years Of Age And Over
+BLD_LIFESTAGE,               7,Unmarried With Children
+BLD_LIFESTAGE,               8,Unmarried Under 30 Years of Age
+BLD_LIFESTAGE,               9,Unmarried 30 To 44 Years Of Age
+BLD_LIFESTAGE,              10,Unmarried 45 Years And Over
+DEMO_LOCATION,               1,Metropolitan city
+DEMO_LOCATION,               2,Suburban community of a larger city
+DEMO_LOCATION,               3,Small town or rural city
+DEMO_LOCATION,               4,Farming area
+DEMO_MARITAL,               1,Married
+DEMO_MARITAL,               2,"Single, never married"
+DEMO_MARITAL,               3,"Divorced, widowed, separated"
+DEMO_MARITAL,               4,Cohabitating
+DEMO_EMPLOY,               1,Armed Services
+DEMO_EMPLOY,               2,Senior Executive
+DEMO_EMPLOY,               3,Mid-level manager
+DEMO_EMPLOY,               4,Entry-level professional
+DEMO_EMPLOY,               5,"Owner, Self-Employed"
+DEMO_EMPLOY,               6,Clerical
+DEMO_EMPLOY,               7,Technician
+DEMO_EMPLOY,               8,"Police, Fire, EMT"
+DEMO_EMPLOY,               9,Sales
+DEMO_EMPLOY,              10,"Teacher, Educator"
+DEMO_EMPLOY,              11,Business Professional
+DEMO_EMPLOY,              12,Healthcare Professional
+DEMO_EMPLOY,              13,Specialty worker
+DEMO_EMPLOY,              14,"Programmer, IT"
+DEMO_EMPLOY,              15,"Service worker (food, cleaning)"
+DEMO_EMPLOY,              16,"Craftsworker, Precision production"
+DEMO_EMPLOY,              17,Driver
+DEMO_EMPLOY,              18,"Fabricator, Laborer"
+DEMO_EMPLOY,              19,Student
+DEMO_EMPLOY,              20,Stay-at-home parent/Homemaker
+DEMO_EMPLOY,              21,Unemployed
+DEMO_EMPLOY,              22,Retired
+DEMO_EMPLOY,              23,Other
+ADMARK_STATE,1,AL
+ADMARK_STATE,10,GA
+ADMARK_STATE,11,ID
+ADMARK_STATE,12,IL
+ADMARK_STATE,13,IN
+ADMARK_STATE,14,IA
+ADMARK_STATE,15,KS
+ADMARK_STATE,16,KY
+ADMARK_STATE,17,LA
+ADMARK_STATE,18,ME
+ADMARK_STATE,19,MD
+ADMARK_STATE,2,AZ
+ADMARK_STATE,20,MA
+ADMARK_STATE,21,MI
+ADMARK_STATE,22,MN
+ADMARK_STATE,23,MS
+ADMARK_STATE,24,MO
+ADMARK_STATE,25,MT
+ADMARK_STATE,26,NE
+ADMARK_STATE,27,NV
+ADMARK_STATE,28,NH
+ADMARK_STATE,29,NJ
+ADMARK_STATE,3,AR
+ADMARK_STATE,30,NM
+ADMARK_STATE,31,NY
+ADMARK_STATE,32,NC
+ADMARK_STATE,33,ND
+ADMARK_STATE,34,OH
+ADMARK_STATE,35,OK
+ADMARK_STATE,36,OR
+ADMARK_STATE,37,PA
+ADMARK_STATE,38,RI
+ADMARK_STATE,39,SC
+ADMARK_STATE,4,CA
+ADMARK_STATE,40,SD
+ADMARK_STATE,41,TN
+ADMARK_STATE,42,TX
+ADMARK_STATE,43,UT
+ADMARK_STATE,44,VT
+ADMARK_STATE,45,VA
+ADMARK_STATE,46,WA
+ADMARK_STATE,47,WV
+ADMARK_STATE,48,WI
+ADMARK_STATE,49,WY
+ADMARK_STATE,5,CO
+ADMARK_STATE,50,AK
+ADMARK_STATE,51,HI
+ADMARK_STATE,6,CT
+ADMARK_STATE,7,DC
+ADMARK_STATE,8,DE
+ADMARK_STATE,9,FL
+BLD_CHILDREN,               0,None
+BLD_CHILDREN,               1,One
+BLD_CHILDREN,               2,Two
+BLD_CHILDREN,               3,Three
+BLD_CHILDREN,               4,Four
+BLD_CHILDREN,               5,Five
+BLD_CHILDREN,               6,Six
+BLD_CHILDREN,               7,Seven
+BLD_CHILDREN,               8,Eight
+DEMO_EMPTY_NESTER,               1,Yes
+DEMO_EMPTY_NESTER,               2,No

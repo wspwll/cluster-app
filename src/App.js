@@ -11,6 +11,7 @@ import {
 import suvPoints from "./data/suv_points.json";
 import puPoints from "./data/pu_points.json";
 import demosMapping from "./data/demos-mapping.json";
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 const COLORS = [
   "#1F77B4",
@@ -29,6 +30,111 @@ const COLORS = [
   "#22C55E",
   "#3B82F6",
 ];
+
+// us-atlas topojson; react-simple-maps can pull it directly
+const US_TOPO = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
+
+// Minimal abbrev → state name map to join ADMARK_STATE to topo names
+const US_STATE_ABBR_TO_NAME = {
+  AL: "Alabama",
+  AK: "Alaska",
+  AZ: "Arizona",
+  AR: "Arkansas",
+  CA: "California",
+  CO: "Colorado",
+  CT: "Connecticut",
+  DE: "Delaware",
+  FL: "Florida",
+  GA: "Georgia",
+  HI: "Hawaii",
+  ID: "Idaho",
+  IL: "Illinois",
+  IN: "Indiana",
+  IA: "Iowa",
+  KS: "Kansas",
+  KY: "Kentucky",
+  LA: "Louisiana",
+  ME: "Maine",
+  MD: "Maryland",
+  MA: "Massachusetts",
+  MI: "Michigan",
+  MN: "Minnesota",
+  MS: "Mississippi",
+  MO: "Missouri",
+  MT: "Montana",
+  NE: "Nebraska",
+  NV: "Nevada",
+  NH: "New Hampshire",
+  NJ: "New Jersey",
+  NM: "New Mexico",
+  NY: "New York",
+  NC: "North Carolina",
+  ND: "North Dakota",
+  OH: "Ohio",
+  OK: "Oklahoma",
+  OR: "Oregon",
+  PA: "Pennsylvania",
+  RI: "Rhode Island",
+  SC: "South Carolina",
+  SD: "South Dakota",
+  TN: "Tennessee",
+  TX: "Texas",
+  UT: "Utah",
+  VT: "Vermont",
+  VA: "Virginia",
+  WA: "Washington",
+  WV: "West Virginia",
+  WI: "Wisconsin",
+  WY: "Wyoming",
+  DC: "District of Columbia",
+};
+
+const US_STATE_NAME_SET = new Set(Object.values(US_STATE_ABBR_TO_NAME));
+function toStateName(labelRaw) {
+  if (!labelRaw) return null;
+  const s = String(labelRaw).trim();
+  const abbr = s.toUpperCase();
+  if (US_STATE_ABBR_TO_NAME[abbr]) return US_STATE_ABBR_TO_NAME[abbr]; // "CA" -> "California"
+  // case-insensitive match on full names
+  const lower = s.toLowerCase();
+  for (const name of US_STATE_NAME_SET) {
+    if (name.toLowerCase() === lower) return name;
+  }
+  return null;
+}
+
+// simple color lerp (dark slate → Harvest)
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+function hexToRgb(h) {
+  const s = h.replace("#", "");
+  const v =
+    s.length === 3
+      ? s
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : s;
+  return {
+    r: parseInt(v.slice(0, 2), 16),
+    g: parseInt(v.slice(2, 4), 16),
+    b: parseInt(v.slice(4, 6), 16),
+  };
+}
+function rgbToHex({ r, g, b }) {
+  const to = (x) => x.toString(16).padStart(2, "0");
+  return `#${to(Math.round(r))}${to(Math.round(g))}${to(Math.round(b))}`;
+}
+function blendHex(aHex, bHex, t) {
+  const a = hexToRgb(aHex),
+    b = hexToRgb(bHex);
+  return rgbToHex({
+    r: lerp(a.r, b.r, t),
+    g: lerp(a.g, b.g, t),
+    b: lerp(a.b, b.b, t),
+  });
+}
 
 function colorForKey(key, allKeys) {
   const keyStr = String(key);
@@ -81,17 +187,15 @@ function tweenDomain(from, to, t) {
   const e = easeInOutQuad(t);
   return [f0 + (t0 - f0) * e, f1 + (t1 - f1) * e];
 }
-const lerp = (a, b, t) => a + (b - a) * t;
 
 export default function App() {
   const [group, setGroup] = useState("SUV"); // "SUV" | "Pickup"
   const dataPoints = group === "SUV" ? suvPoints : puPoints;
 
-  // ---------- NORMALIZE ROWS (adds a .model field; coerces numerics) ----------
+  // ---------- NORMALIZE ROWS ----------
   const rows = useMemo(() => {
     const out = [];
     for (const r of dataPoints || []) {
-      // accept either `model` or `BLD_DESC_RV_MODEL` (and a couple of common alternates)
       const modelVal =
         r?.model ??
         r?.BLD_DESC_RV_MODEL ??
@@ -99,21 +203,16 @@ export default function App() {
         r?.model_name ??
         r?.MODEL ??
         null;
-
-      // coerce numerics (some exports come as strings)
       const x = Number(r?.emb_x);
       const y = Number(r?.emb_y);
       const cl = Number(r?.cluster);
-
       if (
         !modelVal ||
         !Number.isFinite(x) ||
         !Number.isFinite(y) ||
         !Number.isFinite(cl)
-      ) {
-        continue; // skip invalid row
-      }
-
+      )
+        continue;
       out.push({
         ...r,
         model: String(modelVal),
@@ -239,6 +338,23 @@ export default function App() {
     return groupKeys.map((k) => ({ key: k, data: buckets.get(k) || [] }));
   }, [plotDataCentered, groupKeys, colorMode]);
 
+  // Models currently visible in the chart (respects selectedModels + zoomCluster)
+  const modelsInScope = useMemo(() => {
+    const set = new Set();
+    for (const r of plotFrame) set.add(r.model);
+    return Array.from(set).sort();
+  }, [plotFrame]);
+
+  // Single-select model for Demographics panel (null = All)
+  const [demoModel, setDemoModel] = useState(null);
+
+  // If zoom/filter changes hide the current demoModel, reset to All
+  useEffect(() => {
+    if (demoModel && !modelsInScope.includes(demoModel)) {
+      setDemoModel(null);
+    }
+  }, [modelsInScope, demoModel]);
+
   const clusterCentroidsForHotspots = useMemo(() => {
     const byCluster = new Map();
     for (const r of filtered) {
@@ -293,7 +409,6 @@ export default function App() {
   }, [targetX[0], targetX[1], targetY[0], targetY[1]]);
 
   // -------------------- DEMOGRAPHICS --------------------
-  // Build NAME -> (START -> LABEL) map
   const demoLookups = useMemo(() => {
     const byField = new Map();
     for (const row of demosMapping || []) {
@@ -315,12 +430,41 @@ export default function App() {
       zoomCluster == null
         ? filtered
         : filtered.filter((r) => r.cluster === zoomCluster);
-    return base;
-  }, [filtered, zoomCluster]);
+    // If a model is selected for the demographics panel, filter to it
+    return demoModel ? base.filter((r) => r.model === demoModel) : base;
+  }, [filtered, zoomCluster, demoModel]);
+
+  // Build state → counts from ADMARK_STATE within current scopeRows (respects filters/zoom/demoModel)
+  const stateAgg = useMemo(() => {
+    const counts = new Map();
+    let total = 0;
+    for (const r of scopeRows) {
+      const raw = String(r?.ADMARK_STATE ?? "")
+        .trim()
+        .toUpperCase();
+      if (!raw) continue;
+      const name = US_STATE_ABBR_TO_NAME[raw];
+      if (!name) continue;
+      counts.set(name, (counts.get(name) || 0) + 1);
+      total += 1;
+    }
+    const pcts = new Map();
+    let maxPct = 0;
+    if (total > 0) {
+      for (const [name, c] of counts.entries()) {
+        const pct = (c / total) * 100;
+        pcts.set(name, pct);
+        if (pct > maxPct) maxPct = pct;
+      }
+    }
+    return { counts, pcts, total, maxPct };
+  }, [scopeRows]);
+
+  // Hover state for tooltip readout
+  const [hoverState, setHoverState] = useState(null); // { name, pct, count } | null
 
   const demoSummary = useMemo(() => {
     const sections = [];
-
     for (const [field, codeMap] of demoLookups.entries()) {
       const counts = new Map();
       let validCount = 0;
@@ -337,15 +481,13 @@ export default function App() {
           continue;
         }
 
-        // Map code → label
         let label = String(rawVal).trim();
-        if (codeMap.has(rawVal)) {
-          label = codeMap.get(rawVal);
-        } else if (codeMap.has(String(rawVal))) {
+        if (codeMap.has(rawVal)) label = codeMap.get(rawVal);
+        else if (codeMap.has(String(rawVal)))
           label = codeMap.get(String(rawVal));
-        } else if (codeMap.has(Number(rawVal))) {
+        else if (codeMap.has(Number(rawVal)))
           label = codeMap.get(Number(rawVal));
-        } else {
+        else {
           const asNum = Number(label);
           if (Number.isFinite(asNum) && codeMap.has(asNum))
             label = codeMap.get(asNum);
@@ -357,10 +499,8 @@ export default function App() {
         validCount++;
       }
 
-      // If no values at all, skip this demographic
       if (validCount + missingCount === 0) continue;
 
-      // Compute valid percentages first
       const fieldTotal = validCount + missingCount;
       const items = Array.from(counts.entries())
         .map(([label, count]) => ({
@@ -370,7 +510,6 @@ export default function App() {
         }))
         .sort((a, b) => b.count - a.count);
 
-      // Add the "Unknown" group for missing responses
       if (missingCount > 0) {
         items.push({
           label: "Unknown",
@@ -379,7 +518,6 @@ export default function App() {
         });
       }
 
-      // Ensure totals = 100% (minor rounding safeguard)
       const sumPct = items.reduce((a, b) => a + b.pct, 0);
       if (Math.abs(sumPct - 100) > 0.1) {
         const diff = 100 - sumPct;
@@ -389,19 +527,27 @@ export default function App() {
       sections.push({ field, items, total: fieldTotal });
     }
 
-    // Sort sections by concentration (optional aesthetic)
     sections.sort((a, b) => (b.items[0]?.pct || 0) - (a.items[0]?.pct || 0));
     return sections;
   }, [scopeRows, demoLookups]);
 
-  const scopeTitle = useMemo(() => {
-    if (zoomCluster != null) return `Cluster C${zoomCluster}`;
-    const sel = selectedModels;
-    if (!sel?.length || sel.length === allModels.length)
-      return "Selected Models (All)";
-    if (sel.length === 1) return `Model: ${sel[0]}`;
-    return `Models (${sel.length})`;
-  }, [zoomCluster, selectedModels, allModels.length]);
+  // Prefer the ADMARK_STATE section from demoSummary (exactly what the card shows)
+  const demoStateAgg = useMemo(() => {
+    const sec = demoSummary.find((s) => s.field === "ADMARK_STATE");
+    if (!sec) return null;
+
+    const pcts = new Map();
+    let maxPct = 0;
+    for (const it of sec.items) {
+      if (String(it.label).toLowerCase() === "unknown") continue;
+      const name = toStateName(it.label);
+      if (!name) continue;
+      const pct = Number(it.pct) || 0;
+      pcts.set(name, pct);
+      if (pct > maxPct) maxPct = pct;
+    }
+    return { pcts, maxPct, total: sec.total };
+  }, [demoSummary]);
 
   return (
     <div
@@ -624,7 +770,6 @@ export default function App() {
             {colorMode === "cluster"
               ? "Collapse to cluster centroids"
               : "Collapse to model centroids"}{" "}
-            (axes fixed)
           </div>
         </div>
       </div>
@@ -725,7 +870,54 @@ export default function App() {
             <div style={{ fontWeight: 700, color: "#e5e7eb" }}>
               Demographics
             </div>
-            <div style={{ fontSize: 12, opacity: 0.8 }}>{scopeTitle}</div>
+          </div>
+
+          {/* Model focus (single-select, only models currently visible) */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              flexWrap: "wrap",
+              marginBottom: 10,
+            }}
+          >
+            <button
+              onClick={() => setDemoModel(null)}
+              style={{
+                background: demoModel == null ? "#FF5432" : "#0b1220",
+                color: demoModel == null ? "white" : "#cbd5e1",
+                border:
+                  demoModel == null ? "1px solid #FF5432" : "1px solid #334155",
+                borderRadius: 8,
+                padding: "4px 8px",
+                cursor: "pointer",
+                fontSize: 12,
+              }}
+            >
+              All
+            </button>
+            {modelsInScope.map((m) => {
+              const active = demoModel === m;
+              return (
+                <button
+                  key={`demoModel-${m}`}
+                  onClick={() => setDemoModel(m)}
+                  style={{
+                    background: active ? "#FF5432" : "#0b1220",
+                    color: active ? "white" : "#cbd5e1",
+                    border: active ? "1px solid #FF5432" : "1px solid #334155",
+                    borderRadius: 8,
+                    padding: "4px 8px",
+                    cursor: "pointer",
+                    fontSize: 12,
+                  }}
+                  title={m}
+                >
+                  {m}
+                </button>
+              );
+            })}
           </div>
 
           <div
@@ -821,6 +1013,176 @@ export default function App() {
                 </div>
               ))
             )}
+          </div>
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gap: 16,
+          marginTop: 16,
+        }}
+      >
+        <div
+          style={{
+            background: "#111827",
+            border: "1px solid #1f2937",
+            borderRadius: 12,
+            padding: 12,
+            minHeight: 220,
+            boxSizing: "border-box",
+          }}
+        >
+          <div style={{ fontWeight: 700, marginBottom: 8 }}>
+            Transaction Price
+          </div>
+          <div style={{ opacity: 0.7, fontSize: 13 }}>
+            Placeholder — price paid histogram (line)
+          </div>
+        </div>
+
+        <div
+          style={{
+            background: "#111827",
+            border: "1px solid #1f2937",
+            borderRadius: 12,
+            padding: 12,
+            minHeight: 220,
+            boxSizing: "border-box",
+          }}
+        >
+          <div style={{ fontWeight: 700, marginBottom: 8 }}>
+            Attitudes Scatterplot
+          </div>
+          <div style={{ opacity: 0.7, fontSize: 13 }}>
+            Placeholder — attitudes / perceptions scatterplot
+          </div>
+        </div>
+
+        <div
+          style={{
+            background: "#111827",
+            border: "1px solid #1f2937",
+            borderRadius: 12,
+            padding: 12,
+            minHeight: 220,
+            boxSizing: "border-box",
+          }}
+        >
+          <div style={{ fontWeight: 700, marginBottom: 8 }}>Geographic map</div>
+
+          {/* Map */}
+          <div style={{ height: 240, borderRadius: 8, overflow: "hidden" }}>
+            <ComposableMap
+              projection="geoAlbersUsa"
+              style={{ width: "100%", height: "100%" }}
+            >
+              <Geographies geography={US_TOPO}>
+                {({ geographies }) =>
+                  geographies.map((geo) => {
+                    const name = geo.properties.name;
+
+                    // ✅ Use ADMARK_STATE card data if available, else fallback
+                    const pctFromCard = demoStateAgg?.pcts.get(name);
+                    const pct =
+                      pctFromCard != null
+                        ? pctFromCard
+                        : stateAgg.pcts.get(name) || 0;
+                    const maxForScale = demoStateAgg
+                      ? demoStateAgg.maxPct
+                      : stateAgg.maxPct;
+                    const t =
+                      maxForScale > 0 ? Math.min(1, pct / maxForScale) : 0;
+                    const fill = blendHex("#0b1220", "#FF5432", t);
+                    const stroke = "#1f2937";
+
+                    return (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        onMouseEnter={() =>
+                          setHoverState({
+                            name,
+                            pct,
+                            count: stateAgg.counts.get(name) || 0,
+                          })
+                        }
+                        onMouseLeave={() => setHoverState(null)}
+                        style={{
+                          default: {
+                            fill,
+                            stroke,
+                            strokeWidth: 0.75,
+                            outline: "none",
+                          },
+                          hover: {
+                            fill: blendHex(fill, "#ffffff", 0.15),
+                            stroke,
+                            strokeWidth: 1,
+                            outline: "none",
+                          },
+                          pressed: {
+                            fill,
+                            stroke,
+                            strokeWidth: 1,
+                            outline: "none",
+                          },
+                        }}
+                      />
+                    );
+                  })
+                }
+              </Geographies>
+            </ComposableMap>
+          </div>
+
+          {/* Legend + readout */}
+          <div
+            style={{
+              marginTop: 10,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div style={{ fontSize: 12, opacity: 0.85 }}>
+              {hoverState
+                ? `${hoverState.name}: ${(() => {
+                    const p = demoStateAgg?.pcts.get(hoverState.name);
+                    return (p != null ? p : hoverState.pct).toFixed(1);
+                  })()}%${
+                    stateAgg.counts.get(hoverState.name) || 0
+                      ? ` (${(
+                          stateAgg.counts.get(hoverState.name) || 0
+                        ).toLocaleString()})`
+                      : ""
+                  }`
+                : demoStateAgg
+                ? `States shown: ${demoStateAgg.pcts.size} • Source: Demographics card`
+                : stateAgg.total > 0
+                ? `States shown: ${
+                    stateAgg.counts.size
+                  } • Records: ${stateAgg.total.toLocaleString()}`
+                : "No state data in current scope"}
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ fontSize: 12, opacity: 0.7 }}>Lower</div>
+              <div
+                style={{
+                  width: 120,
+                  height: 10,
+                  borderRadius: 999,
+                  background: `linear-gradient(90deg, #0b1220 0%, ${blendHex(
+                    "#0b1220",
+                    "#FF5432",
+                    0.5
+                  )} 50%, #FF5432 100%)`,
+                }}
+              />
+              <div style={{ fontSize: 12, opacity: 0.7 }}>Higher</div>
+            </div>
           </div>
         </div>
       </div>
