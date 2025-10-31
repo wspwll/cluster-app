@@ -1,0 +1,2434 @@
+NAME,START,LABEL
+BLD_AGE_GRP,               1,Under 20
+BLD_AGE_GRP,               2,20 To 24
+BLD_AGE_GRP,               3,25 To 29
+BLD_AGE_GRP,               4,30 To 34
+BLD_AGE_GRP,               5,35 To 39
+BLD_AGE_GRP,               6,40 To 44
+BLD_AGE_GRP,               7,45 To 49
+BLD_AGE_GRP,               8,50 To 54
+BLD_AGE_GRP,               9,55 To 59
+BLD_AGE_GRP,              10,60 To 64
+BLD_AGE_GRP,              11,65 To 69
+BLD_AGE_GRP,              12,70 To 74
+BLD_AGE_GRP,              13,75 And Over
+PV_AVOID,               1,Strongly Disagree
+PV_AVOID,               2,Disagree
+PV_AVOID,               3,Somewhat Agree
+PV_AVOID,               4,Agree
+PV_AVOID,               5,Strongly Agree
+PV_BREAKDOWN,               1,Strongly Disagree
+PV_BREAKDOWN,               2,Disagree
+PV_BREAKDOWN,               3,Somewhat Agree
+PV_BREAKDOWN,               4,Agree
+PV_BREAKDOWN,               5,Strongly Agree
+PV_INEXP_MAINTAIN,               1,Strongly Disagree
+PV_INEXP_MAINTAIN,               2,Disagree
+PV_INEXP_MAINTAIN,               3,Somewhat Agree
+PV_INEXP_MAINTAIN,               4,Agree
+PV_INEXP_MAINTAIN,               5,Strongly Agree
+PV_LEASE,               1,Strongly Disagree
+PV_LEASE,               2,Disagree
+PV_LEASE,               3,Somewhat Agree
+PV_LEASE,               4,Agree
+PV_LEASE,               5,Strongly Agree
+PV_PAY_MORE,               1,Strongly Disagree
+PV_PAY_MORE,               2,Disagree
+PV_PAY_MORE,               3,Somewhat Agree
+PV_PAY_MORE,               4,Agree
+PV_PAY_MORE,               5,Strongly Agree
+PV_PRESTIGE,               1,Strongly Disagree
+PV_PRESTIGE,               2,Disagree
+PV_PRESTIGE,               3,Somewhat Agree
+PV_PRESTIGE,               4,Agree
+PV_PRESTIGE,               5,Strongly Agree
+PV_PUTOFF,               1,Strongly Disagree
+PV_PUTOFF,               2,Disagree
+PV_PUTOFF,               3,Somewhat Agree
+PV_PUTOFF,               4,Agree
+PV_PUTOFF,               5,Strongly Agree
+PV_QUALITY,               1,Strongly Disagree
+PV_QUALITY,               2,Disagree
+PV_QUALITY,               3,Somewhat Agree
+PV_QUALITY,               4,Agree
+PV_QUALITY,               5,Strongly Agree
+PV_RESALE,               1,Strongly Disagree
+PV_RESALE,               2,Disagree
+PV_RESALE,               3,Somewhat Agree
+PV_RESALE,               4,Agree
+PV_RESALE,               5,Strongly Agree
+PV_SPEND,               1,Strongly Disagree
+PV_SPEND,               2,Disagree
+PV_SPEND,               3,Somewhat Agree
+PV_SPEND,               4,Agree
+PV_SPEND,               5,Strongly Agree
+PV_SPEND_LUXURY,               1,Strongly Disagree
+PV_SPEND_LUXURY,               2,Disagree
+PV_SPEND_LUXURY,               3,Somewhat Agree
+PV_SPEND_LUXURY,               4,Agree
+PV_SPEND_LUXURY,               5,Strongly Agree
+PV_SURVIVE,               1,Strongly Disagree
+PV_SURVIVE,               2,Disagree
+PV_SURVIVE,               3,Somewhat Agree
+PV_SURVIVE,               4,Agree
+PV_SURVIVE,               5,Strongly Agree
+PV_TAX_INS,               1,Strongly Disagree
+PV_TAX_INS,               2,Disagree
+PV_TAX_INS,               3,Somewhat Agree
+PV_TAX_INS,               4,Agree
+PV_TAX_INS,               5,Strongly Agree
+PV_VALUE,               1,Strongly Disagree
+PV_VALUE,               2,Disagree
+PV_VALUE,               3,Somewhat Agree
+PV_VALUE,               4,Agree
+PV_VALUE,               5,Strongly Agree
+STATE_AMER,               1,Strongly Disagree
+STATE_AMER,               2,Somewhat Disaree
+STATE_AMER,               3,Somewhat Agree
+STATE_AMER,               4,Strongly Agree
+STATE_ASIAN,               1,Strongly Disagree
+STATE_ASIAN,               2,Somewhat Disaree
+STATE_ASIAN,               3,Somewhat Agree
+STATE_ASIAN,               4,Strongly Agree
+STATE_AUDIO,               1,Strongly Disagree
+STATE_AUDIO,               2,Somewhat Disaree
+STATE_AUDIO,               3,Somewhat Agree
+STATE_AUDIO,               4,Strongly Agree
+STATE_BALANCE,               1,Strongly Disagree
+STATE_BALANCE,               2,Somewhat Disaree
+STATE_BALANCE,               3,Somewhat Agree
+STATE_BALANCE,               4,Strongly Agree
+STATE_BUY_BEST,               1,Strongly Disagree
+STATE_BUY_BEST,               2,Somewhat Disaree
+STATE_BUY_BEST,               3,Somewhat Agree
+STATE_BUY_BEST,               4,Strongly Agree
+STATE_CONTINUE,               1,Strongly Disagree
+STATE_CONTINUE,               2,Somewhat Disaree
+STATE_CONTINUE,               3,Somewhat Agree
+STATE_CONTINUE,               4,Strongly Agree
+STATE_ENJOY_PRESTIGE,               1,Strongly Disagree
+STATE_ENJOY_PRESTIGE,               2,Somewhat Disaree
+STATE_ENJOY_PRESTIGE,               3,Somewhat Agree
+STATE_ENJOY_PRESTIGE,               4,Strongly Agree
+STATE_EURO,               1,Strongly Disagree
+STATE_EURO,               2,Somewhat Disaree
+STATE_EURO,               3,Somewhat Agree
+STATE_EURO,               4,Strongly Agree
+STATE_FEEL_GOOD,               1,Strongly Disagree
+STATE_FEEL_GOOD,               2,Somewhat Disaree
+STATE_FEEL_GOOD,               3,Somewhat Agree
+STATE_FEEL_GOOD,               4,Strongly Agree
+STATE_FIRST_YR,               1,Strongly Disagree
+STATE_FIRST_YR,               2,Somewhat Disaree
+STATE_FIRST_YR,               3,Somewhat Agree
+STATE_FIRST_YR,               4,Strongly Agree
+STATE_MON_PAY,               1,Strongly Disagree
+STATE_MON_PAY,               2,Somewhat Disaree
+STATE_MON_PAY,               3,Somewhat Agree
+STATE_MON_PAY,               4,Strongly Agree
+STATE_NO_LOW_PRICE,               1,Strongly Disagree
+STATE_NO_LOW_PRICE,               2,Somewhat Disaree
+STATE_NO_LOW_PRICE,               3,Somewhat Agree
+STATE_NO_LOW_PRICE,               4,Strongly Agree
+STATE_PRESTIGE,               1,Strongly Disagree
+STATE_PRESTIGE,               2,Somewhat Disaree
+STATE_PRESTIGE,               3,Somewhat Agree
+STATE_PRESTIGE,               4,Strongly Agree
+STATE_REFER,               1,Strongly Disagree
+STATE_REFER,               2,Somewhat Disaree
+STATE_REFER,               3,Somewhat Agree
+STATE_REFER,               4,Strongly Agree
+STATE_SHOP_MANY,               1,Strongly Disagree
+STATE_SHOP_MANY,               2,Somewhat Disaree
+STATE_SHOP_MANY,               3,Somewhat Agree
+STATE_SHOP_MANY,               4,Strongly Agree
+STATE_SWITCH_FEAT,               1,Strongly Disagree
+STATE_SWITCH_FEAT,               2,Somewhat Disaree
+STATE_SWITCH_FEAT,               3,Somewhat Agree
+STATE_SWITCH_FEAT,               4,Strongly Agree
+STATE_VALUES,               1,Strongly Disagree
+STATE_VALUES,               2,Somewhat Disaree
+STATE_VALUES,               3,Somewhat Agree
+STATE_VALUES,               4,Strongly Agree
+STATE_WAIT,               1,Strongly Disagree
+STATE_WAIT,               2,Somewhat Disaree
+STATE_WAIT,               3,Somewhat Agree
+STATE_WAIT,               4,Strongly Agree
+C1_PL,               1,Purchase
+C1_PL,               2,Lease
+C1_PL,               5,No other considered
+DEMO_EDUCATION,               1,Grade school
+DEMO_EDUCATION,               2,Some high school
+DEMO_EDUCATION,               3,High school graduate
+DEMO_EDUCATION,               4,Some trade school
+DEMO_EDUCATION,               5,Trade school graduate
+DEMO_EDUCATION,               6,Some community college
+DEMO_EDUCATION,               7,Graduate with two-year degree
+DEMO_EDUCATION,               8,Some university
+DEMO_EDUCATION,               9,Graduate with bachelor's degree
+DEMO_EDUCATION,              10,Some post-graduate study
+DEMO_EDUCATION,              11,Post-graduate degree
+DEMO_EDUCATION,              12,Other
+DEMO_EDUCATION,              13,High School
+DEMO_EDUCATION,              14,Trade School
+DEMO_EDUCATION,              15,Community College
+DEMO_EDUCATION,              16,Bacheolor's/4-yr degree
+GENERATION_GRP,               1,Millennials (1979-1994)
+GENERATION_GRP,               2,Gen X (1965-1978)
+GENERATION_GRP,               3,Trailing-Edge Boomers (1960-1964)
+GENERATION_GRP,               4,Leading-Edge Boomers (1946-1959)
+GENERATION_GRP,               5,Matures (< 1946)
+GENERATION_GRP,               6,Gen Z (>1994)
+FIN_CREDIT,               1,Perfect credit - well-established credit history with no late payments of any kind
+FIN_CREDIT,               2,Acceptable credit - established credit with a few late payments
+FIN_CREDIT,               3,Difficult credit - established credit but previous problems make qualifying for finance difficult
+FIN_CREDIT,               4,Have little or no credit history
+DEMO_GENDER1,               1,Male
+DEMO_GENDER1,               2,Female
+DEMO_GENDER1,               3,Other
+BLD_HOBBY1_GRP,               1,Leisure Activities
+BLD_HOBBY1_GRP,               2,Competitive Sports
+BLD_HOBBY1_GRP,               3,Physical Activities
+BLD_HOBBY1_GRP,               4,Water Activities/Sports
+BLD_HOBBY1_GRP,               5,Cold Weather Activities
+BLD_HOBBY1_GRP,               6,Hands-On Activities
+BLD_HOBBY1_GRP,               7,Outdoor Activities
+BLD_HOBBY1_GRP,               8,Activities in the Air
+BLD_HOBBY1_GRP,               9,Professional & Social Activities
+BLD_HOBBY1_GRP,              10,Other Activities
+BLD_HOBBY1_GRP,              11,Miscellaneous Activities
+BLD_HOBBY2_GRP,               1,Leisure Activities
+BLD_HOBBY2_GRP,               2,Competitive Sports
+BLD_HOBBY2_GRP,               3,Physical Activities
+BLD_HOBBY2_GRP,               4,Water Activities/Sports
+BLD_HOBBY2_GRP,               5,Cold Weather Activities
+BLD_HOBBY2_GRP,               6,Hands-On Activities
+BLD_HOBBY2_GRP,               7,Outdoor Activities
+BLD_HOBBY2_GRP,               8,Activities in the Air
+BLD_HOBBY2_GRP,               9,Professional & Social Activities
+BLD_HOBBY2_GRP,              10,Other Activities
+BLD_HOBBY2_GRP,              11,Miscellaneous Activities
+BLD_HOBBY3_GRP,               1,Leisure Activities
+BLD_HOBBY3_GRP,               2,Competitive Sports
+BLD_HOBBY3_GRP,               3,Physical Activities
+BLD_HOBBY3_GRP,               4,Water Activities/Sports
+BLD_HOBBY3_GRP,               5,Cold Weather Activities
+BLD_HOBBY3_GRP,               6,Hands-On Activities
+BLD_HOBBY3_GRP,               7,Outdoor Activities
+BLD_HOBBY3_GRP,               8,Activities in the Air
+BLD_HOBBY3_GRP,               9,Professional & Social Activities
+BLD_HOBBY3_GRP,              10,Other Activities
+BLD_HOBBY3_GRP,              11,Miscellaneous Activities
+BLD_HOBBY4_GRP,               1,Leisure Activities
+BLD_HOBBY4_GRP,               2,Competitive Sports
+BLD_HOBBY4_GRP,               3,Physical Activities
+BLD_HOBBY4_GRP,               4,Water Activities/Sports
+BLD_HOBBY4_GRP,               5,Cold Weather Activities
+BLD_HOBBY4_GRP,               6,Hands-On Activities
+BLD_HOBBY4_GRP,               7,Outdoor Activities
+BLD_HOBBY4_GRP,               8,Activities in the Air
+BLD_HOBBY4_GRP,               9,Professional & Social Activities
+BLD_HOBBY4_GRP,              10,Other Activities
+BLD_HOBBY4_GRP,              11,Miscellaneous Activities
+BLD_HOBBY5_GRP,               1,Leisure Activities
+BLD_HOBBY5_GRP,               2,Competitive Sports
+BLD_HOBBY5_GRP,               3,Physical Activities
+BLD_HOBBY5_GRP,               4,Water Activities/Sports
+BLD_HOBBY5_GRP,               5,Cold Weather Activities
+BLD_HOBBY5_GRP,               6,Hands-On Activities
+BLD_HOBBY5_GRP,               7,Outdoor Activities
+BLD_HOBBY5_GRP,               8,Activities in the Air
+BLD_HOBBY5_GRP,               9,Professional & Social Activities
+BLD_HOBBY5_GRP,              10,Other Activities
+BLD_HOBBY5_GRP,              11,Miscellaneous Activities
+BLD_HOBBY6_GRP,               1,Leisure Activities
+BLD_HOBBY6_GRP,               2,Competitive Sports
+BLD_HOBBY6_GRP,               3,Physical Activities
+BLD_HOBBY6_GRP,               4,Water Activities/Sports
+BLD_HOBBY6_GRP,               5,Cold Weather Activities
+BLD_HOBBY6_GRP,               6,Hands-On Activities
+BLD_HOBBY6_GRP,               7,Outdoor Activities
+BLD_HOBBY6_GRP,               8,Activities in the Air
+BLD_HOBBY6_GRP,               9,Professional & Social Activities
+BLD_HOBBY6_GRP,              10,Other Activities
+BLD_HOBBY6_GRP,              11,Miscellaneous Activities
+DEMO_INCOME,               1,"$15,000 or less"
+DEMO_INCOME,               2,"$15,001-$20,000"
+DEMO_INCOME,               3,"$20,001-$25,000"
+DEMO_INCOME,               4,"$25,001-$30,000"
+DEMO_INCOME,               5,"$30,001-$35,000"
+DEMO_INCOME,               6,"$35,001-$40,000"
+DEMO_INCOME,               7,"$40,001-$45,000"
+DEMO_INCOME,               8,"$45,001-$50,000"
+DEMO_INCOME,               9,"$50,001-$55,000"
+DEMO_INCOME,              10,"$55,001-$65,000"
+DEMO_INCOME,              11,"$65,001-$75,000"
+DEMO_INCOME,              12,"$75,001-$85,000"
+DEMO_INCOME,              13,"$85,001-$100,000"
+DEMO_INCOME,              14,"$100,001-$125,000"
+DEMO_INCOME,              15,"$125,001-$150,000"
+DEMO_INCOME,              16,"$150,001-$200,000"
+DEMO_INCOME,              17,"$200,001-$300,000"
+DEMO_INCOME,              18,"$300,001-$400,000"
+DEMO_INCOME,              19,"Over $400,000"
+DEMO_INCOME,              20,Prefer not to answer
+DEMO_INCOME,              21,"$20,000 or less"
+DEMO_INCOME,              22,"$400,001-$500,000"
+DEMO_INCOME,              23,"Over $500,000"
+DEMO_INCOME,              24,"$25,000 or less"
+DEMO_INCOME,              25,"$25,001-$35,000"
+DEMO_INCOME,              26,"$35,001-$45,000"
+DEMO_INCOME,              27,"$45,001-$55,000"
+DEMO_INCOME,              28,"$200,001-$250,000"
+DEMO_INCOME,              29,"$250,001-$300,000"
+DEMO_INCOME,              30,"$300,001-$350,000"
+DEMO_INCOME,              31,"$350,001-$400,000"
+DEMO_INCOME,              32,"$400,001-$450,000"
+DEMO_INCOME,              33,"$450,001-$500,000"
+BLD_LIFESTAGE,               1,Married With Children - Youngest Child Under 6 Years Of Age
+BLD_LIFESTAGE,               2,Married With Children - Youngest Child 6 To 12 Years Of Age
+BLD_LIFESTAGE,               3,Married With Children - Youngest Child 13 To 17 Years Of Age
+BLD_LIFESTAGE,               4,Married Without Children Under 45 Years Of Age
+BLD_LIFESTAGE,               5,Married Without Children 45 To 59 Years Of Age
+BLD_LIFESTAGE,               6,Married Without Children 60 Years Of Age And Over
+BLD_LIFESTAGE,               7,Unmarried With Children
+BLD_LIFESTAGE,               8,Unmarried Under 30 Years of Age
+BLD_LIFESTAGE,               9,Unmarried 30 To 44 Years Of Age
+BLD_LIFESTAGE,              10,Unmarried 45 Years And Over
+DEMO_LOCATION,               1,Metropolitan city
+DEMO_LOCATION,               2,Suburban community of a larger city
+DEMO_LOCATION,               3,Small town or rural city
+DEMO_LOCATION,               4,Farming area
+DEMO_MARITAL,               1,Married
+DEMO_MARITAL,               2,"Single, never married"
+DEMO_MARITAL,               3,"Divorced, widowed, separated"
+DEMO_MARITAL,               4,Cohabitating
+C2S_MODEL_RESPONSE,          111740,Acura CL
+C2S_MODEL_RESPONSE,          113100,Acura ADX
+C2S_MODEL_RESPONSE,          113200,Acura ILX Hybrid
+C2S_MODEL_RESPONSE,          113220,Acura Integra (1985-2006)
+C2S_MODEL_RESPONSE,          113250,Acura Integra
+C2S_MODEL_RESPONSE,          113960,Acura Legend
+C2S_MODEL_RESPONSE,          114700,Acura MDX
+C2S_MODEL_RESPONSE,          114710,Acura MDX Sport Hybrid
+C2S_MODEL_RESPONSE,          115440,Acura NSX
+C2S_MODEL_RESPONSE,          115500,Acura RDX
+C2S_MODEL_RESPONSE,          116180,Acura RL
+C2S_MODEL_RESPONSE,          116200,Acura RLX
+C2S_MODEL_RESPONSE,          116210,Acura RLX Sport Hybrid
+C2S_MODEL_RESPONSE,          116920,Acura RSX
+C2S_MODEL_RESPONSE,          117660,Acura SLX
+C2S_MODEL_RESPONSE,          118400,Acura TL
+C2S_MODEL_RESPONSE,          118500,Acura TLX
+C2S_MODEL_RESPONSE,          118770,Acura TSX
+C2S_MODEL_RESPONSE,          119140,Acura Vigor
+C2S_MODEL_RESPONSE,          119300,Acura ZDX
+C2S_MODEL_RESPONSE,          119305,Acura ZDX EV
+C2S_MODEL_RESPONSE,          119400,Acura ILX
+C2S_MODEL_RESPONSE,          119900,Acura Unspecified
+C2S_MODEL_RESPONSE,          119910,Acura Car Unspecified
+C2S_MODEL_RESPONSE,          119920,Acura Truck Unspecified
+C2S_MODEL_RESPONSE,          122000,Alfa Romeo 164
+C2S_MODEL_RESPONSE,          122100,Alfa Romeo 4C
+C2S_MODEL_RESPONSE,          124000,Alfa Romeo Giulia
+C2S_MODEL_RESPONSE,          126000,Alfa Romeo Spider
+C2S_MODEL_RESPONSE,          127000,Alfa Romeo Stelvio
+C2S_MODEL_RESPONSE,          127100,Alfa Romeo Tonale
+C2S_MODEL_RESPONSE,          127150,Alfa Romeo Tonale Plug-In Hybrid
+C2S_MODEL_RESPONSE,          129910,Alfa Romeo Car Unspecified
+C2S_MODEL_RESPONSE,          132500,Aston-Martin DB7
+C2S_MODEL_RESPONSE,          135000,Aston-Martin DB9
+C2S_MODEL_RESPONSE,          135100,Aston-Martin DBS
+C2S_MODEL_RESPONSE,          136000,Aston-Martin Lagonda
+C2S_MODEL_RESPONSE,          137000,Aston-Martin V8 Vantage
+C2S_MODEL_RESPONSE,          137500,Aston-Martin V12 Vanquish
+C2S_MODEL_RESPONSE,          137700,Aston-Martin Virage
+C2S_MODEL_RESPONSE,          139910,Aston-Martin Car Unspecified
+C2S_MODEL_RESPONSE,          151590,Audi 100
+C2S_MODEL_RESPONSE,          152000,Audi 200
+C2S_MODEL_RESPONSE,          152800,Audi 80
+C2S_MODEL_RESPONSE,          152900,Audi 90
+C2S_MODEL_RESPONSE,          153100,Audi A1
+C2S_MODEL_RESPONSE,          153200,Audi A3
+C2S_MODEL_RESPONSE,          153210,Audi A3 Sportback e-tron
+C2S_MODEL_RESPONSE,          153300,Audi e-tron
+C2S_MODEL_RESPONSE,          153310,Audi e-tron Sportback
+C2S_MODEL_RESPONSE,          153340,Audi e-tron GT
+C2S_MODEL_RESPONSE,          153345,Audi S e-tron GT
+C2S_MODEL_RESPONSE,          153350,Audi e-tron S
+C2S_MODEL_RESPONSE,          153352,Audi e-tron S Sportback
+C2S_MODEL_RESPONSE,          153400,Audi A4
+C2S_MODEL_RESPONSE,          153500,Audi A5
+C2S_MODEL_RESPONSE,          153501,Audi All-New A5
+C2S_MODEL_RESPONSE,          153600,Audi A6
+C2S_MODEL_RESPONSE,          153605,Audi A6 E-Tron Sportback EV
+C2S_MODEL_RESPONSE,          153607,Audi A6 E-Tron Quattro
+C2S_MODEL_RESPONSE,          153610,Audi A6 Allroad
+C2S_MODEL_RESPONSE,          153700,Audi A7
+C2S_MODEL_RESPONSE,          153710,Audi A7 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          153800,Audi A8
+C2S_MODEL_RESPONSE,          153810,Audi A8e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          154000,Audi A4 allroad
+C2S_MODEL_RESPONSE,          155000,Audi Cabriolet (1994 to 1998)
+C2S_MODEL_RESPONSE,          155050,Audi Q3
+C2S_MODEL_RESPONSE,          155055,Audi Q4 e-tron EV
+C2S_MODEL_RESPONSE,          155056,Audi Q4 e-tron Sportback EV
+C2S_MODEL_RESPONSE,          155060,Audi Q5
+C2S_MODEL_RESPONSE,          155061,Audi All-New Q5
+C2S_MODEL_RESPONSE,          155062,Audi Q5 Sportback
+C2S_MODEL_RESPONSE,          155063,Audi All-New Q5 Sportback
+C2S_MODEL_RESPONSE,          155065,Audi Q5 Hybrid
+C2S_MODEL_RESPONSE,          155070,Audi Q5 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          155080,Audi Q6 E-Tron EV
+C2S_MODEL_RESPONSE,          155085,Audi Q6 e-tron Sportback EV
+C2S_MODEL_RESPONSE,          155090,Audi SQ6 E-Tron EV
+C2S_MODEL_RESPONSE,          155091,Audi SQ6 e-tron Sportback EV
+C2S_MODEL_RESPONSE,          155100,Audi Q7
+C2S_MODEL_RESPONSE,          155105,Audi SQ7
+C2S_MODEL_RESPONSE,          155110,Audi Q8
+C2S_MODEL_RESPONSE,          155111,Audi Q8 e-tron EV
+C2S_MODEL_RESPONSE,          155112,Audi RS Q8
+C2S_MODEL_RESPONSE,          155115,Audi SQ8
+C2S_MODEL_RESPONSE,          155116,Audi SQ8 e-tron EV
+C2S_MODEL_RESPONSE,          155117,Audi SQ8 e-tron Sportback EV
+C2S_MODEL_RESPONSE,          155120,Audi Q Unspecified
+C2S_MODEL_RESPONSE,          155200,Audi SQ5
+C2S_MODEL_RESPONSE,          155201,Audi All New SQ5
+C2S_MODEL_RESPONSE,          155205,Audi Q8 e-tron Sportback EV
+C2S_MODEL_RESPONSE,          155210,Audi SQ5 Sportback
+C2S_MODEL_RESPONSE,          155211,Audi All-New SQ5 Sportback
+C2S_MODEL_RESPONSE,          155220,Audi SQ5 e-tron Sportback EV
+C2S_MODEL_RESPONSE,          155700,Audi Quattro
+C2S_MODEL_RESPONSE,          156100,Audi R8
+C2S_MODEL_RESPONSE,          156340,Audi RS e-tron GT
+C2S_MODEL_RESPONSE,          156370,Audi RS 3
+C2S_MODEL_RESPONSE,          156380,Audi RS 4
+C2S_MODEL_RESPONSE,          156390,Audi RS 5
+C2S_MODEL_RESPONSE,          156392,Audi RS 6 MHEV
+C2S_MODEL_RESPONSE,          156395,Audi RS 7
+C2S_MODEL_RESPONSE,          156398,Audi S3
+C2S_MODEL_RESPONSE,          156400,Audi S4
+C2S_MODEL_RESPONSE,          156500,Audi S5
+C2S_MODEL_RESPONSE,          156501,Audi All-New S5
+C2S_MODEL_RESPONSE,          156600,Audi S6
+C2S_MODEL_RESPONSE,          156610,Audi S6 E-Tron Sportback EV
+C2S_MODEL_RESPONSE,          156800,Audi S8
+C2S_MODEL_RESPONSE,          156900,Audi S7
+C2S_MODEL_RESPONSE,          157500,Audi TT
+C2S_MODEL_RESPONSE,          159900,Audi Unspecified
+C2S_MODEL_RESPONSE,          159910,Audi Car Unspecified
+C2S_MODEL_RESPONSE,          159920,Audi Truck Unspecified
+C2S_MODEL_RESPONSE,          171280,BMW 128
+C2S_MODEL_RESPONSE,          171350,BMW 135
+C2S_MODEL_RESPONSE,          171990,BMW 1-Series Unspecified
+C2S_MODEL_RESPONSE,          172280,BMW 228
+C2S_MODEL_RESPONSE,          172285,BMW 230
+C2S_MODEL_RESPONSE,          172290,BMW M235
+C2S_MODEL_RESPONSE,          172295,BMW M240
+C2S_MODEL_RESPONSE,          172300,BMW M240i DO NOT USE
+C2S_MODEL_RESPONSE,          172990,BMW 2-Series Unspecified
+C2S_MODEL_RESPONSE,          173000,BMW 300
+C2S_MODEL_RESPONSE,          173180,BMW 318
+C2S_MODEL_RESPONSE,          173200,BMW 320
+C2S_MODEL_RESPONSE,          173230,BMW 323
+C2S_MODEL_RESPONSE,          173250,BMW 325
+C2S_MODEL_RESPONSE,          173280,BMW 328
+C2S_MODEL_RESPONSE,          173290,BMW 328i Gran Turismo
+C2S_MODEL_RESPONSE,          173300,BMW 330
+C2S_MODEL_RESPONSE,          173305,BMW 330i Gran Turismo
+C2S_MODEL_RESPONSE,          173310,BMW 330e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          173320,BMW 335
+C2S_MODEL_RESPONSE,          173325,BMW 335i Gran Turismo
+C2S_MODEL_RESPONSE,          173330,BMW ActiveHybrid 3
+C2S_MODEL_RESPONSE,          173340,BMW 340
+C2S_MODEL_RESPONSE,          173350,BMW 340i Gran Turismo
+C2S_MODEL_RESPONSE,          173360,BMW M340
+C2S_MODEL_RESPONSE,          173990,BMW 3-Series Unspecified
+C2S_MODEL_RESPONSE,          174000,BMW 428
+C2S_MODEL_RESPONSE,          174050,BMW 430
+C2S_MODEL_RESPONSE,          174100,BMW 435
+C2S_MODEL_RESPONSE,          174150,BMW 440
+C2S_MODEL_RESPONSE,          174180,BMW M440
+C2S_MODEL_RESPONSE,          174990,BMW 4-series Unspecified
+C2S_MODEL_RESPONSE,          175250,BMW 525
+C2S_MODEL_RESPONSE,          175280,BMW 528
+C2S_MODEL_RESPONSE,          175300,BMW 530
+C2S_MODEL_RESPONSE,          175310,BMW 530e
+C2S_MODEL_RESPONSE,          175350,BMW 535
+C2S_MODEL_RESPONSE,          175360,BMW 535i Gran Turismo
+C2S_MODEL_RESPONSE,          175365,BMW ActiveHybrid 5
+C2S_MODEL_RESPONSE,          175400,BMW 540
+C2S_MODEL_RESPONSE,          175600,BMW 545
+C2S_MODEL_RESPONSE,          175700,BMW 550
+C2S_MODEL_RESPONSE,          175705,BMW 550e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          175710,BMW 550i Gran Turismo
+C2S_MODEL_RESPONSE,          175720,BMW M550
+C2S_MODEL_RESPONSE,          175750,BMW i5
+C2S_MODEL_RESPONSE,          175990,BMW 5-Series Unspecified
+C2S_MODEL_RESPONSE,          176660,BMW 640
+C2S_MODEL_RESPONSE,          176665,BMW 640i Gran Turismo
+C2S_MODEL_RESPONSE,          176670,BMW 645
+C2S_MODEL_RESPONSE,          176700,BMW 650
+C2S_MODEL_RESPONSE,          176990,BMW 6-Series Unspecified
+C2S_MODEL_RESPONSE,          177350,BMW 735
+C2S_MODEL_RESPONSE,          177400,BMW 740
+C2S_MODEL_RESPONSE,          177410,BMW ActiveHybrid 740
+C2S_MODEL_RESPONSE,          177420,BMW 740e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          177450,BMW 745
+C2S_MODEL_RESPONSE,          177455,BMW 745e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          177500,BMW 750
+C2S_MODEL_RESPONSE,          177510,BMW ActiveHybrid 7
+C2S_MODEL_RESPONSE,          177520,BMW 750e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          177600,BMW 760
+C2S_MODEL_RESPONSE,          177700,BMW Alpina B7
+C2S_MODEL_RESPONSE,          177702,BMW Alpina B8
+C2S_MODEL_RESPONSE,          177705,BMW Alpina B6
+C2S_MODEL_RESPONSE,          177710,BMW Active E
+C2S_MODEL_RESPONSE,          177990,BMW 7-Series Unspecified
+C2S_MODEL_RESPONSE,          178400,BMW 840
+C2S_MODEL_RESPONSE,          178500,BMW 850
+C2S_MODEL_RESPONSE,          178510,BMW M850
+C2S_MODEL_RESPONSE,          178600,BMW i3
+C2S_MODEL_RESPONSE,          178650,BMW i3 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          178655,BMW i3s Plug-In Hybrid
+C2S_MODEL_RESPONSE,          178660,BMW i4
+C2S_MODEL_RESPONSE,          178670,BMW i7
+C2S_MODEL_RESPONSE,          178800,BMW i8 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          178810,BMW iX
+C2S_MODEL_RESPONSE,          178900,BMW M Unspecified
+C2S_MODEL_RESPONSE,          178910,BMW M1
+C2S_MODEL_RESPONSE,          178920,BMW M2
+C2S_MODEL_RESPONSE,          178930,BMW M3
+C2S_MODEL_RESPONSE,          178940,BMW M4
+C2S_MODEL_RESPONSE,          178950,BMW M5
+C2S_MODEL_RESPONSE,          178951,BMW M5 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          178952,BMW M5 Touring Plug-In Hybrid
+C2S_MODEL_RESPONSE,          178960,BMW M6
+C2S_MODEL_RESPONSE,          178965,BMW M760
+C2S_MODEL_RESPONSE,          178970,BMW M Roadster
+C2S_MODEL_RESPONSE,          178980,BMW M Coupe
+C2S_MODEL_RESPONSE,          178985,BMW M8
+C2S_MODEL_RESPONSE,          178990,BMW 8-Series Unspecified
+C2S_MODEL_RESPONSE,          179100,BMW X1
+C2S_MODEL_RESPONSE,          179125,BMW X2
+C2S_MODEL_RESPONSE,          179150,BMW X3
+C2S_MODEL_RESPONSE,          179155,BMW X3 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          179190,BMW X Unspecified
+C2S_MODEL_RESPONSE,          179200,BMW X4
+C2S_MODEL_RESPONSE,          179300,BMW X5
+C2S_MODEL_RESPONSE,          179310,BMW X5 e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          179320,BMW X6
+C2S_MODEL_RESPONSE,          179325,BMW X7
+C2S_MODEL_RESPONSE,          179328,BMW Alpina XB7
+C2S_MODEL_RESPONSE,          179330,BMW ActiveHybrid X6
+C2S_MODEL_RESPONSE,          179335,BMW XM Plug-in Hybrid
+C2S_MODEL_RESPONSE,          179530,BMW Z3
+C2S_MODEL_RESPONSE,          179540,BMW Z4
+C2S_MODEL_RESPONSE,          179580,BMW Z8
+C2S_MODEL_RESPONSE,          179900,BMW Unspecified
+C2S_MODEL_RESPONSE,          179910,BMW Car Unspecified
+C2S_MODEL_RESPONSE,          179920,BMW Truck Unspecified
+C2S_MODEL_RESPONSE,          181500,Buick Cascada
+C2S_MODEL_RESPONSE,          181640,Buick Century
+C2S_MODEL_RESPONSE,          181641,Buick Century (2005)
+C2S_MODEL_RESPONSE,          181800,Buick Enclave
+C2S_MODEL_RESPONSE,          181900,Buick Envision
+C2S_MODEL_RESPONSE,          181950,Buick Envista
+C2S_MODEL_RESPONSE,          182200,Buick LaCrosse
+C2S_MODEL_RESPONSE,          182210,Buick LaCrosse eAssist
+C2S_MODEL_RESPONSE,          182920,Buick LeSabre
+C2S_MODEL_RESPONSE,          182940,Buick Lucerne
+C2S_MODEL_RESPONSE,          183560,Buick Park Avenue
+C2S_MODEL_RESPONSE,          183561,Buick Park Avenue (2005)
+C2S_MODEL_RESPONSE,          184200,Buick Rainier
+C2S_MODEL_RESPONSE,          184500,Buick Reatta
+C2S_MODEL_RESPONSE,          184800,Buick Regal
+C2S_MODEL_RESPONSE,          184805,Buick Regal TourX
+C2S_MODEL_RESPONSE,          184810,Buick Regal eAssist
+C2S_MODEL_RESPONSE,          184815,Buick Regal Sportback
+C2S_MODEL_RESPONSE,          185000,Buick Rendezvous
+C2S_MODEL_RESPONSE,          185300,Buick Riviera
+C2S_MODEL_RESPONSE,          185600,Buick Roadmaster
+C2S_MODEL_RESPONSE,          186200,Buick Skylark
+C2S_MODEL_RESPONSE,          187600,Buick Terraza
+C2S_MODEL_RESPONSE,          187700,Buick Verano
+C2S_MODEL_RESPONSE,          187800,Buick Encore
+C2S_MODEL_RESPONSE,          187810,Buick Encore GX
+C2S_MODEL_RESPONSE,          189900,Buick Unspecified
+C2S_MODEL_RESPONSE,          189910,Buick Car Unspecified
+C2S_MODEL_RESPONSE,          189920,Buick Truck Unspecified
+C2S_MODEL_RESPONSE,          189930,Buick Van Unspecified
+C2S_MODEL_RESPONSE,          201810,Cadillac Allante
+C2S_MODEL_RESPONSE,          201900,Cadillac ATS
+C2S_MODEL_RESPONSE,          202620,Cadillac Brougham
+C2S_MODEL_RESPONSE,          203430,Cadillac Catera
+C2S_MODEL_RESPONSE,          205050,Cadillac CTS
+C2S_MODEL_RESPONSE,          205051,Cadillac CTS (2005)
+C2S_MODEL_RESPONSE,          205070,Cadillac CT6
+C2S_MODEL_RESPONSE,          205075,Cadillac CT6 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          205080,Cadillac CT5
+C2S_MODEL_RESPONSE,          205090,Cadillac CT4
+C2S_MODEL_RESPONSE,          205100,Cadillac DTS
+C2S_MODEL_RESPONSE,          205860,Cadillac DeVille
+C2S_MODEL_RESPONSE,          206670,Cadillac Eldorado
+C2S_MODEL_RESPONSE,          206700,Cadillac ELR
+C2S_MODEL_RESPONSE,          207400,Cadillac Escalade
+C2S_MODEL_RESPONSE,          207410,Cadillac Escalade Hybrid
+C2S_MODEL_RESPONSE,          207430,Cadillac Escalade ESV
+C2S_MODEL_RESPONSE,          207470,Cadillac Escalade EXT
+C2S_MODEL_RESPONSE,          207480,Cadillac Escalade IQ EV
+C2S_MODEL_RESPONSE,          207481,Cadillac Escalade IQL EV
+C2S_MODEL_RESPONSE,          208280,Cadillac Fleetwood
+C2S_MODEL_RESPONSE,          208350,Cadillac Fleetwood 60 Special
+C2S_MODEL_RESPONSE,          208400,Cadillac Celestiq EV
+C2S_MODEL_RESPONSE,          208500,Cadillac Lyriq EV
+C2S_MODEL_RESPONSE,          208550,Cadillac OPTIQ EV
+C2S_MODEL_RESPONSE,          208600,Cadillac Vistiq EV
+C2S_MODEL_RESPONSE,          209090,Cadillac Seville
+C2S_MODEL_RESPONSE,          209095,Cadillac XT4
+C2S_MODEL_RESPONSE,          209100,Cadillac XT5
+C2S_MODEL_RESPONSE,          209110,Cadillac XT6
+C2S_MODEL_RESPONSE,          209200,Cadillac SRX
+C2S_MODEL_RESPONSE,          209201,Cadillac SRX (2005)
+C2S_MODEL_RESPONSE,          209300,Cadillac STS
+C2S_MODEL_RESPONSE,          209500,Cadillac XLR
+C2S_MODEL_RESPONSE,          209700,Cadillac XTS
+C2S_MODEL_RESPONSE,          209900,Cadillac Unspecified
+C2S_MODEL_RESPONSE,          209910,Cadillac Car Unspecified
+C2S_MODEL_RESPONSE,          209920,Cadillac Truck Unspecified
+C2S_MODEL_RESPONSE,          211200,Chevrolet Astro Van Unspecified
+C2S_MODEL_RESPONSE,          211230,Chevrolet Astro Cargo Van
+C2S_MODEL_RESPONSE,          211260,Chevrolet Astro Passenger Van
+C2S_MODEL_RESPONSE,          211400,Chevrolet Avalanche
+C2S_MODEL_RESPONSE,          211500,Chevrolet Aveo
+C2S_MODEL_RESPONSE,          211550,Chevrolet Aveo5
+C2S_MODEL_RESPONSE,          211600,Chevrolet Beretta
+C2S_MODEL_RESPONSE,          211800,Chevrolet Blazer (1994 And Older)
+C2S_MODEL_RESPONSE,          211830,Chevrolet Blazer (1994 to 2005)
+C2S_MODEL_RESPONSE,          211850,Chevrolet Blazer
+C2S_MODEL_RESPONSE,          211860,Chevrolet Blazer EV
+C2S_MODEL_RESPONSE,          211900,Chevrolet Bolt
+C2S_MODEL_RESPONSE,          211950,Chevrolet Bolt EUV
+C2S_MODEL_RESPONSE,          212000,Chevrolet Camaro (2002 & Older)
+C2S_MODEL_RESPONSE,          212050,Chevrolet Camaro
+C2S_MODEL_RESPONSE,          212070,Chevrolet Camaro Unspecified
+C2S_MODEL_RESPONSE,          212200,Chevrolet Caprice
+C2S_MODEL_RESPONSE,          212400,Chevrolet Caprice Classic
+C2S_MODEL_RESPONSE,          212450,Chevrolet Captiva
+C2S_MODEL_RESPONSE,          212600,Chevrolet Cavalier
+C2S_MODEL_RESPONSE,          212650,Chevrolet City Express Cargo Van
+C2S_MODEL_RESPONSE,          212800,Chevrolet Cobalt
+C2S_MODEL_RESPONSE,          213050,Chevrolet Colorado (2012 and older)
+C2S_MODEL_RESPONSE,          213060,Chevrolet Colorado
+C2S_MODEL_RESPONSE,          213200,Chevrolet Corsica
+C2S_MODEL_RESPONSE,          213400,Chevrolet Corvette
+C2S_MODEL_RESPONSE,          213410,Chevrolet Corvette Stingray
+C2S_MODEL_RESPONSE,          213415,Chevrolet Corvette E-Ray MHEV
+C2S_MODEL_RESPONSE,          213430,Chevrolet Corvette Grand Sport DO NOT USE
+C2S_MODEL_RESPONSE,          213480,Chevrolet Corvette Unspecified
+C2S_MODEL_RESPONSE,          213490,Chevrolet Cruze
+C2S_MODEL_RESPONSE,          213495,Chevrolet Cruze Limited
+C2S_MODEL_RESPONSE,          213600,Chevrolet Equinox
+C2S_MODEL_RESPONSE,          213650,Chevrolet Equinox EV
+C2S_MODEL_RESPONSE,          213800,Chevrolet Express Van Unspecified
+C2S_MODEL_RESPONSE,          213830,Chevrolet Express Cargo Van
+C2S_MODEL_RESPONSE,          213860,Chevrolet Express Passenger Van
+C2S_MODEL_RESPONSE,          214000,Chevrolet G-Series Van Unspecified
+C2S_MODEL_RESPONSE,          214030,Chevrolet G-Series Cargo Van
+C2S_MODEL_RESPONSE,          214100,Chevrolet HHR
+C2S_MODEL_RESPONSE,          214200,Chevrolet Impala
+C2S_MODEL_RESPONSE,          214210,Chevrolet Impala eAssist
+C2S_MODEL_RESPONSE,          214400,Chevrolet Lumina (Car)
+C2S_MODEL_RESPONSE,          214540,Chevrolet Lumina Unspecified
+C2S_MODEL_RESPONSE,          214680,Chevrolet Lumina Passenger Van
+C2S_MODEL_RESPONSE,          215000,Chevrolet Malibu
+C2S_MODEL_RESPONSE,          215010,Chevrolet Malibu Hybrid
+C2S_MODEL_RESPONSE,          215020,Chevrolet Malibu Eco
+C2S_MODEL_RESPONSE,          215030,Chevrolet Malibu Limited
+C2S_MODEL_RESPONSE,          215100,Chevrolet Malibu Maxx
+C2S_MODEL_RESPONSE,          215150,Chevrolet Malibu Unspecifed
+C2S_MODEL_RESPONSE,          215200,Chevrolet Metro
+C2S_MODEL_RESPONSE,          215400,Chevrolet Monte Carlo
+C2S_MODEL_RESPONSE,          215800,Chevrolet Prizm
+C2S_MODEL_RESPONSE,          216200,Chevrolet S10
+C2S_MODEL_RESPONSE,          216600,Chevrolet Silverado Unspecified
+C2S_MODEL_RESPONSE,          216620,Chevrolet Silverado 1500
+C2S_MODEL_RESPONSE,          216630,Chevrolet Silverado 1500 Hybrid
+C2S_MODEL_RESPONSE,          216640,Chevrolet Silverado 2500
+C2S_MODEL_RESPONSE,          216670,Chevrolet Silverado 3500
+C2S_MODEL_RESPONSE,          216675,Chevrolet Silverado EV
+C2S_MODEL_RESPONSE,          216690,Chevrolet Sonic
+C2S_MODEL_RESPONSE,          216700,Chevrolet Spark
+C2S_MODEL_RESPONSE,          216710,Chevrolet Spark Electric
+C2S_MODEL_RESPONSE,          216800,Chevrolet Sportvan
+C2S_MODEL_RESPONSE,          217000,Chevrolet Sprint
+C2S_MODEL_RESPONSE,          217100,Chevrolet SS
+C2S_MODEL_RESPONSE,          217200,Chevrolet SSR
+C2S_MODEL_RESPONSE,          217400,Chevrolet Storm
+C2S_MODEL_RESPONSE,          217600,Chevrolet Suburban
+C2S_MODEL_RESPONSE,          217800,Chevrolet Tahoe
+C2S_MODEL_RESPONSE,          217810,Chevrolet Tahoe Hybrid
+C2S_MODEL_RESPONSE,          218000,Chevrolet Tracker
+C2S_MODEL_RESPONSE,          218200,Chevrolet TrailBlazer (2009 and older)
+C2S_MODEL_RESPONSE,          218250,Chevrolet TrailBlazer EXT (2006 and older)
+C2S_MODEL_RESPONSE,          218270,Chevrolet Traverse (2023 and Older)
+C2S_MODEL_RESPONSE,          218271,Chevrolet Traverse Limited
+C2S_MODEL_RESPONSE,          218272,Chevrolet Traverse
+C2S_MODEL_RESPONSE,          218280,Chevrolet Trax (2013-2022)
+C2S_MODEL_RESPONSE,          218290,Chevrolet Trax
+C2S_MODEL_RESPONSE,          218300,Chevrolet Trailblazer
+C2S_MODEL_RESPONSE,          218320,Chevrolet Uplander
+C2S_MODEL_RESPONSE,          218340,Chevrolet Uplander Cargo
+C2S_MODEL_RESPONSE,          218400,Chevrolet Venture Van Unspecified
+C2S_MODEL_RESPONSE,          218430,Chevrolet Venture Cargo Van
+C2S_MODEL_RESPONSE,          218460,Chevrolet Venture Passenger Van
+C2S_MODEL_RESPONSE,          218560,Chevrolet Volt
+C2S_MODEL_RESPONSE,          219290,Chevrolet Truck/Pickup Unspecified
+C2S_MODEL_RESPONSE,          219900,Chevrolet Unspecified
+C2S_MODEL_RESPONSE,          219910,Chevrolet Car Unspecified
+C2S_MODEL_RESPONSE,          219920,Chevrolet Truck/Pickup Unspecified
+C2S_MODEL_RESPONSE,          219930,Chevrolet Van Unspecified
+C2S_MODEL_RESPONSE,          220400,Chrysler 300
+C2S_MODEL_RESPONSE,          220510,Chrysler 200 Coupe/Convertible
+C2S_MODEL_RESPONSE,          220511,Chrysler 200 Sedan
+C2S_MODEL_RESPONSE,          220512,Chrysler 200 Unspecified
+C2S_MODEL_RESPONSE,          221390,Chrysler 300m
+C2S_MODEL_RESPONSE,          221391,Chrysler 300m*
+C2S_MODEL_RESPONSE,          221600,Chrysler Aspen
+C2S_MODEL_RESPONSE,          221610,Chrysler Aspen Hybrid
+C2S_MODEL_RESPONSE,          221780,Chrysler Cirrus
+C2S_MODEL_RESPONSE,          222170,Chrysler Concorde
+C2S_MODEL_RESPONSE,          222171,Chrysler Concorde*
+C2S_MODEL_RESPONSE,          222560,Chrysler Crossfire
+C2S_MODEL_RESPONSE,          222561,Chrysler Crossfire (2005)
+C2S_MODEL_RESPONSE,          222950,Chrysler Daytona
+C2S_MODEL_RESPONSE,          223340,Chrysler Fifth Avenue
+C2S_MODEL_RESPONSE,          223730,Chrysler Grand Voyager
+C2S_MODEL_RESPONSE,          224120,Chrysler Imperial
+C2S_MODEL_RESPONSE,          224510,Chrysler Intrepid
+C2S_MODEL_RESPONSE,          224900,Chrysler LeBaron
+C2S_MODEL_RESPONSE,          225290,Chrysler LHS
+C2S_MODEL_RESPONSE,          225680,Chrysler Neon
+C2S_MODEL_RESPONSE,          226000,Chrysler New Yorker
+C2S_MODEL_RESPONSE,          226850,Chrysler Pacifica (2004-2008)
+C2S_MODEL_RESPONSE,          226860,Chrysler Pacifica
+C2S_MODEL_RESPONSE,          226870,Chrysler Pacifica Plug-In Hybrid
+C2S_MODEL_RESPONSE,          226890,Chrysler Pacifica Unspecified
+C2S_MODEL_RESPONSE,          227240,Chrysler Prowler
+C2S_MODEL_RESPONSE,          227630,Chrysler PT Cruiser
+C2S_MODEL_RESPONSE,          227631,Chrysler PT Cruiser (2005)
+C2S_MODEL_RESPONSE,          228021,Chrysler Sebring Coupe/Convertible
+C2S_MODEL_RESPONSE,          228022,Chrysler Sebring Sedan
+C2S_MODEL_RESPONSE,          228029,Chrysler Sebring Unspecified
+C2S_MODEL_RESPONSE,          228410,Chrysler Stratus
+C2S_MODEL_RESPONSE,          228800,Chrysler Town & Country
+C2S_MODEL_RESPONSE,          228801,Chrysler Town & Country (2005)
+C2S_MODEL_RESPONSE,          229190,Chrysler Viper
+C2S_MODEL_RESPONSE,          229580,Chrysler Voyager (2016 and older)
+C2S_MODEL_RESPONSE,          229590,Chrysler Voyager
+C2S_MODEL_RESPONSE,          229900,Chrysler Unspecified
+C2S_MODEL_RESPONSE,          229910,Chrysler Car Unspecified
+C2S_MODEL_RESPONSE,          229920,Chrysler Truck Unspecified
+C2S_MODEL_RESPONSE,          229930,Chrysler Van Unspecified
+C2S_MODEL_RESPONSE,          239910,Citroen Car Unspecified
+C2S_MODEL_RESPONSE,          252000,Daewoo Korando
+C2S_MODEL_RESPONSE,          254000,Daewoo Lanos
+C2S_MODEL_RESPONSE,          256000,Daewoo Leganza
+C2S_MODEL_RESPONSE,          258000,Daewoo Nubira
+C2S_MODEL_RESPONSE,          259900,Daewoo Unspecified
+C2S_MODEL_RESPONSE,          259910,Daewoo Car Unspecified
+C2S_MODEL_RESPONSE,          263000,Daihatsu Charade
+C2S_MODEL_RESPONSE,          269900,Daihatsu Unspecified
+C2S_MODEL_RESPONSE,          269910,Daihatsu Car Unspecified
+C2S_MODEL_RESPONSE,          271720,Dodge Avenger
+C2S_MODEL_RESPONSE,          272100,Dodge Caliber
+C2S_MODEL_RESPONSE,          272200,Dodge Caravan Unspecified
+C2S_MODEL_RESPONSE,          272230,Dodge Caravan Cargo Van
+C2S_MODEL_RESPONSE,          272260,Dodge Caravan Passenger Van
+C2S_MODEL_RESPONSE,          272261,Dodge Caravan Passenger Van (2005)
+C2S_MODEL_RESPONSE,          272280,Dodge Challenger
+C2S_MODEL_RESPONSE,          272300,Dodge Charger
+C2S_MODEL_RESPONSE,          272310,Dodge Charger Daytona EV
+C2S_MODEL_RESPONSE,          272320,Dodge Charger (1987 and Older)
+C2S_MODEL_RESPONSE,          272340,Dodge Charger Unspecified
+C2S_MODEL_RESPONSE,          272400,Dodge Colt
+C2S_MODEL_RESPONSE,          272410,Dodge Colt 100
+C2S_MODEL_RESPONSE,          272420,Dodge Colt 200
+C2S_MODEL_RESPONSE,          272430,Dodge Colt Vista
+C2S_MODEL_RESPONSE,          272550,Dodge D/W Full-Size Pickup
+C2S_MODEL_RESPONSE,          272551,Dodge D150
+C2S_MODEL_RESPONSE,          272552,Dodge D250
+C2S_MODEL_RESPONSE,          272553,Dodge D350
+C2S_MODEL_RESPONSE,          272554,Dodge W150
+C2S_MODEL_RESPONSE,          272555,Dodge W250
+C2S_MODEL_RESPONSE,          272556,Dodge W350
+C2S_MODEL_RESPONSE,          272559,Dodge D/W Series Unspecified
+C2S_MODEL_RESPONSE,          272670,Dodge Dakota
+C2S_MODEL_RESPONSE,          272910,Dodge Daytona
+C2S_MODEL_RESPONSE,          273150,Dodge Durango
+C2S_MODEL_RESPONSE,          273160,Dodge Durango Hybrid
+C2S_MODEL_RESPONSE,          273390,Dodge Dynasty
+C2S_MODEL_RESPONSE,          273510,Dodge Grand Caravan Cargo Van
+C2S_MODEL_RESPONSE,          273600,Dodge Grand Caravan Unspecified
+C2S_MODEL_RESPONSE,          273630,Dodge Grand Caravan Passenger Van
+C2S_MODEL_RESPONSE,          273631,Dodge Grand Caravan (2005)
+C2S_MODEL_RESPONSE,          273700,Dodge Hornet
+C2S_MODEL_RESPONSE,          273710,Dodge Hornet Plug-In Hybrid
+C2S_MODEL_RESPONSE,          273870,Dodge Intrepid
+C2S_MODEL_RESPONSE,          273871,Dodge Intrepid*
+C2S_MODEL_RESPONSE,          274000,Dodge Journey
+C2S_MODEL_RESPONSE,          274300,Dodge Magnum
+C2S_MODEL_RESPONSE,          274490,Dodge Monaco
+C2S_MODEL_RESPONSE,          274730,Dodge Neon
+C2S_MODEL_RESPONSE,          274735,Dodge Nitro
+C2S_MODEL_RESPONSE,          275000,Dodge Ram Unspecified
+C2S_MODEL_RESPONSE,          275600,Dodge Ram Wagon/Van Unspecified
+C2S_MODEL_RESPONSE,          275630,Dodge Ram Cargo Van
+C2S_MODEL_RESPONSE,          275660,Dodge Ram Passenger Wagon/Van
+C2S_MODEL_RESPONSE,          275800,Dodge Ram Pickup Unspecified
+C2S_MODEL_RESPONSE,          275820,Dodge Ram 50
+C2S_MODEL_RESPONSE,          275840,Dodge Ram Pickup 1500
+C2S_MODEL_RESPONSE,          275860,Dodge Ram Pickup 2500
+C2S_MODEL_RESPONSE,          275880,Dodge Ram Pickup 3500
+C2S_MODEL_RESPONSE,          276040,Dodge Ramcharger
+C2S_MODEL_RESPONSE,          276280,Dodge Ram SRT-10
+C2S_MODEL_RESPONSE,          276520,Dodge Shadow
+C2S_MODEL_RESPONSE,          276760,Dodge Spirit
+C2S_MODEL_RESPONSE,          276850,Dodge Sprinter Cargo Van
+C2S_MODEL_RESPONSE,          276940,Dodge Sprinter Passenger Van
+C2S_MODEL_RESPONSE,          277030,Dodge Sprinter Van Unspecified
+C2S_MODEL_RESPONSE,          277120,Dodge SRT-4
+C2S_MODEL_RESPONSE,          277240,Dodge Stealth
+C2S_MODEL_RESPONSE,          277481,Dodge Stratus Coupe
+C2S_MODEL_RESPONSE,          277482,Dodge Stratus Sedan
+C2S_MODEL_RESPONSE,          277489,Dodge Stratus Unspecified
+C2S_MODEL_RESPONSE,          277600,Dodge SX 2.0*
+C2S_MODEL_RESPONSE,          277720,Dodge Viper
+C2S_MODEL_RESPONSE,          277800,Dodge Dart
+C2S_MODEL_RESPONSE,          279900,Dodge Unspecified
+C2S_MODEL_RESPONSE,          279910,Dodge Car Unspecified
+C2S_MODEL_RESPONSE,          279920,Dodge Truck Unspecified
+C2S_MODEL_RESPONSE,          279930,Dodge Van Unspecified
+C2S_MODEL_RESPONSE,          294500,Eagle Premier
+C2S_MODEL_RESPONSE,          295500,Eagle Summit
+C2S_MODEL_RESPONSE,          296500,Eagle Talon
+C2S_MODEL_RESPONSE,          297500,Eagle Vision
+C2S_MODEL_RESPONSE,          299910,Eagle Car Unspecified
+C2S_MODEL_RESPONSE,          300000,Fisker Karma
+C2S_MODEL_RESPONSE,          309910,Fisker Car Unspecified
+C2S_MODEL_RESPONSE,          310000,Fiat 500
+C2S_MODEL_RESPONSE,          310010,Fiat 500 Electric (2013-2019)
+C2S_MODEL_RESPONSE,          310015,Fiat 500e EV
+C2S_MODEL_RESPONSE,          310100,Fiat 500L
+C2S_MODEL_RESPONSE,          310200,Fiat 500X
+C2S_MODEL_RESPONSE,          310300,Fiat 124 Spider
+C2S_MODEL_RESPONSE,          319910,Fiat Car Unspecified
+C2S_MODEL_RESPONSE,          321300,Ford Aerostar Van Unspecified
+C2S_MODEL_RESPONSE,          321330,Ford Aerostar Cargo Van
+C2S_MODEL_RESPONSE,          321360,Ford Aerostar Passenger Van
+C2S_MODEL_RESPONSE,          321610,Ford Aspire
+C2S_MODEL_RESPONSE,          321920,Ford Bronco (1966-1996)
+C2S_MODEL_RESPONSE,          321930,Ford Bronco
+C2S_MODEL_RESPONSE,          321950,Ford Bronco Sport
+C2S_MODEL_RESPONSE,          322540,Ford Contour
+C2S_MODEL_RESPONSE,          323160,Ford Crown Victoria
+C2S_MODEL_RESPONSE,          324000,Ford E-Series/Econoline Van Unspecified
+C2S_MODEL_RESPONSE,          324100,Ford E-Series/Econoline Cargo Van Unspecified
+C2S_MODEL_RESPONSE,          324110,Ford E-150 Cargo Van
+C2S_MODEL_RESPONSE,          324120,Ford E-250 Cargo Van
+C2S_MODEL_RESPONSE,          324130,Ford E-350 Cargo Van
+C2S_MODEL_RESPONSE,          324200,Ford E-Series/Econoline Passenger Van Unspecified
+C2S_MODEL_RESPONSE,          324210,Ford E-150 Passenger Van
+C2S_MODEL_RESPONSE,          324220,Ford E-250 Passenger Van
+C2S_MODEL_RESPONSE,          324230,Ford E-350 Passenger Van
+C2S_MODEL_RESPONSE,          324450,Ford Edge
+C2S_MODEL_RESPONSE,          324510,Ford Escape
+C2S_MODEL_RESPONSE,          324511,Ford Escape (2005)
+C2S_MODEL_RESPONSE,          324520,Ford Escape Hybrid
+C2S_MODEL_RESPONSE,          324530,Ford Escape Plug-In Hybrid
+C2S_MODEL_RESPONSE,          324820,Ford Escort
+C2S_MODEL_RESPONSE,          324900,Ford EcoSport
+C2S_MODEL_RESPONSE,          325130,Ford Excursion
+C2S_MODEL_RESPONSE,          325750,Ford Expedition
+C2S_MODEL_RESPONSE,          325760,Ford Expedition EL
+C2S_MODEL_RESPONSE,          325770,Ford Expedition Max (2010 and older)
+C2S_MODEL_RESPONSE,          325780,Ford Expedition MAX
+C2S_MODEL_RESPONSE,          326000,Ford Explorer (1991-2010)
+C2S_MODEL_RESPONSE,          326010,Ford Explorer
+C2S_MODEL_RESPONSE,          326015,Ford Explorer Hybrid
+C2S_MODEL_RESPONSE,          326020,Ford Explorer Plug-In Hybrid
+C2S_MODEL_RESPONSE,          326030,Ford Explorer Sport (2003 and older)
+C2S_MODEL_RESPONSE,          326070,Ford Explorer Sport Trac (2010 and older)
+C2S_MODEL_RESPONSE,          326200,Ford F-Series Pickup Unspecified
+C2S_MODEL_RESPONSE,          326210,Ford F-150
+C2S_MODEL_RESPONSE,          326215,Ford F-150 Hybrid
+C2S_MODEL_RESPONSE,          326220,Ford F-150 Lightning EV
+C2S_MODEL_RESPONSE,          326230,Ford F-250 Unspecified
+C2S_MODEL_RESPONSE,          326240,Ford F-250 Super Duty
+C2S_MODEL_RESPONSE,          326260,Ford F-350 Unspecified
+C2S_MODEL_RESPONSE,          326270,Ford F-350 Super Duty
+C2S_MODEL_RESPONSE,          326300,Ford Five Hundred
+C2S_MODEL_RESPONSE,          326330,Ford Festiva
+C2S_MODEL_RESPONSE,          326340,Ford Fiesta
+C2S_MODEL_RESPONSE,          326350,Ford Flex
+C2S_MODEL_RESPONSE,          326400,Ford Focus
+C2S_MODEL_RESPONSE,          326410,Ford Focus Electric
+C2S_MODEL_RESPONSE,          326440,Ford Freestar Cargo Van
+C2S_MODEL_RESPONSE,          326480,Ford Freestar Passenger Van
+C2S_MODEL_RESPONSE,          326520,Ford Freestar Van Unspecified
+C2S_MODEL_RESPONSE,          326540,Ford Freestyle
+C2S_MODEL_RESPONSE,          326640,Ford GT
+C2S_MODEL_RESPONSE,          326800,Ford Maverick
+C2S_MODEL_RESPONSE,          326810,Ford Maverick Hybrid
+C2S_MODEL_RESPONSE,          326900,Ford Mustang
+C2S_MODEL_RESPONSE,          326910,Ford Mustang GTD
+C2S_MODEL_RESPONSE,          326920,Ford Mustang Mach-E
+C2S_MODEL_RESPONSE,          327150,Ford Probe
+C2S_MODEL_RESPONSE,          327650,Ford Ranger (2007-2011)
+C2S_MODEL_RESPONSE,          327660,Ford Ranger Unspecified
+C2S_MODEL_RESPONSE,          327700,Ford Ranger
+C2S_MODEL_RESPONSE,          327900,Ford Taurus (1986-2007)
+C2S_MODEL_RESPONSE,          327901,Ford Taurus (2005)
+C2S_MODEL_RESPONSE,          327920,Ford Taurus
+C2S_MODEL_RESPONSE,          327950,Ford Taurus X
+C2S_MODEL_RESPONSE,          327960,Ford Taurus Unspecified
+C2S_MODEL_RESPONSE,          328000,Ford Fusion
+C2S_MODEL_RESPONSE,          328010,Ford Fusion Hybrid
+C2S_MODEL_RESPONSE,          328015,Ford Fusion Plug-In Hybrid
+C2S_MODEL_RESPONSE,          328150,Ford Tempo
+C2S_MODEL_RESPONSE,          328400,Ford Thunderbird Unspecified
+C2S_MODEL_RESPONSE,          328500,Ford Transit 150 Cargo Van
+C2S_MODEL_RESPONSE,          328510,Ford Transit 150 Wagon
+C2S_MODEL_RESPONSE,          328520,Ford Transit 250 Cargo Van
+C2S_MODEL_RESPONSE,          328540,Ford Transit 350 Cargo Van
+C2S_MODEL_RESPONSE,          328550,Ford Transit 350 Wagon
+C2S_MODEL_RESPONSE,          328590,Ford Transit Cargo Van Unspecified
+C2S_MODEL_RESPONSE,          328591,Ford Transit Wagon Unspecified
+C2S_MODEL_RESPONSE,          328592,Ford Transit Van Unspecified
+C2S_MODEL_RESPONSE,          328650,Ford Thunderbird (1997 And Older)
+C2S_MODEL_RESPONSE,          328900,Ford Thunderbird (2001-2005)
+C2S_MODEL_RESPONSE,          329000,Ford Transit Connect Passenger Van
+C2S_MODEL_RESPONSE,          329010,Ford Transit Connect Cargo Van
+C2S_MODEL_RESPONSE,          329020,Ford Transit Connect Van Unspecified
+C2S_MODEL_RESPONSE,          329100,Ford Windstar Van Unspecified
+C2S_MODEL_RESPONSE,          329130,Ford Windstar Cargo Van
+C2S_MODEL_RESPONSE,          329160,Ford Windstar Passenger Van
+C2S_MODEL_RESPONSE,          329360,Ford ZX2
+C2S_MODEL_RESPONSE,          329400,Ford C-Max
+C2S_MODEL_RESPONSE,          329410,Ford C-Max Energi
+C2S_MODEL_RESPONSE,          329900,Ford Unspecified
+C2S_MODEL_RESPONSE,          329910,Ford Car Unspecified
+C2S_MODEL_RESPONSE,          329920,Ford Truck/Pickup Unspecified
+C2S_MODEL_RESPONSE,          329930,Ford Van Unspecified
+C2S_MODEL_RESPONSE,          336300,Freightliner Sprinter Van Unspecified
+C2S_MODEL_RESPONSE,          336330,Freightliner Sprinter Cargo Van
+C2S_MODEL_RESPONSE,          336360,Freightliner Sprinter Passenger Van
+C2S_MODEL_RESPONSE,          340300,GMC Acadia
+C2S_MODEL_RESPONSE,          340310,GMC Acadia Denali
+C2S_MODEL_RESPONSE,          340315,GMC Acadia Limited
+C2S_MODEL_RESPONSE,          340800,GMC Canyon (2012 and older)
+C2S_MODEL_RESPONSE,          340810,GMC Canyon
+C2S_MODEL_RESPONSE,          341630,GMC Envoy
+C2S_MODEL_RESPONSE,          341650,GMC Envoy Denali
+C2S_MODEL_RESPONSE,          341680,GMC Envoy XL
+C2S_MODEL_RESPONSE,          341700,GMC Envoy XL Denali
+C2S_MODEL_RESPONSE,          342020,GMC Envoy XUV
+C2S_MODEL_RESPONSE,          342360,GMC Jimmy
+C2S_MODEL_RESPONSE,          342500,GMC HUMMER Pickup EV
+C2S_MODEL_RESPONSE,          342600,GMC HUMMER SUV EV
+C2S_MODEL_RESPONSE,          343720,GMC Rally Wagon/Van
+C2S_MODEL_RESPONSE,          345000,GMC Safari Van Unspecified
+C2S_MODEL_RESPONSE,          345030,GMC Safari Cargo Van
+C2S_MODEL_RESPONSE,          345060,GMC Safari Passenger Van
+C2S_MODEL_RESPONSE,          345600,GMC Savana Van Unspecified
+C2S_MODEL_RESPONSE,          345630,GMC Savana Cargo Van
+C2S_MODEL_RESPONSE,          345660,GMC Savana Passenger Van
+C2S_MODEL_RESPONSE,          346300,GMC Sierra Unspecified
+C2S_MODEL_RESPONSE,          346320,GMC Sierra 1500
+C2S_MODEL_RESPONSE,          346325,GMC Sierra 1500 Denali
+C2S_MODEL_RESPONSE,          346330,GMC Sierra 1500 Hybrid
+C2S_MODEL_RESPONSE,          346340,GMC Sierra 2500
+C2S_MODEL_RESPONSE,          346345,GMC Sierra 2500 Denali
+C2S_MODEL_RESPONSE,          346370,GMC Sierra 3500
+C2S_MODEL_RESPONSE,          346375,GMC Sierra 3500 Denali
+C2S_MODEL_RESPONSE,          346378,GMC Sierra EV
+C2S_MODEL_RESPONSE,          346380,GMC Sierra Denali EV
+C2S_MODEL_RESPONSE,          347000,GMC Sonoma
+C2S_MODEL_RESPONSE,          347680,GMC Suburban
+C2S_MODEL_RESPONSE,          347800,GMC Terrain
+C2S_MODEL_RESPONSE,          347850,GMC Terrain Denali
+C2S_MODEL_RESPONSE,          348360,GMC Vandura
+C2S_MODEL_RESPONSE,          349000,GMC Yukon
+C2S_MODEL_RESPONSE,          349010,GMC Yukon Hybrid
+C2S_MODEL_RESPONSE,          349050,GMC Yukon Denali
+C2S_MODEL_RESPONSE,          349060,GMC Yukon Denali Hybrid
+C2S_MODEL_RESPONSE,          349200,GMC Yukon XL
+C2S_MODEL_RESPONSE,          349250,GMC Yukon XL Denali
+C2S_MODEL_RESPONSE,          349900,GMC Unspecified
+C2S_MODEL_RESPONSE,          349920,GMC Truck/Pickup Unspecified
+C2S_MODEL_RESPONSE,          349930,GMC Van Unspecified
+C2S_MODEL_RESPONSE,          361680,Honda Accord
+C2S_MODEL_RESPONSE,          361690,Honda Accord Hybrid
+C2S_MODEL_RESPONSE,          361695,Honda Accord Plug-In Hybrid
+C2S_MODEL_RESPONSE,          361700,Honda Crosstour
+C2S_MODEL_RESPONSE,          362300,Honda Clarity Electric
+C2S_MODEL_RESPONSE,          362360,Honda Civic
+C2S_MODEL_RESPONSE,          362365,Honda Civic Si
+C2S_MODEL_RESPONSE,          362370,Honda Civic Hybrid (2003-2015)
+C2S_MODEL_RESPONSE,          362375,Honda Civic Hybrid
+C2S_MODEL_RESPONSE,          362380,Honda Civic CRX
+C2S_MODEL_RESPONSE,          362400,Honda Clarity Fuel Cell
+C2S_MODEL_RESPONSE,          362500,Honda Clarity Plug-In Hybrid
+C2S_MODEL_RESPONSE,          363040,Honda CR-V
+C2S_MODEL_RESPONSE,          363042,Honda CR-V FCEV
+C2S_MODEL_RESPONSE,          363045,Honda CR-V Hybrid
+C2S_MODEL_RESPONSE,          363050,Honda CR-Z
+C2S_MODEL_RESPONSE,          363060,Honda CR-Z Hybrid
+C2S_MODEL_RESPONSE,          364400,Honda Del Sol
+C2S_MODEL_RESPONSE,          365080,Honda Element
+C2S_MODEL_RESPONSE,          365200,Honda Fit
+C2S_MODEL_RESPONSE,          365210,Honda Fit EV
+C2S_MODEL_RESPONSE,          365300,Honda HR-V (2022 and older)
+C2S_MODEL_RESPONSE,          365350,Honda HR-V
+C2S_MODEL_RESPONSE,          365760,Honda Insight (2000-2006)
+C2S_MODEL_RESPONSE,          365770,Honda Insight (2010-2014)
+C2S_MODEL_RESPONSE,          365775,Honda Insight
+C2S_MODEL_RESPONSE,          366440,Honda Odyssey
+C2S_MODEL_RESPONSE,          367120,Honda Passport (2002 and older)
+C2S_MODEL_RESPONSE,          367200,Honda Passport
+C2S_MODEL_RESPONSE,          367800,Honda Pilot
+C2S_MODEL_RESPONSE,          368480,Honda Prelude
+C2S_MODEL_RESPONSE,          368600,Honda Prologue EV
+C2S_MODEL_RESPONSE,          368820,Honda Ridgeline
+C2S_MODEL_RESPONSE,          369160,Honda S2000
+C2S_MODEL_RESPONSE,          369900,Honda Unspecified
+C2S_MODEL_RESPONSE,          369910,Honda Car Unspecified
+C2S_MODEL_RESPONSE,          369920,Honda Truck Unspecified
+C2S_MODEL_RESPONSE,          369930,Honda Van Unspecified
+C2S_MODEL_RESPONSE,          374000,HUMMER H1
+C2S_MODEL_RESPONSE,          375000,HUMMER H2
+C2S_MODEL_RESPONSE,          375001,Hummer H2 (2005)
+C2S_MODEL_RESPONSE,          375010,HUMMER H2 SUT
+C2S_MODEL_RESPONSE,          377500,HUMMER H3
+C2S_MODEL_RESPONSE,          377510,HUMMER H3T
+C2S_MODEL_RESPONSE,          379920,HUMMER Truck Unspecified
+C2S_MODEL_RESPONSE,          381810,Hyundai XG300
+C2S_MODEL_RESPONSE,          382620,Hyundai XG350
+C2S_MODEL_RESPONSE,          383430,Hyundai Accent
+C2S_MODEL_RESPONSE,          383450,Hyundai Azera
+C2S_MODEL_RESPONSE,          384240,Hyundai Elantra
+C2S_MODEL_RESPONSE,          384242,Hyundai Elantra N
+C2S_MODEL_RESPONSE,          384245,Hyundai Elantra Hybrid
+C2S_MODEL_RESPONSE,          384250,Hyundai Elantra Coupe
+C2S_MODEL_RESPONSE,          384260,Hyundai Elantra GT
+C2S_MODEL_RESPONSE,          384500,Hyundai Entourage
+C2S_MODEL_RESPONSE,          385030,Hyundai Equus
+C2S_MODEL_RESPONSE,          385050,Hyundai Excel
+C2S_MODEL_RESPONSE,          385100,Hyundai Genesis
+C2S_MODEL_RESPONSE,          385110,Hyundai Genesis Coupe
+C2S_MODEL_RESPONSE,          385120,Hyundai Genesis G80 DO NOT USE
+C2S_MODEL_RESPONSE,          385130,Hyundai Genesis G90 DO NOT USE
+C2S_MODEL_RESPONSE,          385200,Hyundai Kona
+C2S_MODEL_RESPONSE,          385205,Hyundai Kona N
+C2S_MODEL_RESPONSE,          385210,Hyundai Kona EV
+C2S_MODEL_RESPONSE,          385300,Hyundai Nexo
+C2S_MODEL_RESPONSE,          385500,Hyundai Palisade
+C2S_MODEL_RESPONSE,          386650,Hyundai Ioniq Hybrid
+C2S_MODEL_RESPONSE,          386660,Hyundai Ioniq Electric
+C2S_MODEL_RESPONSE,          386665,Hyundai Ioniq Plug-In Hybrid
+C2S_MODEL_RESPONSE,          386670,Hyundai Santa Fe (2001-2018)
+C2S_MODEL_RESPONSE,          386675,Hyundai Santa Fe (2019-2023)
+C2S_MODEL_RESPONSE,          386676,Hyundai Santa Fe
+C2S_MODEL_RESPONSE,          386677,Hyundai Santa Fe Hybrid (2023 and older)
+C2S_MODEL_RESPONSE,          386678,Hyundai Santa Fe Hybrid
+C2S_MODEL_RESPONSE,          386679,Hyundai Santa Fe Plug-In Hybrid (2023 and older)
+C2S_MODEL_RESPONSE,          386680,Hyundai Santa Fe Sport
+C2S_MODEL_RESPONSE,          386682,Hyundai Santa Fe Plug-In Hybrid
+C2S_MODEL_RESPONSE,          386690,Hyundai Santa Fe XL
+C2S_MODEL_RESPONSE,          386700,Hyundai Ioniq 5 EV
+C2S_MODEL_RESPONSE,          386710,Hyundai Ioniq 6 EV
+C2S_MODEL_RESPONSE,          386740,Hyundai Ioniq 9 EV
+C2S_MODEL_RESPONSE,          386750,Hyundai Santa Cruz
+C2S_MODEL_RESPONSE,          387480,Hyundai Scoupe
+C2S_MODEL_RESPONSE,          388290,Hyundai Sonata
+C2S_MODEL_RESPONSE,          388295,Hyundai Sonata Hybrid
+C2S_MODEL_RESPONSE,          388297,Hyundai Sonata Plug-In Hybrid
+C2S_MODEL_RESPONSE,          389100,Hyundai Tiburon
+C2S_MODEL_RESPONSE,          389300,Hyundai Tucson
+C2S_MODEL_RESPONSE,          389310,Hyundai Tucson Fuel Cell
+C2S_MODEL_RESPONSE,          389315,Hyundai Tucson Hybrid
+C2S_MODEL_RESPONSE,          389320,Hyundai Tucson Plug-In Hybrid
+C2S_MODEL_RESPONSE,          389375,Hyundai Veloster
+C2S_MODEL_RESPONSE,          389376,Hyundai Veloster N
+C2S_MODEL_RESPONSE,          389380,Hyundai Venue
+C2S_MODEL_RESPONSE,          389400,Hyundai Veracruz
+C2S_MODEL_RESPONSE,          389900,Hyundai Unspecified
+C2S_MODEL_RESPONSE,          389910,Hyundai Car Unspecified
+C2S_MODEL_RESPONSE,          389920,Hyundai Truck Unspecified
+C2S_MODEL_RESPONSE,          389930,Hyundai Van Unspecified
+C2S_MODEL_RESPONSE,          390060,Genesis G70
+C2S_MODEL_RESPONSE,          390100,Genesis G80
+C2S_MODEL_RESPONSE,          390110,Genesis G80 EV
+C2S_MODEL_RESPONSE,          390200,Genesis G90
+C2S_MODEL_RESPONSE,          390210,Genesis G90 MHEV
+C2S_MODEL_RESPONSE,          391010,Genesis GV60 EV
+C2S_MODEL_RESPONSE,          391020,Genesis GV70
+C2S_MODEL_RESPONSE,          391025,Genesis GV70 EV
+C2S_MODEL_RESPONSE,          391100,Genesis GV80
+C2S_MODEL_RESPONSE,          391110,Genesis GV80 MHEV
+C2S_MODEL_RESPONSE,          401890,Infiniti G20
+C2S_MODEL_RESPONSE,          401900,Infiniti G25
+C2S_MODEL_RESPONSE,          402780,Infiniti G35
+C2S_MODEL_RESPONSE,          402790,Infiniti G37
+C2S_MODEL_RESPONSE,          402800,Infiniti G-Series Unspecified
+C2S_MODEL_RESPONSE,          402900,Infiniti EX35
+C2S_MODEL_RESPONSE,          402910,Infiniti EX37
+C2S_MODEL_RESPONSE,          403000,Infiniti FX35
+C2S_MODEL_RESPONSE,          403010,Infiniti FX37
+C2S_MODEL_RESPONSE,          403220,Infiniti FX45
+C2S_MODEL_RESPONSE,          403230,Infiniti FX50
+C2S_MODEL_RESPONSE,          403290,Infiniti FX-Series Unspecified
+C2S_MODEL_RESPONSE,          403670,Infiniti I30
+C2S_MODEL_RESPONSE,          404560,Infiniti I35
+C2S_MODEL_RESPONSE,          404590,Infiniti I-Series Unspecified
+C2S_MODEL_RESPONSE,          405450,Infiniti J30
+C2S_MODEL_RESPONSE,          405700,Infiniti JX35
+C2S_MODEL_RESPONSE,          406340,Infiniti M30
+C2S_MODEL_RESPONSE,          407220,Infiniti M35
+C2S_MODEL_RESPONSE,          407225,Infiniti M35h
+C2S_MODEL_RESPONSE,          407230,Infiniti M45
+C2S_MODEL_RESPONSE,          407240,Infiniti M37
+C2S_MODEL_RESPONSE,          407250,Infiniti M56
+C2S_MODEL_RESPONSE,          407290,Infiniti M-Series Unspecified
+C2S_MODEL_RESPONSE,          408110,Infiniti Q40
+C2S_MODEL_RESPONSE,          408120,Infiniti Q45
+C2S_MODEL_RESPONSE,          408500,Infiniti Q50
+C2S_MODEL_RESPONSE,          408510,Infiniti Q50 Hybrid
+C2S_MODEL_RESPONSE,          408520,Infiniti Q60
+C2S_MODEL_RESPONSE,          408530,Infiniti Q70
+C2S_MODEL_RESPONSE,          408531,Infiniti Q70L
+C2S_MODEL_RESPONSE,          408535,Infiniti Q70 Hybrid
+C2S_MODEL_RESPONSE,          408540,Infiniti QX50
+C2S_MODEL_RESPONSE,          408545,Infiniti QX30
+C2S_MODEL_RESPONSE,          408548,Infiniti QX55
+C2S_MODEL_RESPONSE,          408550,Infiniti QX56
+C2S_MODEL_RESPONSE,          408600,Infiniti QX60
+C2S_MODEL_RESPONSE,          408610,Infiniti QX60 Hybrid
+C2S_MODEL_RESPONSE,          408700,Infiniti QX70
+C2S_MODEL_RESPONSE,          408800,Infiniti QX80
+C2S_MODEL_RESPONSE,          409010,Infiniti QX4
+C2S_MODEL_RESPONSE,          409900,Infiniti Unspecified
+C2S_MODEL_RESPONSE,          409910,Infiniti Car Unspecified
+C2S_MODEL_RESPONSE,          409920,Infiniti Truck Unspecified
+C2S_MODEL_RESPONSE,          421590,Isuzu Amigo
+C2S_MODEL_RESPONSE,          422180,Isuzu Ascender
+C2S_MODEL_RESPONSE,          422200,Isuzu i280
+C2S_MODEL_RESPONSE,          422210,Isuzu i-290
+C2S_MODEL_RESPONSE,          422220,Isuzu i350
+C2S_MODEL_RESPONSE,          422230,Isuzu i-370
+C2S_MODEL_RESPONSE,          422770,Isuzu Axiom
+C2S_MODEL_RESPONSE,          423360,Isuzu Hombre
+C2S_MODEL_RESPONSE,          424540,Isuzu Impulse
+C2S_MODEL_RESPONSE,          425130,Isuzu Oasis
+C2S_MODEL_RESPONSE,          426310,Isuzu Rodeo
+C2S_MODEL_RESPONSE,          426900,Isuzu Rodeo Sport
+C2S_MODEL_RESPONSE,          427490,Isuzu Stylus
+C2S_MODEL_RESPONSE,          428080,Isuzu Trooper
+C2S_MODEL_RESPONSE,          429260,Isuzu VehiCROSS
+C2S_MODEL_RESPONSE,          429900,Isuzu Unspecified
+C2S_MODEL_RESPONSE,          429910,Isuzu Car Unspecified
+C2S_MODEL_RESPONSE,          429920,Isuzu Truck Unspecified
+C2S_MODEL_RESPONSE,          429930,Isuzu Van Unspecified
+C2S_MODEL_RESPONSE,          442400,Jaguar F-Pace
+C2S_MODEL_RESPONSE,          442420,Jaguar F-Pace MHEV
+C2S_MODEL_RESPONSE,          442500,Jaguar E-Pace
+C2S_MODEL_RESPONSE,          442600,Jaguar I-Pace
+C2S_MODEL_RESPONSE,          442700,Jaguar F-Type
+C2S_MODEL_RESPONSE,          442750,Jaguar S-Type
+C2S_MODEL_RESPONSE,          442751,Jaguar S-Type (2005)
+C2S_MODEL_RESPONSE,          442900,Jaguar XE
+C2S_MODEL_RESPONSE,          443000,Jaguar XF
+C2S_MODEL_RESPONSE,          443010,Jaguar XFR
+C2S_MODEL_RESPONSE,          444000,Jaguar XJ Unspecified
+C2S_MODEL_RESPONSE,          444005,Jaguar XJ
+C2S_MODEL_RESPONSE,          444010,Jaguar XJ Vanden Plas
+C2S_MODEL_RESPONSE,          444020,Jaguar XJ Sport
+C2S_MODEL_RESPONSE,          444030,Jaguar XJ Super V8
+C2S_MODEL_RESPONSE,          444040,Jaguar XJ6
+C2S_MODEL_RESPONSE,          444050,Jaguar XJ8
+C2S_MODEL_RESPONSE,          444060,Jaguar XJ12
+C2S_MODEL_RESPONSE,          444070,Jaguar XJR
+C2S_MODEL_RESPONSE,          444080,Jaguar XJS
+C2S_MODEL_RESPONSE,          445000,Jaguar XK Unspecified
+C2S_MODEL_RESPONSE,          445010,Jaguar XK
+C2S_MODEL_RESPONSE,          445030,Jaguar XK8
+C2S_MODEL_RESPONSE,          445080,Jaguar XKR
+C2S_MODEL_RESPONSE,          445081,Jaguar XKR (2005)
+C2S_MODEL_RESPONSE,          448500,Jaguar X-Type
+C2S_MODEL_RESPONSE,          449910,Jaguar Car Unspecified
+C2S_MODEL_RESPONSE,          451890,Jeep Cherokee (2001 and Older)
+C2S_MODEL_RESPONSE,          451900,Jeep Cherokee
+C2S_MODEL_RESPONSE,          451910,Jeep Cherokee Unspecified
+C2S_MODEL_RESPONSE,          453670,Jeep Comanche
+C2S_MODEL_RESPONSE,          453700,Jeep Commander
+C2S_MODEL_RESPONSE,          453800,Jeep Compass Old (2017 and older)
+C2S_MODEL_RESPONSE,          453820,Jeep Compass
+C2S_MODEL_RESPONSE,          453830,Jeep Compass Unspecified
+C2S_MODEL_RESPONSE,          454200,Jeep Gladiator
+C2S_MODEL_RESPONSE,          454560,Jeep Grand Cherokee
+C2S_MODEL_RESPONSE,          454561,Jeep Grand Cherokee*
+C2S_MODEL_RESPONSE,          454565,Jeep Grand Cherokee WL
+C2S_MODEL_RESPONSE,          454580,Jeep Grand Cherokee Plug-In Hybrid
+C2S_MODEL_RESPONSE,          454600,Jeep Grand Cherokee L
+C2S_MODEL_RESPONSE,          454610,Jeep Grand Cherokee WK*
+C2S_MODEL_RESPONSE,          455450,Jeep Grand Wagoneer
+C2S_MODEL_RESPONSE,          455451,Jeep Grand Wagoneer L
+C2S_MODEL_RESPONSE,          457230,Jeep Liberty
+C2S_MODEL_RESPONSE,          458100,Jeep Patriot
+C2S_MODEL_RESPONSE,          458200,Jeep Renegade
+C2S_MODEL_RESPONSE,          459000,Jeep Wagoneer
+C2S_MODEL_RESPONSE,          459001,Jeep Wagoneer L
+C2S_MODEL_RESPONSE,          459002,Jeep Wagoneer S EV
+C2S_MODEL_RESPONSE,          459010,Jeep Wrangler
+C2S_MODEL_RESPONSE,          459012,Jeep Wrangler Plug-In Hybrid
+C2S_MODEL_RESPONSE,          459920,Jeep Truck Unspecified
+C2S_MODEL_RESPONSE,          471100,Kia Amanti
+C2S_MODEL_RESPONSE,          471200,Kia Borrego
+C2S_MODEL_RESPONSE,          471250,Kia Carnival
+C2S_MODEL_RESPONSE,          471260,Kia Carnival Hybrid
+C2S_MODEL_RESPONSE,          471300,Kia EV6 EV
+C2S_MODEL_RESPONSE,          471330,Kia EV9 EV
+C2S_MODEL_RESPONSE,          471500,Kia Forte
+C2S_MODEL_RESPONSE,          471510,Kia Forte Koup
+C2S_MODEL_RESPONSE,          471520,Kia Forte5
+C2S_MODEL_RESPONSE,          471540,Kia K4
+C2S_MODEL_RESPONSE,          471550,Kia K5
+C2S_MODEL_RESPONSE,          471600,Kia K900
+C2S_MODEL_RESPONSE,          472110,Kia Optima
+C2S_MODEL_RESPONSE,          472115,Kia Optima Hybrid
+C2S_MODEL_RESPONSE,          472117,Kia Optima Plug-In Hybrid
+C2S_MODEL_RESPONSE,          473220,Kia Rio
+C2S_MODEL_RESPONSE,          473250,Kia Rio5
+C2S_MODEL_RESPONSE,          473500,Kia Rondo
+C2S_MODEL_RESPONSE,          474330,Kia Sedona
+C2S_MODEL_RESPONSE,          474500,Kia Seltos
+C2S_MODEL_RESPONSE,          474750,Kia Sephia
+C2S_MODEL_RESPONSE,          475500,Kia Sorento (2003-2009)
+C2S_MODEL_RESPONSE,          475510,Kia Sorento
+C2S_MODEL_RESPONSE,          475520,Kia Sorento Hybrid
+C2S_MODEL_RESPONSE,          475525,Kia Sorento Plug-In Hybrid
+C2S_MODEL_RESPONSE,          475700,Kia Soul
+C2S_MODEL_RESPONSE,          475710,Kia Soul EV
+C2S_MODEL_RESPONSE,          476250,Kia Spectra
+C2S_MODEL_RESPONSE,          476251,Kia Spectra (2005)
+C2S_MODEL_RESPONSE,          476620,Kia Spectra5
+C2S_MODEL_RESPONSE,          477000,Kia Sportage
+C2S_MODEL_RESPONSE,          477010,Kia Sportage Hybrid
+C2S_MODEL_RESPONSE,          477015,Kia Sportage Plug-In Hybrid
+C2S_MODEL_RESPONSE,          477100,Kia Cadenza
+C2S_MODEL_RESPONSE,          477200,Kia Niro Hybrid
+C2S_MODEL_RESPONSE,          477210,Kia Niro Plug-In Hybrid
+C2S_MODEL_RESPONSE,          477215,Kia Niro EV
+C2S_MODEL_RESPONSE,          478000,Kia Stinger
+C2S_MODEL_RESPONSE,          479000,Kia Telluride
+C2S_MODEL_RESPONSE,          479900,Kia Unspecified
+C2S_MODEL_RESPONSE,          479910,Kia Car Unspecified
+C2S_MODEL_RESPONSE,          479920,Kia Truck Unspecified
+C2S_MODEL_RESPONSE,          479930,Kia Van Unspecified
+C2S_MODEL_RESPONSE,          481000,Lucid Air
+C2S_MODEL_RESPONSE,          482000,Lucid Gravity
+C2S_MODEL_RESPONSE,          492000,Land Rover Defender (1983-2016)
+C2S_MODEL_RESPONSE,          492050,Land Rover Defender 110
+C2S_MODEL_RESPONSE,          492055,Land Rover Defender 110 MHEV
+C2S_MODEL_RESPONSE,          492060,Land Rover Defender 90
+C2S_MODEL_RESPONSE,          492065,Land Rover Defender 90 MHEV
+C2S_MODEL_RESPONSE,          492070,Land Rover Defender 130 MHEV
+C2S_MODEL_RESPONSE,          492080,Land Rover Defender 130
+C2S_MODEL_RESPONSE,          492085,Land Rover Defender OCTA MHEV
+C2S_MODEL_RESPONSE,          494000,Land Rover Discovery (1994-1998)
+C2S_MODEL_RESPONSE,          494020,Land Rover Discovery
+C2S_MODEL_RESPONSE,          494025,Land Rover Discovery MHEV
+C2S_MODEL_RESPONSE,          494100,Land Rover Discovery Sport
+C2S_MODEL_RESPONSE,          495000,Land Rover Evoque
+C2S_MODEL_RESPONSE,          496000,Land Rover Freelander
+C2S_MODEL_RESPONSE,          496700,Land Rover LR2
+C2S_MODEL_RESPONSE,          497000,Land Rover LR3
+C2S_MODEL_RESPONSE,          497010,Land Rover LR4
+C2S_MODEL_RESPONSE,          498000,Land Rover Range Rover
+C2S_MODEL_RESPONSE,          498010,Land Rover Range Rover MHEV
+C2S_MODEL_RESPONSE,          498015,Land Rover Range Rover Plug-In Hybrid
+C2S_MODEL_RESPONSE,          498100,Land Rover Range Rover Sport
+C2S_MODEL_RESPONSE,          498110,Land Rover Range Rover Sport MHEV
+C2S_MODEL_RESPONSE,          498115,Land Rover Range Rover Sport Plug-In Hybrid
+C2S_MODEL_RESPONSE,          498150,Land Rover Range Rover Velar
+C2S_MODEL_RESPONSE,          498160,Land Rover Range Rover Velar MHEV
+C2S_MODEL_RESPONSE,          499920,Land Rover Truck Unspecified
+C2S_MODEL_RESPONSE,          502000,Lexus CT200h
+C2S_MODEL_RESPONSE,          502120,Lexus ES250
+C2S_MODEL_RESPONSE,          502150,Lexus ES300
+C2S_MODEL_RESPONSE,          502160,Lexus ES300h
+C2S_MODEL_RESPONSE,          502700,Lexus ES330
+C2S_MODEL_RESPONSE,          502720,Lexus ES350
+C2S_MODEL_RESPONSE,          502950,Lexus ES Unspecified
+C2S_MODEL_RESPONSE,          503200,Lexus GS Unspecified
+C2S_MODEL_RESPONSE,          503205,Lexus GS200t
+C2S_MODEL_RESPONSE,          503220,Lexus GS300
+C2S_MODEL_RESPONSE,          503230,Lexus GS350
+C2S_MODEL_RESPONSE,          503250,Lexus GS400
+C2S_MODEL_RESPONSE,          503270,Lexus GS430
+C2S_MODEL_RESPONSE,          503290,Lexus GS450h
+C2S_MODEL_RESPONSE,          503300,Lexus GS460
+C2S_MODEL_RESPONSE,          503400,Lexus GS-F
+C2S_MODEL_RESPONSE,          504600,Lexus GX460
+C2S_MODEL_RESPONSE,          504700,Lexus GX470
+C2S_MODEL_RESPONSE,          504710,Lexus GX550
+C2S_MODEL_RESPONSE,          505000,Lexus HS250h
+C2S_MODEL_RESPONSE,          505720,Lexus IS200
+C2S_MODEL_RESPONSE,          505722,Lexus IS200t
+C2S_MODEL_RESPONSE,          505725,Lexus IS250
+C2S_MODEL_RESPONSE,          505730,Lexus IS250C
+C2S_MODEL_RESPONSE,          505750,Lexus IS300
+C2S_MODEL_RESPONSE,          505755,Lexus IS350
+C2S_MODEL_RESPONSE,          505760,Lexus IS350C
+C2S_MODEL_RESPONSE,          505800,Lexus IS500
+C2S_MODEL_RESPONSE,          505880,Lexus IS-F
+C2S_MODEL_RESPONSE,          505990,Lexus IS Unspecified
+C2S_MODEL_RESPONSE,          506100,Lexus LC500
+C2S_MODEL_RESPONSE,          506105,Lexus LC500 Convertible
+C2S_MODEL_RESPONSE,          506110,Lexus LC500h
+C2S_MODEL_RESPONSE,          506820,Lexus LS400
+C2S_MODEL_RESPONSE,          506850,Lexus LS430
+C2S_MODEL_RESPONSE,          506870,Lexus LS460
+C2S_MODEL_RESPONSE,          506880,Lexus LS500
+C2S_MODEL_RESPONSE,          506885,Lexus LS500h
+C2S_MODEL_RESPONSE,          506890,Lexus LS600h
+C2S_MODEL_RESPONSE,          506895,Lexus LS600h Hybrid
+C2S_MODEL_RESPONSE,          506990,Lexus LS Unspecified
+C2S_MODEL_RESPONSE,          507920,Lexus LX450
+C2S_MODEL_RESPONSE,          507950,Lexus LX470
+C2S_MODEL_RESPONSE,          507970,Lexus LX570
+C2S_MODEL_RESPONSE,          507980,Lexus LX600
+C2S_MODEL_RESPONSE,          507985,Lexus LX700h
+C2S_MODEL_RESPONSE,          507990,Lexus LX Unspecified
+C2S_MODEL_RESPONSE,          508000,Lexus NX200t
+C2S_MODEL_RESPONSE,          508010,Lexus NX300
+C2S_MODEL_RESPONSE,          508020,Lexus NX300h
+C2S_MODEL_RESPONSE,          508035,Lexus RC200t
+C2S_MODEL_RESPONSE,          508040,Lexus RC300
+C2S_MODEL_RESPONSE,          508050,Lexus RC350
+C2S_MODEL_RESPONSE,          508100,Lexus RC-F
+C2S_MODEL_RESPONSE,          508250,Lexus NX250
+C2S_MODEL_RESPONSE,          508350,Lexus NX350
+C2S_MODEL_RESPONSE,          508360,Lexus NX350h
+C2S_MODEL_RESPONSE,          508450,Lexus NX450h+ Plug-In Hybrid
+C2S_MODEL_RESPONSE,          508500,Lexus RX300
+C2S_MODEL_RESPONSE,          508530,Lexus RX330
+C2S_MODEL_RESPONSE,          508550,Lexus RX350
+C2S_MODEL_RESPONSE,          508555,Lexus RX350L
+C2S_MODEL_RESPONSE,          508560,Lexus RX350h
+C2S_MODEL_RESPONSE,          508750,Lexus RX400h
+C2S_MODEL_RESPONSE,          508760,Lexus RX450h
+C2S_MODEL_RESPONSE,          508765,Lexus RX450hL
+C2S_MODEL_RESPONSE,          508766,Lexus RX450h+ Plug-In Hybrid
+C2S_MODEL_RESPONSE,          508767,Lexus RX450e EV
+C2S_MODEL_RESPONSE,          508770,Lexus RX500h
+C2S_MODEL_RESPONSE,          508775,Lexus RZ450e EV
+C2S_MODEL_RESPONSE,          508780,Lexus RZ300e EV
+C2S_MODEL_RESPONSE,          508800,Lexus UX200
+C2S_MODEL_RESPONSE,          508810,Lexus UX250h
+C2S_MODEL_RESPONSE,          508815,Lexus UX300h
+C2S_MODEL_RESPONSE,          508990,Lexus RX Unspecified
+C2S_MODEL_RESPONSE,          508995,Lexus RX Hybrid Unspecified
+C2S_MODEL_RESPONSE,          509000,Lexus SC300
+C2S_MODEL_RESPONSE,          509020,Lexus SC400
+C2S_MODEL_RESPONSE,          509050,Lexus SC430
+C2S_MODEL_RESPONSE,          509090,Lexus SC Unspecified
+C2S_MODEL_RESPONSE,          509100,Lexus TX350
+C2S_MODEL_RESPONSE,          509104,Lexus TX500h
+C2S_MODEL_RESPONSE,          509105,Lexus TX500h Plug-In Hybrid
+C2S_MODEL_RESPONSE,          509110,Lexus TX550h Plug-In Hybrid
+C2S_MODEL_RESPONSE,          509900,Lexus Unspecified
+C2S_MODEL_RESPONSE,          509910,Lexus Car Unspecified
+C2S_MODEL_RESPONSE,          509920,Lexus Truck Unspecified
+C2S_MODEL_RESPONSE,          511810,Lincoln Aviator (2005 & Older)
+C2S_MODEL_RESPONSE,          511820,Lincoln Aviator
+C2S_MODEL_RESPONSE,          511825,Lincoln Aviator Plug-In Hybrid
+C2S_MODEL_RESPONSE,          512620,Lincoln Blackwood
+C2S_MODEL_RESPONSE,          513430,Lincoln Continental (2002 & Older)
+C2S_MODEL_RESPONSE,          513440,Lincoln Continental
+C2S_MODEL_RESPONSE,          513500,Lincoln Corsair
+C2S_MODEL_RESPONSE,          513510,Lincoln Corsair Plug-In Hybrid
+C2S_MODEL_RESPONSE,          514240,Lincoln LS
+C2S_MODEL_RESPONSE,          516670,Lincoln Mark VII
+C2S_MODEL_RESPONSE,          517480,Lincoln Mark VIII
+C2S_MODEL_RESPONSE,          517800,Lincoln Mark LT
+C2S_MODEL_RESPONSE,          517810,Lincoln MKC
+C2S_MODEL_RESPONSE,          517820,Lincoln MKS
+C2S_MODEL_RESPONSE,          517840,Lincoln MKT
+C2S_MODEL_RESPONSE,          517900,Lincoln MKX
+C2S_MODEL_RESPONSE,          518000,Lincoln MKZ
+C2S_MODEL_RESPONSE,          518010,Lincoln MKZ Hybrid
+C2S_MODEL_RESPONSE,          518200,Lincoln Nautilus
+C2S_MODEL_RESPONSE,          518210,Lincoln Nautilus Hybrid
+C2S_MODEL_RESPONSE,          518290,Lincoln Navigator
+C2S_MODEL_RESPONSE,          518295,Lincoln Navigator L
+C2S_MODEL_RESPONSE,          519100,Lincoln Town Car
+C2S_MODEL_RESPONSE,          519500,Lincoln Zephyr
+C2S_MODEL_RESPONSE,          519900,Lincoln Unspecified
+C2S_MODEL_RESPONSE,          519910,Lincoln Car Unspecified
+C2S_MODEL_RESPONSE,          519920,Lincoln Truck Unspecified
+C2S_MODEL_RESPONSE,          529900,Mahindra Unspecified
+C2S_MODEL_RESPONSE,          531490,Mazda 323
+C2S_MODEL_RESPONSE,          531980,Mazda 626
+C2S_MODEL_RESPONSE,          532470,Mazda 929
+C2S_MODEL_RESPONSE,          533000,Mazda B-Series Pickup Unspecified
+C2S_MODEL_RESPONSE,          533030,Mazda B2200
+C2S_MODEL_RESPONSE,          533040,Mazda B2300
+C2S_MODEL_RESPONSE,          533050,Mazda B2500
+C2S_MODEL_RESPONSE,          533060,Mazda B2600
+C2S_MODEL_RESPONSE,          533070,Mazda B3000
+C2S_MODEL_RESPONSE,          533080,Mazda B4000
+C2S_MODEL_RESPONSE,          533190,Mazda CX Unspecified
+C2S_MODEL_RESPONSE,          533191,Mazda CX-3
+C2S_MODEL_RESPONSE,          533195,Mazda CX-5
+C2S_MODEL_RESPONSE,          533200,Mazda CX-7
+C2S_MODEL_RESPONSE,          533300,Mazda CX-9
+C2S_MODEL_RESPONSE,          533350,Mazda CX-30
+C2S_MODEL_RESPONSE,          533360,Mazda CX-50
+C2S_MODEL_RESPONSE,          533362,Mazda CX-50 Hybrid
+C2S_MODEL_RESPONSE,          533365,Mazda CX-70 MHEV
+C2S_MODEL_RESPONSE,          533366,Mazda CX-70 PHEV
+C2S_MODEL_RESPONSE,          533370,Mazda CX-90
+C2S_MODEL_RESPONSE,          533371,Mazda CX-90 MHEV
+C2S_MODEL_RESPONSE,          533375,Mazda CX-90 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          533400,Mazda Mazda2
+C2S_MODEL_RESPONSE,          533530,Mazda Mazda3
+C2S_MODEL_RESPONSE,          533550,Mazda MazdaSpeed3
+C2S_MODEL_RESPONSE,          533750,Mazda Mazda5
+C2S_MODEL_RESPONSE,          533990,Mazda Mazda6
+C2S_MODEL_RESPONSE,          534100,Mazda MazdaSpeed6
+C2S_MODEL_RESPONSE,          534480,Mazda MAZDASPEED Protege
+C2S_MODEL_RESPONSE,          534970,Mazda Millenia
+C2S_MODEL_RESPONSE,          535460,Mazda MPV
+C2S_MODEL_RESPONSE,          535950,Mazda MX-3
+C2S_MODEL_RESPONSE,          536440,Mazda Miata MX-5
+C2S_MODEL_RESPONSE,          536930,Mazda MX-6
+C2S_MODEL_RESPONSE,          536980,Mazda MX-30 EV
+C2S_MODEL_RESPONSE,          537420,Mazda Navajo
+C2S_MODEL_RESPONSE,          537910,Mazda Protege
+C2S_MODEL_RESPONSE,          538400,Mazda Protege5
+C2S_MODEL_RESPONSE,          538890,Mazda RX-7
+C2S_MODEL_RESPONSE,          539100,Mazda RX-8
+C2S_MODEL_RESPONSE,          539380,Mazda Tribute
+C2S_MODEL_RESPONSE,          539381,Mazda Tribute (2005)
+C2S_MODEL_RESPONSE,          539390,Mazda Tribute Hybrid
+C2S_MODEL_RESPONSE,          539900,Mazda Unspecified
+C2S_MODEL_RESPONSE,          539910,Mazda Car Unspecified
+C2S_MODEL_RESPONSE,          539920,Mazda Truck Unspecified
+C2S_MODEL_RESPONSE,          539930,Mazda Van Unspecified
+C2S_MODEL_RESPONSE,          541215,Mercedes-Benz A35
+C2S_MODEL_RESPONSE,          541220,Mercedes-Benz A220
+C2S_MODEL_RESPONSE,          541400,Mercedes-Benz 190-Class
+C2S_MODEL_RESPONSE,          541800,Mercedes-Benz 280
+C2S_MODEL_RESPONSE,          542200,Mercedes-Benz 300-Class
+C2S_MODEL_RESPONSE,          542600,Mercedes-Benz 350
+C2S_MODEL_RESPONSE,          543000,Mercedes-Benz 380
+C2S_MODEL_RESPONSE,          543400,Mercedes-Benz 400
+C2S_MODEL_RESPONSE,          543800,Mercedes-Benz 420
+C2S_MODEL_RESPONSE,          544200,Mercedes-Benz 450
+C2S_MODEL_RESPONSE,          544600,Mercedes-Benz 500
+C2S_MODEL_RESPONSE,          545000,Mercedes-Benz 560
+C2S_MODEL_RESPONSE,          545400,Mercedes-Benz 600
+C2S_MODEL_RESPONSE,          545500,Mercedes-Benz AMG GT
+C2S_MODEL_RESPONSE,          545510,Mercedes-Benz AMG GT Plug-In Hybrid
+C2S_MODEL_RESPONSE,          545600,Mercedes-Benz B Class Electric Drive
+C2S_MODEL_RESPONSE,          545610,Mercedes-Benz B Class Electric
+C2S_MODEL_RESPONSE,          545800,Mercedes-Benz C-Class Unspecified
+C2S_MODEL_RESPONSE,          545810,Mercedes-Benz C32
+C2S_MODEL_RESPONSE,          545820,Mercedes-Benz C36
+C2S_MODEL_RESPONSE,          545830,Mercedes-Benz C43
+C2S_MODEL_RESPONSE,          545835,Mercedes-Benz C55
+C2S_MODEL_RESPONSE,          545837,Mercedes-Benz C63
+C2S_MODEL_RESPONSE,          545838,Mercedes-Benz C63 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          545840,Mercedes-Benz C220
+C2S_MODEL_RESPONSE,          545850,Mercedes-Benz C230
+C2S_MODEL_RESPONSE,          545851,Mercedes-Benz C230 (2005)
+C2S_MODEL_RESPONSE,          545855,Mercedes-Benz C250
+C2S_MODEL_RESPONSE,          545860,Mercedes-Benz C240
+C2S_MODEL_RESPONSE,          545861,Mercedes-Benz C240 (2005)
+C2S_MODEL_RESPONSE,          545870,Mercedes-Benz C280
+C2S_MODEL_RESPONSE,          545875,Mercedes-Benz C300
+C2S_MODEL_RESPONSE,          545880,Mercedes-Benz C320
+C2S_MODEL_RESPONSE,          545881,Mercedes-Benz C320 (2005)
+C2S_MODEL_RESPONSE,          545890,Mercedes-Benz C350
+C2S_MODEL_RESPONSE,          545895,Mercedes-Benz C350e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          545900,Mercedes-Benz C400
+C2S_MODEL_RESPONSE,          545910,Mercedes-Benz C450
+C2S_MODEL_RESPONSE,          546200,Mercedes-Benz CL-Class Unspecified
+C2S_MODEL_RESPONSE,          546220,Mercedes-Benz CL55
+C2S_MODEL_RESPONSE,          546225,Mercedes-Benz CL63
+C2S_MODEL_RESPONSE,          546230,Mercedes-Benz CL65
+C2S_MODEL_RESPONSE,          546250,Mercedes-Benz CL500
+C2S_MODEL_RESPONSE,          546260,Mercedes-Benz CL550
+C2S_MODEL_RESPONSE,          546270,Mercedes-Benz CL600
+C2S_MODEL_RESPONSE,          546300,Mercedes-Benz CLA250
+C2S_MODEL_RESPONSE,          546310,Mercedes-Benz CLA45
+C2S_MODEL_RESPONSE,          546315,Mercedes-Benz CLA35
+C2S_MODEL_RESPONSE,          546390,Mercedes-Benz CLA-Class Unspecified
+C2S_MODEL_RESPONSE,          546400,Mercedes-Benz CLE300
+C2S_MODEL_RESPONSE,          546410,Mercedes-Benz CLE450
+C2S_MODEL_RESPONSE,          546420,Mercedes-Benz CLE53
+C2S_MODEL_RESPONSE,          546490,Mercedes-Benz CLE-Class Unspecified
+C2S_MODEL_RESPONSE,          546600,Mercedes-Benz CLK-Class Unspecified
+C2S_MODEL_RESPONSE,          546620,Mercedes-Benz CLK55
+C2S_MODEL_RESPONSE,          546650,Mercedes-Benz CLK320
+C2S_MODEL_RESPONSE,          546651,Mercedes-Benz CLK320 (2005)
+C2S_MODEL_RESPONSE,          546660,Mercedes-Benz CLK350
+C2S_MODEL_RESPONSE,          546670,Mercedes-Benz CLK430
+C2S_MODEL_RESPONSE,          546680,Mercedes-Benz CLK500
+C2S_MODEL_RESPONSE,          546690,Mercedes-Benz CLK550
+C2S_MODEL_RESPONSE,          546700,Mercedes-Benz CLK63
+C2S_MODEL_RESPONSE,          546790,Mercedes-Benz CLS400
+C2S_MODEL_RESPONSE,          546795,Mercedes-Benz CLS450
+C2S_MODEL_RESPONSE,          546800,Mercedes-Benz CLS500
+C2S_MODEL_RESPONSE,          546810,Mercedes-Benz CLS550
+C2S_MODEL_RESPONSE,          546840,Mercedes-Benz CLS53
+C2S_MODEL_RESPONSE,          546850,Mercedes-Benz CLS55
+C2S_MODEL_RESPONSE,          546870,Mercedes-Benz CLS63
+C2S_MODEL_RESPONSE,          546990,Mercedes-Benz CLS-Class Unspecified
+C2S_MODEL_RESPONSE,          547000,Mercedes-Benz E-Class Unspecified
+C2S_MODEL_RESPONSE,          547010,Mercedes-Benz E43
+C2S_MODEL_RESPONSE,          547015,Mercedes-Benz E53
+C2S_MODEL_RESPONSE,          547016,Mercedes-Benz E53e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          547020,Mercedes-Benz E55
+C2S_MODEL_RESPONSE,          547025,Mercedes-Benz E250
+C2S_MODEL_RESPONSE,          547030,Mercedes-Benz E300
+C2S_MODEL_RESPONSE,          547040,Mercedes-Benz E320
+C2S_MODEL_RESPONSE,          547041,Mercedes-Benz E320 (2005)
+C2S_MODEL_RESPONSE,          547044,Mercedes-Benz E400
+C2S_MODEL_RESPONSE,          547045,Mercedes-Benz E400 Hybrid
+C2S_MODEL_RESPONSE,          547050,Mercedes-Benz E420
+C2S_MODEL_RESPONSE,          547060,Mercedes-Benz E430
+C2S_MODEL_RESPONSE,          547070,Mercedes-Benz E500
+C2S_MODEL_RESPONSE,          547080,Mercedes-Benz E550
+C2S_MODEL_RESPONSE,          547090,Mercedes-Benz E63
+C2S_MODEL_RESPONSE,          547400,Mercedes-Benz G-Class Unspecified
+C2S_MODEL_RESPONSE,          547420,Mercedes-Benz G55
+C2S_MODEL_RESPONSE,          547430,Mercedes-Benz G63
+C2S_MODEL_RESPONSE,          547440,Mercedes-Benz G65
+C2S_MODEL_RESPONSE,          547450,Mercedes-Benz E350
+C2S_MODEL_RESPONSE,          547460,Mercedes-Benz G500
+C2S_MODEL_RESPONSE,          547470,Mercedes-Benz G550
+C2S_MODEL_RESPONSE,          547480,Mercedes-Benz G580e EV
+C2S_MODEL_RESPONSE,          547550,Mercedes-Benz E450
+C2S_MODEL_RESPONSE,          547560,Mercedes-Benz EQB-Class
+C2S_MODEL_RESPONSE,          547570,Mercedes-Benz EQB250 EV
+C2S_MODEL_RESPONSE,          547580,Mercedes-Benz EQB300 EV
+C2S_MODEL_RESPONSE,          547590,Mercedes-Benz EQB350 EV
+C2S_MODEL_RESPONSE,          547600,Mercedes-Benz EQE350 Sedan EV
+C2S_MODEL_RESPONSE,          547602,Mercedes-Benz EQE350 SUV EV
+C2S_MODEL_RESPONSE,          547610,Mercedes-Benz EQE500 Sedan EV
+C2S_MODEL_RESPONSE,          547612,Mercedes-Benz EQE500 SUV EV
+C2S_MODEL_RESPONSE,          547620,Mercedes-Benz EQE53 Sedan EV
+C2S_MODEL_RESPONSE,          547622,Mercedes-Benz EQE53 SUV EV
+C2S_MODEL_RESPONSE,          547628,Mercedes-Benz EQE AMG Sedan EV
+C2S_MODEL_RESPONSE,          547630,Mercedes-Benz EQE AMG SUV EV
+C2S_MODEL_RESPONSE,          547635,Mercedes-Benz EQE-Class
+C2S_MODEL_RESPONSE,          547640,Mercedes-Benz EQS53 Sedan EV
+C2S_MODEL_RESPONSE,          547645,Mercedes-Benz EQS AMG Sedan EV
+C2S_MODEL_RESPONSE,          547650,Mercedes-Benz EQS450 SUV EV
+C2S_MODEL_RESPONSE,          547655,Mercedes-Benz EQS450 Sedan EV
+C2S_MODEL_RESPONSE,          547660,Mercedes-Benz EQS580 SUV EV
+C2S_MODEL_RESPONSE,          547665,Mercedes-Benz EQS580 Sedan EV
+C2S_MODEL_RESPONSE,          547670,Mercedes-Benz EQS680 SUV EV
+C2S_MODEL_RESPONSE,          547690,Mercedes-Benz EQS Class
+C2S_MODEL_RESPONSE,          547800,Mercedes-Benz Gelaendewagen
+C2S_MODEL_RESPONSE,          547805,Mercedes-Benz GLA35 AMG
+C2S_MODEL_RESPONSE,          547810,Mercedes-Benz GLA-Class Unspecified
+C2S_MODEL_RESPONSE,          547820,Mercedes-Benz GLA45 AMG
+C2S_MODEL_RESPONSE,          547830,Mercedes-Benz GLA250
+C2S_MODEL_RESPONSE,          547840,Mercedes-Benz GLB-Class Unspecified
+C2S_MODEL_RESPONSE,          547841,Mercedes-Benz GLB35
+C2S_MODEL_RESPONSE,          547842,Mercedes-Benz GLB250
+C2S_MODEL_RESPONSE,          547850,Mercedes-Benz GL-Class Unspecified
+C2S_MODEL_RESPONSE,          547860,Mercedes-Benz GL63
+C2S_MODEL_RESPONSE,          547870,Mercedes-Benz GL320
+C2S_MODEL_RESPONSE,          547880,Mercedes-Benz GL350
+C2S_MODEL_RESPONSE,          547900,Mercedes-Benz GL450
+C2S_MODEL_RESPONSE,          547910,Mercedes-Benz GL550
+C2S_MODEL_RESPONSE,          547911,Mercedes-Benz GLC-Class Unspecified
+C2S_MODEL_RESPONSE,          547912,Mercedes-Benz GLC300
+C2S_MODEL_RESPONSE,          547914,Mercedes-Benz GLC350e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          547915,Mercedes-Benz GLC43
+C2S_MODEL_RESPONSE,          547917,Mercedes-Benz GLC63
+C2S_MODEL_RESPONSE,          547918,Mercedes-Benz GLC63 S E Plug-In Hybrid
+C2S_MODEL_RESPONSE,          547920,Mercedes-Benz GLE-Class Unspecified
+C2S_MODEL_RESPONSE,          547925,Mercedes-Benz GLE300
+C2S_MODEL_RESPONSE,          547930,Mercedes-Benz GLE350
+C2S_MODEL_RESPONSE,          547940,Mercedes-Benz GLE400
+C2S_MODEL_RESPONSE,          547950,Mercedes-Benz GLE450
+C2S_MODEL_RESPONSE,          547951,Mercedes-Benz GLE450e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          547955,Mercedes-Benz GLE43
+C2S_MODEL_RESPONSE,          547957,Mercedes-Benz GLE53
+C2S_MODEL_RESPONSE,          547960,Mercedes-Benz GLE63
+C2S_MODEL_RESPONSE,          547965,Mercedes-Benz GLE550e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          547970,Mercedes-Benz GLE580
+C2S_MODEL_RESPONSE,          547990,Mercedes-Benz GLK250
+C2S_MODEL_RESPONSE,          548000,Mercedes-Benz GLK350
+C2S_MODEL_RESPONSE,          548100,Mercedes-Benz GLS63
+C2S_MODEL_RESPONSE,          548150,Mercedes-Benz GLS450
+C2S_MODEL_RESPONSE,          548160,Mercedes-Benz GLS550
+C2S_MODEL_RESPONSE,          548165,Mercedes-Benz GLS580
+C2S_MODEL_RESPONSE,          548190,Mercedes-Benz GLS-Class Unspecified
+C2S_MODEL_RESPONSE,          548200,Mercedes-Benz M-Class Unspecified
+C2S_MODEL_RESPONSE,          548205,Mercedes-Benz Metris Passenger Van
+C2S_MODEL_RESPONSE,          548210,Mercedes-Benz Metris Cargo Van
+C2S_MODEL_RESPONSE,          548215,Mercedes-Benz Metris Van Unspecified
+C2S_MODEL_RESPONSE,          548220,Mercedes-Benz ML55
+C2S_MODEL_RESPONSE,          548240,Mercedes-Benz ML230
+C2S_MODEL_RESPONSE,          548245,Mercedes-Benz ML250
+C2S_MODEL_RESPONSE,          548250,Mercedes-Benz ML320
+C2S_MODEL_RESPONSE,          548260,Mercedes-Benz ML350
+C2S_MODEL_RESPONSE,          548261,Mercedes-Benz ML350 (2005)
+C2S_MODEL_RESPONSE,          548265,Mercedes-Benz ML400
+C2S_MODEL_RESPONSE,          548270,Mercedes-Benz ML430
+C2S_MODEL_RESPONSE,          548275,Mercedes-Benz ML450 Hybrid
+C2S_MODEL_RESPONSE,          548280,Mercedes-Benz ML500
+C2S_MODEL_RESPONSE,          548285,Mercedes-Benz ML550
+C2S_MODEL_RESPONSE,          548290,Mercedes-Benz ML63
+C2S_MODEL_RESPONSE,          548500,Mercedes-Benz R-Class Unspecified
+C2S_MODEL_RESPONSE,          548505,Mercedes-Benz R320
+C2S_MODEL_RESPONSE,          548510,Mercedes-Benz R350
+C2S_MODEL_RESPONSE,          548520,Mercedes-Benz R500
+C2S_MODEL_RESPONSE,          548530,Mercedes-Benz R63
+C2S_MODEL_RESPONSE,          548600,Mercedes-Benz S-Class Unspecified
+C2S_MODEL_RESPONSE,          548620,Mercedes-Benz S55
+C2S_MODEL_RESPONSE,          548623,Mercedes-Benz S63
+C2S_MODEL_RESPONSE,          548624,Mercedes-Benz S63e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          548625,Mercedes-Benz S65
+C2S_MODEL_RESPONSE,          548630,Mercedes-Benz S320
+C2S_MODEL_RESPONSE,          548640,Mercedes-Benz S350
+C2S_MODEL_RESPONSE,          548644,Mercedes-Benz S400
+C2S_MODEL_RESPONSE,          548645,Mercedes-Benz S400 Hybrid
+C2S_MODEL_RESPONSE,          548650,Mercedes-Benz S420
+C2S_MODEL_RESPONSE,          548660,Mercedes-Benz S430
+C2S_MODEL_RESPONSE,          548670,Mercedes-Benz S500
+C2S_MODEL_RESPONSE,          548675,Mercedes-Benz S500 MHEV
+C2S_MODEL_RESPONSE,          548680,Mercedes-Benz S600
+C2S_MODEL_RESPONSE,          548690,Mercedes-Benz S550
+C2S_MODEL_RESPONSE,          548695,Mercedes-Benz S550e
+C2S_MODEL_RESPONSE,          548696,Mercedes-Benz S560
+C2S_MODEL_RESPONSE,          548697,Mercedes-Benz S560e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          548700,Mercedes-Benz S450
+C2S_MODEL_RESPONSE,          548720,Mercedes-Benz S580
+C2S_MODEL_RESPONSE,          548730,Mercedes-Benz S580e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          548740,Mercedes-Benz S680
+C2S_MODEL_RESPONSE,          549000,Mercedes-Benz SL-Class Unspecified
+C2S_MODEL_RESPONSE,          549005,Mercedes-Benz SL43
+C2S_MODEL_RESPONSE,          549010,Mercedes-Benz SL55
+C2S_MODEL_RESPONSE,          549015,Mercedes-Benz SL65
+C2S_MODEL_RESPONSE,          549020,Mercedes-Benz SL320
+C2S_MODEL_RESPONSE,          549025,Mercedes-Benz SL63
+C2S_MODEL_RESPONSE,          549030,Mercedes-Benz SL63s e Plug-In Hybrid
+C2S_MODEL_RESPONSE,          549040,Mercedes-Benz SL400
+C2S_MODEL_RESPONSE,          549045,Mercedes-Benz SL450
+C2S_MODEL_RESPONSE,          549050,Mercedes-Benz SL500
+C2S_MODEL_RESPONSE,          549070,Mercedes-Benz SL600
+C2S_MODEL_RESPONSE,          549400,Mercedes-Benz SLK-Class Unspecified
+C2S_MODEL_RESPONSE,          549420,Mercedes-Benz SLK32
+C2S_MODEL_RESPONSE,          549440,Mercedes-Benz SLK55
+C2S_MODEL_RESPONSE,          549450,Mercedes-Benz SLK230
+C2S_MODEL_RESPONSE,          549455,Mercedes-Benz SLK250
+C2S_MODEL_RESPONSE,          549460,Mercedes-Benz SLK280
+C2S_MODEL_RESPONSE,          549470,Mercedes-Benz SLK320
+C2S_MODEL_RESPONSE,          549500,Mercedes-Benz SLC-Class Unspecified
+C2S_MODEL_RESPONSE,          549510,Mercedes-Benz SLC300
+C2S_MODEL_RESPONSE,          549520,Mercedes-Benz SLC43
+C2S_MODEL_RESPONSE,          549600,Mercedes-Benz SLK350
+C2S_MODEL_RESPONSE,          549610,Mercedes-Benz SLK300
+C2S_MODEL_RESPONSE,          549700,Mercedes-Benz SLR McLaren
+C2S_MODEL_RESPONSE,          549710,Mercedes-Benz SLS
+C2S_MODEL_RESPONSE,          549740,Mercedes-Benz Sprinter Passenger Van
+C2S_MODEL_RESPONSE,          549750,Mercedes-Benz Sprinter Cargo Van
+C2S_MODEL_RESPONSE,          549760,Mercedes-Benz Sprinter Van Unspecified
+C2S_MODEL_RESPONSE,          549810,Mercedes-Benz SL550
+C2S_MODEL_RESPONSE,          549900,Mercedes-Benz Unspecified
+C2S_MODEL_RESPONSE,          549910,Mercedes-Benz Car Unspecified
+C2S_MODEL_RESPONSE,          549920,Mercedes-Benz Truck Unspecified
+C2S_MODEL_RESPONSE,          551520,Mercury Capri
+C2S_MODEL_RESPONSE,          552040,Mercury Cougar (1997 And Older)
+C2S_MODEL_RESPONSE,          552560,Mercury Cougar (1998 To 2002)
+C2S_MODEL_RESPONSE,          553080,Mercury Cougar Unspecified
+C2S_MODEL_RESPONSE,          553600,Mercury Grand Marquis
+C2S_MODEL_RESPONSE,          555160,Mercury Marauder
+C2S_MODEL_RESPONSE,          555400,Mercury Mariner
+C2S_MODEL_RESPONSE,          555410,Mercury Mariner Hybrid
+C2S_MODEL_RESPONSE,          555680,Mercury Montego
+C2S_MODEL_RESPONSE,          556200,Mercury Mountaineer
+C2S_MODEL_RESPONSE,          557240,Mercury Mystique
+C2S_MODEL_RESPONSE,          557760,Mercury Sable (1986-2005)
+C2S_MODEL_RESPONSE,          557770,Mercury Sable
+C2S_MODEL_RESPONSE,          557780,Mercury Sable Unspecified
+C2S_MODEL_RESPONSE,          558000,Mercury Milan
+C2S_MODEL_RESPONSE,          558010,Mercury Milan Hybrid
+C2S_MODEL_RESPONSE,          558280,Mercury Topaz
+C2S_MODEL_RESPONSE,          558800,Mercury Tracer
+C2S_MODEL_RESPONSE,          559300,Mercury Villager Unspecified
+C2S_MODEL_RESPONSE,          559330,Mercury Villager Cargo Van
+C2S_MODEL_RESPONSE,          559360,Mercury Villager Wagon
+C2S_MODEL_RESPONSE,          559900,Mercury Unspecified
+C2S_MODEL_RESPONSE,          559910,Mercury Car Unspecified
+C2S_MODEL_RESPONSE,          559920,Mercury Truck Unspecified
+C2S_MODEL_RESPONSE,          559930,Mercury Van Unspecified
+C2S_MODEL_RESPONSE,          559970,Mercury Monterey
+C2S_MODEL_RESPONSE,          569910,Merkur Car Unspecified
+C2S_MODEL_RESPONSE,          579910,MG Car Unspecified
+C2S_MODEL_RESPONSE,          585000,MINI Cooper
+C2S_MODEL_RESPONSE,          585002,MINI Cooper SE Electric
+C2S_MODEL_RESPONSE,          585010,MINI Cooper Countryman
+C2S_MODEL_RESPONSE,          585011,MINI Cooper Countryman EV
+C2S_MODEL_RESPONSE,          585015,MINI Cooper Countryman Plug-In Hybrid
+C2S_MODEL_RESPONSE,          585020,MINI Cooper Coupe
+C2S_MODEL_RESPONSE,          585030,MINI Cooper Roadster
+C2S_MODEL_RESPONSE,          585040,MINI Cooper Paceman
+C2S_MODEL_RESPONSE,          589910,MINI Car Unspecified
+C2S_MODEL_RESPONSE,          591590,Mitsubishi 3000GT
+C2S_MODEL_RESPONSE,          592180,Mitsubishi Diamante
+C2S_MODEL_RESPONSE,          592770,Mitsubishi Eclipse
+C2S_MODEL_RESPONSE,          592775,Mitsubishi Eclipse Spyder
+C2S_MODEL_RESPONSE,          592780,Mitsubishi Eclipse Cross
+C2S_MODEL_RESPONSE,          593100,Mitsubishi Endeavor
+C2S_MODEL_RESPONSE,          593360,Mitsubishi Expo
+C2S_MODEL_RESPONSE,          594540,Mitsubishi Galant
+C2S_MODEL_RESPONSE,          594600,Mitsubishi i-MiEV
+C2S_MODEL_RESPONSE,          595720,Mitsubishi Lancer
+C2S_MODEL_RESPONSE,          595730,Mitsubishi Lancer Ralliart
+C2S_MODEL_RESPONSE,          595750,Mitsubishi Lancer Sportback
+C2S_MODEL_RESPONSE,          595760,Mitsubishi Lancer Sportback Ralliart
+C2S_MODEL_RESPONSE,          596000,Mitsubishi Lancer Evolution
+C2S_MODEL_RESPONSE,          596120,Mitsubishi Lancer Unspecified
+C2S_MODEL_RESPONSE,          596310,Mitsubishi Mirage (2002 and Older)
+C2S_MODEL_RESPONSE,          596320,Mitsubishi Mirage
+C2S_MODEL_RESPONSE,          596325,Mitsubishi Mirage G4
+C2S_MODEL_RESPONSE,          596330,Mitsubishi Mirage Unspecified
+C2S_MODEL_RESPONSE,          596900,Mitsubishi Montero
+C2S_MODEL_RESPONSE,          597490,Mitsubishi Montero Sport
+C2S_MODEL_RESPONSE,          598080,Mitsubishi Outlander
+C2S_MODEL_RESPONSE,          598085,Mitsubishi Outlander Plug-In Hybrid
+C2S_MODEL_RESPONSE,          598090,Mitsubishi Outlander Sport
+C2S_MODEL_RESPONSE,          598670,Mitsubishi Precis
+C2S_MODEL_RESPONSE,          598800,Mitsubishi Raider
+C2S_MODEL_RESPONSE,          599900,Mitsubishi Unspecified
+C2S_MODEL_RESPONSE,          599910,Mitsubishi Car Unspecified
+C2S_MODEL_RESPONSE,          599920,Mitsubishi Truck Unspecified
+C2S_MODEL_RESPONSE,          600100,Maserati Ghibli
+C2S_MODEL_RESPONSE,          600200,Maserati Quattroporte
+C2S_MODEL_RESPONSE,          600300,Maserati Gran Turismo
+C2S_MODEL_RESPONSE,          600400,Maserati Levante
+C2S_MODEL_RESPONSE,          611370,Nissan 200 SX
+C2S_MODEL_RESPONSE,          611740,Nissan 240 SX
+C2S_MODEL_RESPONSE,          612850,Nissan 300 ZX
+C2S_MODEL_RESPONSE,          613220,Nissan 350Z
+C2S_MODEL_RESPONSE,          613240,Nissan 370Z
+C2S_MODEL_RESPONSE,          613270,Nissan Z Unspecified
+C2S_MODEL_RESPONSE,          613590,Nissan Altima
+C2S_MODEL_RESPONSE,          613591,Nissan Altima (2005)
+C2S_MODEL_RESPONSE,          613595,Nissan Altima Hybrid
+C2S_MODEL_RESPONSE,          613970,Nissan Ariya EV
+C2S_MODEL_RESPONSE,          614800,Nissan Cube
+C2S_MODEL_RESPONSE,          615440,Nissan Frontier
+C2S_MODEL_RESPONSE,          615500,Nissan GT-R
+C2S_MODEL_RESPONSE,          615570,Nissan Kicks (2024 and older)
+C2S_MODEL_RESPONSE,          615571,Nissan Kicks
+C2S_MODEL_RESPONSE,          615572,Nissan Kicks Play
+C2S_MODEL_RESPONSE,          615600,Nissan Leaf
+C2S_MODEL_RESPONSE,          615810,Nissan Maxima
+C2S_MODEL_RESPONSE,          615811,Nissan Maxima*
+C2S_MODEL_RESPONSE,          616180,Nissan Murano
+C2S_MODEL_RESPONSE,          616190,Nissan Murano CrossCabriolet
+C2S_MODEL_RESPONSE,          616400,Nissan NV3500 HD Passenger Van
+C2S_MODEL_RESPONSE,          616410,Nissan NV3500 HD Cargo Van
+C2S_MODEL_RESPONSE,          616490,Nissan NV3500 HD Unspecified Van
+C2S_MODEL_RESPONSE,          616550,Nissan NX
+C2S_MODEL_RESPONSE,          616920,Nissan Pathfinder
+C2S_MODEL_RESPONSE,          616930,Nissan Pathfinder Hybrid
+C2S_MODEL_RESPONSE,          617100,Nissan Armada
+C2S_MODEL_RESPONSE,          617270,Nissan Pickup (Compact Pickup)
+C2S_MODEL_RESPONSE,          617290,Nissan Pickup (Compact Pickup)
+C2S_MODEL_RESPONSE,          618030,Nissan Quest
+C2S_MODEL_RESPONSE,          618100,Nissan Rogue
+C2S_MODEL_RESPONSE,          618200,Nissan Rogue Select
+C2S_MODEL_RESPONSE,          618220,Nissan Rogue Sport
+C2S_MODEL_RESPONSE,          618300,Nissan Rogue Hybrid
+C2S_MODEL_RESPONSE,          618400,Nissan Sentra
+C2S_MODEL_RESPONSE,          618770,Nissan SE-R
+C2S_MODEL_RESPONSE,          619140,Nissan Stanza
+C2S_MODEL_RESPONSE,          619300,Nissan Titan
+C2S_MODEL_RESPONSE,          619350,Nissan Titan XD
+C2S_MODEL_RESPONSE,          619400,Nissan Versa
+C2S_MODEL_RESPONSE,          619410,Nissan Versa Note
+C2S_MODEL_RESPONSE,          619510,Nissan Xterra
+C2S_MODEL_RESPONSE,          619700,Nissan Juke
+C2S_MODEL_RESPONSE,          619800,Nissan Z
+C2S_MODEL_RESPONSE,          619900,Nissan Unspecified
+C2S_MODEL_RESPONSE,          619910,Nissan Car Unspecified
+C2S_MODEL_RESPONSE,          619920,Nissan Truck/Pickup Unspecified
+C2S_MODEL_RESPONSE,          619930,Nissan Van Unspecified
+C2S_MODEL_RESPONSE,          620100,VinFast e34 EV
+C2S_MODEL_RESPONSE,          620200,VinFast e35 EV
+C2S_MODEL_RESPONSE,          620300,VinFast e36 EV
+C2S_MODEL_RESPONSE,          620600,VinFast VF6 EV
+C2S_MODEL_RESPONSE,          620700,VinFast VF7 EV
+C2S_MODEL_RESPONSE,          620800,VinFast VF8 EV
+C2S_MODEL_RESPONSE,          620900,VinFast VF9 EV
+C2S_MODEL_RESPONSE,          631420,Oldsmobile Achieva
+C2S_MODEL_RESPONSE,          631840,Oldsmobile Alero
+C2S_MODEL_RESPONSE,          632260,Oldsmobile Aurora
+C2S_MODEL_RESPONSE,          632680,Oldsmobile Bravada
+C2S_MODEL_RESPONSE,          632800,Oldsmobile Calais
+C2S_MODEL_RESPONSE,          633520,Oldsmobile Custom Cruiser
+C2S_MODEL_RESPONSE,          633940,Oldsmobile Cutlass
+C2S_MODEL_RESPONSE,          634780,Oldsmobile Cutlass Ciera
+C2S_MODEL_RESPONSE,          635200,Oldsmobile Cutlass Supreme
+C2S_MODEL_RESPONSE,          635410,Oldsmobile Eighty-Eight/Eighty-Eight Royale
+C2S_MODEL_RESPONSE,          636040,Oldsmobile Intrigue
+C2S_MODEL_RESPONSE,          636460,Oldsmobile LSS
+C2S_MODEL_RESPONSE,          636880,Oldsmobile Ninety-Eight/Ninety-Eight Regency
+C2S_MODEL_RESPONSE,          637300,Oldsmobile Regency
+C2S_MODEL_RESPONSE,          637720,Oldsmobile Silhouette
+C2S_MODEL_RESPONSE,          638140,Oldsmobile Toronado
+C2S_MODEL_RESPONSE,          639900,Oldsmobile Unspecified
+C2S_MODEL_RESPONSE,          639910,Oldsmobile Car Unspecified
+C2S_MODEL_RESPONSE,          639920,Oldsmobile Truck Unspecified
+C2S_MODEL_RESPONSE,          639930,Oldsmobile Van Unspecified
+C2S_MODEL_RESPONSE,          641300,Rivian R1S
+C2S_MODEL_RESPONSE,          641400,Rivian R1T
+C2S_MODEL_RESPONSE,          659910,Peugeot Car Unspecified
+C2S_MODEL_RESPONSE,          661470,Plymouth Acclaim
+C2S_MODEL_RESPONSE,          661940,Plymouth Breeze
+C2S_MODEL_RESPONSE,          662410,Plymouth Caravan Passenger Van*
+C2S_MODEL_RESPONSE,          662880,Plymouth Colt
+C2S_MODEL_RESPONSE,          663110,Plymouth Colt 100
+C2S_MODEL_RESPONSE,          663120,Plymouth Colt 200
+C2S_MODEL_RESPONSE,          663350,Plymouth Colt Vista
+C2S_MODEL_RESPONSE,          664760,Plymouth Grand Voyager
+C2S_MODEL_RESPONSE,          665230,Plymouth Horizon
+C2S_MODEL_RESPONSE,          665700,Plymouth Laser
+C2S_MODEL_RESPONSE,          666170,Plymouth Neon
+C2S_MODEL_RESPONSE,          666640,Plymouth Prowler
+C2S_MODEL_RESPONSE,          667580,Plymouth Sundance
+C2S_MODEL_RESPONSE,          669460,Plymouth Voyager
+C2S_MODEL_RESPONSE,          669900,Plymouth Unspecified
+C2S_MODEL_RESPONSE,          669910,Plymouth Car Unspecified
+C2S_MODEL_RESPONSE,          669920,Plymouth Truck Unspecified
+C2S_MODEL_RESPONSE,          669930,Plymouth Van Unspecified
+C2S_MODEL_RESPONSE,          672350,Pontiac 6000
+C2S_MODEL_RESPONSE,          672800,Pontiac Aztek
+C2S_MODEL_RESPONSE,          672810,Pontiac Torrent
+C2S_MODEL_RESPONSE,          673250,Pontiac Bonneville
+C2S_MODEL_RESPONSE,          674150,Pontiac Firebird
+C2S_MODEL_RESPONSE,          674680,Pontiac G3
+C2S_MODEL_RESPONSE,          674700,Pontiac G5
+C2S_MODEL_RESPONSE,          674800,Pontiac G6
+C2S_MODEL_RESPONSE,          674900,Pontiac G8
+C2S_MODEL_RESPONSE,          675050,Pontiac Grand Am
+C2S_MODEL_RESPONSE,          675500,Pontiac Grand Prix
+C2S_MODEL_RESPONSE,          675900,Pontiac GTO (1964-1974)
+C2S_MODEL_RESPONSE,          675920,Pontiac GTO Unspecified
+C2S_MODEL_RESPONSE,          675950,Pontiac GTO
+C2S_MODEL_RESPONSE,          676400,Pontiac LeMans
+C2S_MODEL_RESPONSE,          676850,Pontiac Montana Passenger Van
+C2S_MODEL_RESPONSE,          677100,Pontiac Montana SV6 Passenger Van
+C2S_MODEL_RESPONSE,          677400,Pontiac Solstice
+C2S_MODEL_RESPONSE,          677750,Pontiac Sunbird
+C2S_MODEL_RESPONSE,          678200,Pontiac Sunfire
+C2S_MODEL_RESPONSE,          679100,Pontiac Trans Sport
+C2S_MODEL_RESPONSE,          679550,Pontiac Vibe
+C2S_MODEL_RESPONSE,          679551,Pontiac Vibe (2005)
+C2S_MODEL_RESPONSE,          679900,Pontiac Unspecified
+C2S_MODEL_RESPONSE,          679910,Pontiac Car Unspecified
+C2S_MODEL_RESPONSE,          679920,Pontiac Truck Unspecified
+C2S_MODEL_RESPONSE,          679930,Pontiac Van Unspecified
+C2S_MODEL_RESPONSE,          681810,Porsche 911
+C2S_MODEL_RESPONSE,          681815,Porsche 911 MHEV
+C2S_MODEL_RESPONSE,          681900,Porsche 918 Spyder
+C2S_MODEL_RESPONSE,          685050,Porsche 928
+C2S_MODEL_RESPONSE,          686670,Porsche 944
+C2S_MODEL_RESPONSE,          687480,Porsche 968
+C2S_MODEL_RESPONSE,          688290,Porsche Boxster
+C2S_MODEL_RESPONSE,          689100,Porsche Cayenne
+C2S_MODEL_RESPONSE,          689110,Porsche Cayenne S Hybrid
+C2S_MODEL_RESPONSE,          689115,Porsche Cayenne Plug-In Hybrid
+C2S_MODEL_RESPONSE,          689200,Porsche Cayman
+C2S_MODEL_RESPONSE,          689300,Porsche Panamera
+C2S_MODEL_RESPONSE,          689310,Porsche Panamera S Hybrid
+C2S_MODEL_RESPONSE,          689315,Porsche Panamera Plug-In Hybrid
+C2S_MODEL_RESPONSE,          689400,Porsche Macan
+C2S_MODEL_RESPONSE,          689410,Porsche Macan EV
+C2S_MODEL_RESPONSE,          689500,Porsche Taycan EV
+C2S_MODEL_RESPONSE,          689900,Porsche Unspecified
+C2S_MODEL_RESPONSE,          689910,Porsche Car Unspecified
+C2S_MODEL_RESPONSE,          689920,Porsche Truck Unspecified
+C2S_MODEL_RESPONSE,          694100,Polestar 1 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          694200,Polestar 2 EV
+C2S_MODEL_RESPONSE,          694300,Polestar 3 EV
+C2S_MODEL_RESPONSE,          702500,Ram C/V
+C2S_MODEL_RESPONSE,          702550,Ram D/W Full-Size Pickup
+C2S_MODEL_RESPONSE,          702551,Ram D150
+C2S_MODEL_RESPONSE,          702552,Ram D250
+C2S_MODEL_RESPONSE,          702553,Ram D350
+C2S_MODEL_RESPONSE,          702554,Ram W150
+C2S_MODEL_RESPONSE,          702555,Ram W250
+C2S_MODEL_RESPONSE,          702556,Ram W350
+C2S_MODEL_RESPONSE,          702559,Ram D/W Series Unspecified
+C2S_MODEL_RESPONSE,          702670,Ram Dakota
+C2S_MODEL_RESPONSE,          703510,Ram Grand Caravan Cargo Van
+C2S_MODEL_RESPONSE,          705600,Ram Wagon/Van Unspecified
+C2S_MODEL_RESPONSE,          705630,Ram Cargo Van
+C2S_MODEL_RESPONSE,          705660,Ram Passenger Wagon/Van
+C2S_MODEL_RESPONSE,          705670,Ram ProMaster 1500
+C2S_MODEL_RESPONSE,          705680,Ram ProMaster 2500
+C2S_MODEL_RESPONSE,          705690,Ram ProMaster 3500
+C2S_MODEL_RESPONSE,          705700,Ram ProMaster City Wagon/Van Unspecified
+C2S_MODEL_RESPONSE,          705730,Ram ProMaster City Cargo Van
+C2S_MODEL_RESPONSE,          705760,Ram ProMaster City Wagon/Van
+C2S_MODEL_RESPONSE,          705800,Ram Pickup Unspecified
+C2S_MODEL_RESPONSE,          705820,Ram 50
+C2S_MODEL_RESPONSE,          705840,Ram Pickup 1500
+C2S_MODEL_RESPONSE,          705860,Ram Pickup 2500
+C2S_MODEL_RESPONSE,          705880,Ram Pickup 3500
+C2S_MODEL_RESPONSE,          706280,Ram SRT-10
+C2S_MODEL_RESPONSE,          709900,Ram Unspecified
+C2S_MODEL_RESPONSE,          709920,Ram Truck Unspecified
+C2S_MODEL_RESPONSE,          709930,Ram Van Unspecified
+C2S_MODEL_RESPONSE,          712000,Saab 900
+C2S_MODEL_RESPONSE,          714000,Saab 9000
+C2S_MODEL_RESPONSE,          715000,Saab 9-2X
+C2S_MODEL_RESPONSE,          716000,Saab 9-3
+C2S_MODEL_RESPONSE,          717000,Saab 9-4X
+C2S_MODEL_RESPONSE,          718000,Saab 9-5
+C2S_MODEL_RESPONSE,          719000,Saab 9-7X
+C2S_MODEL_RESPONSE,          719905,Saab Unspecified
+C2S_MODEL_RESPONSE,          719910,Saab Car Unspecified
+C2S_MODEL_RESPONSE,          719920,Saab Truck Unspecified
+C2S_MODEL_RESPONSE,          720750,Saturn Astra
+C2S_MODEL_RESPONSE,          721000,Saturn Aura
+C2S_MODEL_RESPONSE,          721010,Saturn Aura Green Line
+C2S_MODEL_RESPONSE,          721020,Saturn Aura Hybrid
+C2S_MODEL_RESPONSE,          722000,Saturn ION
+C2S_MODEL_RESPONSE,          724000,Saturn L-Series Unspecified
+C2S_MODEL_RESPONSE,          724020,Saturn L
+C2S_MODEL_RESPONSE,          724040,Saturn LS
+C2S_MODEL_RESPONSE,          724070,Saturn LW
+C2S_MODEL_RESPONSE,          724500,Saturn Outlook
+C2S_MODEL_RESPONSE,          725000,Saturn Relay
+C2S_MODEL_RESPONSE,          726000,Saturn S-Series Unspecified
+C2S_MODEL_RESPONSE,          726020,Saturn SC
+C2S_MODEL_RESPONSE,          726030,Saturn Sky
+C2S_MODEL_RESPONSE,          726040,Saturn SL
+C2S_MODEL_RESPONSE,          726070,Saturn SW
+C2S_MODEL_RESPONSE,          728000,Saturn VUE
+C2S_MODEL_RESPONSE,          728010,Saturn VUE Green Line
+C2S_MODEL_RESPONSE,          728020,Saturn VUE Hybrid
+C2S_MODEL_RESPONSE,          729900,Saturn Unspecified
+C2S_MODEL_RESPONSE,          729910,Saturn Car Unspecified
+C2S_MODEL_RESPONSE,          729920,Saturn Truck Unspecified
+C2S_MODEL_RESPONSE,          729930,Saturn Van Unspecified
+C2S_MODEL_RESPONSE,          734100,Scion iA
+C2S_MODEL_RESPONSE,          734200,Scion iM
+C2S_MODEL_RESPONSE,          737000,Scion xA
+C2S_MODEL_RESPONSE,          737500,Scion xB
+C2S_MODEL_RESPONSE,          737750,Scion xD
+C2S_MODEL_RESPONSE,          738000,Scion tC
+C2S_MODEL_RESPONSE,          738100,Scion iQ
+C2S_MODEL_RESPONSE,          738200,Scion FR-S
+C2S_MODEL_RESPONSE,          739910,Scion Car Unspecified
+C2S_MODEL_RESPONSE,          741300,Subaru Tribeca
+C2S_MODEL_RESPONSE,          741810,Subaru Baja
+C2S_MODEL_RESPONSE,          741820,Subaru Crosstrek
+C2S_MODEL_RESPONSE,          741830,Subaru Crosstrek Plug-In Hybrid
+C2S_MODEL_RESPONSE,          743430,Subaru Forester
+C2S_MODEL_RESPONSE,          743450,Subaru Forester Hybrid
+C2S_MODEL_RESPONSE,          744200,Subaru Impreza
+C2S_MODEL_RESPONSE,          744201,Subaru Impreza (2005)
+C2S_MODEL_RESPONSE,          744210,Subaru WRX
+C2S_MODEL_RESPONSE,          744220,Subaru WRX STI
+C2S_MODEL_RESPONSE,          744250,Subaru Impreza Outback
+C2S_MODEL_RESPONSE,          745010,Subaru Justy
+C2S_MODEL_RESPONSE,          745800,Subaru Legacy
+C2S_MODEL_RESPONSE,          745801,Subaru Legacy (2005)
+C2S_MODEL_RESPONSE,          745850,Subaru Legacy Outback
+C2S_MODEL_RESPONSE,          746610,Subaru Loyale
+C2S_MODEL_RESPONSE,          747420,Subaru Outback
+C2S_MODEL_RESPONSE,          747421,Subaru Outback (2005)
+C2S_MODEL_RESPONSE,          747500,Subaru Solterra EV
+C2S_MODEL_RESPONSE,          748230,Subaru SVX
+C2S_MODEL_RESPONSE,          749040,Subaru XT
+C2S_MODEL_RESPONSE,          749100,Subaru BRZ
+C2S_MODEL_RESPONSE,          749200,Subaru XV Crosstrek
+C2S_MODEL_RESPONSE,          749210,Subaru XV Crosstrek Hybrid
+C2S_MODEL_RESPONSE,          749300,Subaru Ascent
+C2S_MODEL_RESPONSE,          749900,Subaru Unspecified
+C2S_MODEL_RESPONSE,          749910,Subaru Car Unspecified
+C2S_MODEL_RESPONSE,          749920,Subaru Truck Unspecified
+C2S_MODEL_RESPONSE,          751890,Suzuki Aerio
+C2S_MODEL_RESPONSE,          752500,Suzuki Equator
+C2S_MODEL_RESPONSE,          752780,Suzuki Esteem
+C2S_MODEL_RESPONSE,          753200,Suzuki Forenza
+C2S_MODEL_RESPONSE,          753670,Suzuki Grand Vitara
+C2S_MODEL_RESPONSE,          753800,Suzuki Kizashi
+C2S_MODEL_RESPONSE,          754000,Suzuki Reno
+C2S_MODEL_RESPONSE,          754560,Suzuki Samurai
+C2S_MODEL_RESPONSE,          755450,Suzuki Sidekick
+C2S_MODEL_RESPONSE,          756340,Suzuki Swift
+C2S_MODEL_RESPONSE,          756400,Suzuki SX4
+C2S_MODEL_RESPONSE,          756800,Suzuki Verona
+C2S_MODEL_RESPONSE,          757230,Suzuki XL-7
+C2S_MODEL_RESPONSE,          758120,Suzuki Vitara
+C2S_MODEL_RESPONSE,          759010,Suzuki X-90
+C2S_MODEL_RESPONSE,          759900,Suzuki Unspecified
+C2S_MODEL_RESPONSE,          759910,Suzuki Car Unspecified
+C2S_MODEL_RESPONSE,          759920,Suzuki Truck Unspecified
+C2S_MODEL_RESPONSE,          759930,Suzuki Van Unspecified
+C2S_MODEL_RESPONSE,          761000,smart fortwo
+C2S_MODEL_RESPONSE,          761100,smart fortwo electric
+C2S_MODEL_RESPONSE,          769900,smart Unspecified
+C2S_MODEL_RESPONSE,          771340,Toyota 4Runner
+C2S_MODEL_RESPONSE,          771350,Toyota 4Runner Hybrid
+C2S_MODEL_RESPONSE,          771680,Toyota Avalon
+C2S_MODEL_RESPONSE,          771690,Toyota Avalon Hybrid
+C2S_MODEL_RESPONSE,          772000,Toyota 86
+C2S_MODEL_RESPONSE,          772005,Toyota bZ4X EV
+C2S_MODEL_RESPONSE,          772010,Toyota GR86
+C2S_MODEL_RESPONSE,          772020,Toyota Camry
+C2S_MODEL_RESPONSE,          772040,Toyota Camry Hybrid
+C2S_MODEL_RESPONSE,          772360,Toyota Celica
+C2S_MODEL_RESPONSE,          772400,Toyota C-HR
+C2S_MODEL_RESPONSE,          772700,Toyota Corolla
+C2S_MODEL_RESPONSE,          772720,Toyota Corolla iM
+C2S_MODEL_RESPONSE,          772730,Toyota Corolla Hatchback
+C2S_MODEL_RESPONSE,          772735,Toyota GR Corolla
+C2S_MODEL_RESPONSE,          772740,Toyota Corolla Hybrid
+C2S_MODEL_RESPONSE,          772800,Toyota Corolla Cross
+C2S_MODEL_RESPONSE,          772805,Toyota Corolla Cross Hybrid
+C2S_MODEL_RESPONSE,          773380,Toyota Cressida
+C2S_MODEL_RESPONSE,          773385,Toyota Crown
+C2S_MODEL_RESPONSE,          773390,Toyota Crown Signia Hybrid
+C2S_MODEL_RESPONSE,          773720,Toyota Echo
+C2S_MODEL_RESPONSE,          773721,Toyota Echo (2005)
+C2S_MODEL_RESPONSE,          773900,Toyota FJ Cruiser
+C2S_MODEL_RESPONSE,          774000,Toyota Grand Highlander
+C2S_MODEL_RESPONSE,          774010,Toyota Grand Highlander Hybrid
+C2S_MODEL_RESPONSE,          774060,Toyota Highlander
+C2S_MODEL_RESPONSE,          774070,Toyota Highlander Hybrid
+C2S_MODEL_RESPONSE,          774400,Toyota Land Cruiser
+C2S_MODEL_RESPONSE,          774410,Toyota Land Cruiser Hybrid
+C2S_MODEL_RESPONSE,          774740,Toyota Matrix
+C2S_MODEL_RESPONSE,          774741,Toyota Matrix (2005)
+C2S_MODEL_RESPONSE,          774760,Toyota Mirai (2015-2020)
+C2S_MODEL_RESPONSE,          774770,Toyota Mirai
+C2S_MODEL_RESPONSE,          775000,Toyota MR2 Unspecified
+C2S_MODEL_RESPONSE,          775050,Toyota MR2 Spyder
+C2S_MODEL_RESPONSE,          775760,Toyota Paseo
+C2S_MODEL_RESPONSE,          776100,Toyota Previa
+C2S_MODEL_RESPONSE,          776440,Toyota Prius
+C2S_MODEL_RESPONSE,          776445,Toyota Prius v
+C2S_MODEL_RESPONSE,          776450,Toyota Prius Plug-In Hybrid (2012-2015)
+C2S_MODEL_RESPONSE,          776460,Toyota Prius c
+C2S_MODEL_RESPONSE,          776470,Toyota Prius Prime (2017-2024)
+C2S_MODEL_RESPONSE,          776475,Toyota Prius Plug-In Hybrid
+C2S_MODEL_RESPONSE,          776780,Toyota RAV4
+C2S_MODEL_RESPONSE,          776790,Toyota RAV4 EV
+C2S_MODEL_RESPONSE,          776800,Toyota RAV4 Hybrid
+C2S_MODEL_RESPONSE,          776810,Toyota RAV4 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          777120,Toyota Sequoia
+C2S_MODEL_RESPONSE,          777125,Toyota Sequoia Hybrid
+C2S_MODEL_RESPONSE,          777400,Toyota Sienna Van Unspecified
+C2S_MODEL_RESPONSE,          777430,Toyota Sienna Cargo Van
+C2S_MODEL_RESPONSE,          777460,Toyota Sienna Passenger Van
+C2S_MODEL_RESPONSE,          777461,Toyota Sienna Passenger Van*
+C2S_MODEL_RESPONSE,          777465,Toyota Sienna Hybrid
+C2S_MODEL_RESPONSE,          777740,Toyota Solara (Camry Solara)
+C2S_MODEL_RESPONSE,          778080,Toyota Supra
+C2S_MODEL_RESPONSE,          778420,Toyota T100
+C2S_MODEL_RESPONSE,          778760,Toyota Tacoma
+C2S_MODEL_RESPONSE,          778765,Toyota Tacoma Hybrid
+C2S_MODEL_RESPONSE,          779100,Toyota Tercel
+C2S_MODEL_RESPONSE,          779440,Toyota Tundra
+C2S_MODEL_RESPONSE,          779441,Toyota Tundra Hybrid
+C2S_MODEL_RESPONSE,          779445,Toyota Venza
+C2S_MODEL_RESPONSE,          779446,Toyota Venza Hybrid
+C2S_MODEL_RESPONSE,          779450,Toyota Yaris
+C2S_MODEL_RESPONSE,          779460,Toyota Yaris iA
+C2S_MODEL_RESPONSE,          779470,Toyota Yaris Hatchback
+C2S_MODEL_RESPONSE,          779900,Toyota Unspecified
+C2S_MODEL_RESPONSE,          779910,Toyota Car Unspecified
+C2S_MODEL_RESPONSE,          779920,Toyota Truck Unspecified
+C2S_MODEL_RESPONSE,          779930,Toyota Van Unspecified
+C2S_MODEL_RESPONSE,          780000,Tesla Model S
+C2S_MODEL_RESPONSE,          780100,Tesla Model X
+C2S_MODEL_RESPONSE,          780200,Tesla Model 3
+C2S_MODEL_RESPONSE,          780300,Tesla Model Y
+C2S_MODEL_RESPONSE,          780400,Tesla Cybertruck
+C2S_MODEL_RESPONSE,          789910,Tesla Car Unspecified
+C2S_MODEL_RESPONSE,          791600,Volkswagen Arteon
+C2S_MODEL_RESPONSE,          791880,Volkswagen Atlas Cross Sport
+C2S_MODEL_RESPONSE,          791900,Volkswagen Atlas
+C2S_MODEL_RESPONSE,          791980,Volkswagen Cabrio
+C2S_MODEL_RESPONSE,          792000,Volkswagen CC
+C2S_MODEL_RESPONSE,          792470,Volkswagen Corrado
+C2S_MODEL_RESPONSE,          792500,Volkswagen Eos
+C2S_MODEL_RESPONSE,          792960,Volkswagen Eurovan
+C2S_MODEL_RESPONSE,          793450,Volkswagen Fox
+C2S_MODEL_RESPONSE,          793940,Volkswagen Golf
+C2S_MODEL_RESPONSE,          793945,Volkswagen Golf Alltrack
+C2S_MODEL_RESPONSE,          793950,Volkswagen e-Golf
+C2S_MODEL_RESPONSE,          793955,Volkswagen Golf R
+C2S_MODEL_RESPONSE,          793960,Volkswagen Golf Sportwagen
+C2S_MODEL_RESPONSE,          794420,Volkswagen GLI
+C2S_MODEL_RESPONSE,          794430,Volkswagen GTI
+C2S_MODEL_RESPONSE,          794500,Volkswagen ID.4
+C2S_MODEL_RESPONSE,          794600,Volkswagen ID. Buzz
+C2S_MODEL_RESPONSE,          794920,Volkswagen Jetta (1980-2010)
+C2S_MODEL_RESPONSE,          794930,Volkswagen Jetta
+C2S_MODEL_RESPONSE,          794935,Volkswagen Jetta SportWagen
+C2S_MODEL_RESPONSE,          794940,Volkswagen Jetta Hybrid
+C2S_MODEL_RESPONSE,          794990,Volkswagen Jetta Unspecified
+C2S_MODEL_RESPONSE,          795900,Volkswagen New Beetle
+C2S_MODEL_RESPONSE,          795910,Volkswagen Beetle
+C2S_MODEL_RESPONSE,          795915,Volkswagen Beetle Convertible
+C2S_MODEL_RESPONSE,          795990,Volkswagen Beetle Unspecified
+C2S_MODEL_RESPONSE,          796390,Volkswagen Passat
+C2S_MODEL_RESPONSE,          796880,Volkswagen Phaeton
+C2S_MODEL_RESPONSE,          796890,Volkswagen R32
+C2S_MODEL_RESPONSE,          796900,Volkswagen Rabbit
+C2S_MODEL_RESPONSE,          796920,Volkswagen Rabbit (1984 and older)
+C2S_MODEL_RESPONSE,          796940,Volkswagen Rabbit Unspecified
+C2S_MODEL_RESPONSE,          797000,Volkswagen Routan
+C2S_MODEL_RESPONSE,          797500,Volkswagen Taos
+C2S_MODEL_RESPONSE,          798020,Volkswagen Tiguan Limited
+C2S_MODEL_RESPONSE,          798030,Volkswagen Tiguan
+C2S_MODEL_RESPONSE,          798040,Volkswagen Tiguan Unspecified
+C2S_MODEL_RESPONSE,          798100,Volkswagen Touareg
+C2S_MODEL_RESPONSE,          798110,Volkswagen Touareg Hybrid
+C2S_MODEL_RESPONSE,          798120,Volkswagen Touareg 2
+C2S_MODEL_RESPONSE,          799330,Volkswagen Vanagon
+C2S_MODEL_RESPONSE,          799900,Volkswagen Unspecified
+C2S_MODEL_RESPONSE,          799910,Volkswagen Car Unspecified
+C2S_MODEL_RESPONSE,          799920,Volkswagen Truck Unspecified
+C2S_MODEL_RESPONSE,          799930,Volkswagen Van Unspecified
+C2S_MODEL_RESPONSE,          801600,Volvo 40 Series Unspecified
+C2S_MODEL_RESPONSE,          801640,Volvo S40
+C2S_MODEL_RESPONSE,          801641,Volvo S40 (2005)
+C2S_MODEL_RESPONSE,          801660,Volvo V40
+C2S_MODEL_RESPONSE,          802000,Volvo V50
+C2S_MODEL_RESPONSE,          802010,Volvo V60
+C2S_MODEL_RESPONSE,          802011,Volvo V60 MHEV
+C2S_MODEL_RESPONSE,          802015,Volvo V60 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          802020,Volvo V60 Cross Country
+C2S_MODEL_RESPONSE,          802021,Volvo V60 Cross Country MHEV
+C2S_MODEL_RESPONSE,          802200,Volvo S60
+C2S_MODEL_RESPONSE,          802210,Volvo S60 Cross Country
+C2S_MODEL_RESPONSE,          802220,Volvo S60 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          802230,Volvo S60 MHEV
+C2S_MODEL_RESPONSE,          802800,Volvo 70 Series Unspecified
+C2S_MODEL_RESPONSE,          802840,Volvo C70
+C2S_MODEL_RESPONSE,          802850,Volvo C-Series Unspecified
+C2S_MODEL_RESPONSE,          802860,Volvo S70
+C2S_MODEL_RESPONSE,          802880,Volvo V70
+C2S_MODEL_RESPONSE,          802890,Volvo V90
+C2S_MODEL_RESPONSE,          802895,Volvo V90 Cross Country
+C2S_MODEL_RESPONSE,          802896,Volvo V90 Cross Country MHEV
+C2S_MODEL_RESPONSE,          802900,Volvo V-Series Unspecified
+C2S_MODEL_RESPONSE,          803400,Volvo S80
+C2S_MODEL_RESPONSE,          803420,Volvo S90
+C2S_MODEL_RESPONSE,          803425,Volvo S90 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          803430,Volvo S90 MHEV
+C2S_MODEL_RESPONSE,          803500,Volvo S-Series Unspecified
+C2S_MODEL_RESPONSE,          804000,Volvo 90 Series (S90/V90)
+C2S_MODEL_RESPONSE,          804500,Volvo C40 Recharge EV
+C2S_MODEL_RESPONSE,          804600,Volvo 240
+C2S_MODEL_RESPONSE,          805200,Volvo 740
+C2S_MODEL_RESPONSE,          807000,Volvo 850
+C2S_MODEL_RESPONSE,          807600,Volvo 940
+C2S_MODEL_RESPONSE,          808200,Volvo 960
+C2S_MODEL_RESPONSE,          808800,Volvo XC/Cross Country Unspecified
+C2S_MODEL_RESPONSE,          808805,Volvo XC40
+C2S_MODEL_RESPONSE,          808807,Volvo XC40 EV
+C2S_MODEL_RESPONSE,          808808,Volvo XC40 MHEV
+C2S_MODEL_RESPONSE,          808810,Volvo XC60
+C2S_MODEL_RESPONSE,          808815,Volvo XC60 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          808820,Volvo XC60 MHEV
+C2S_MODEL_RESPONSE,          808830,Volvo XC70
+C2S_MODEL_RESPONSE,          809000,Volvo XC90
+C2S_MODEL_RESPONSE,          809015,Volvo XC90 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          809020,Volvo XC90 MHEV
+C2S_MODEL_RESPONSE,          809040,Volvo EC40 EV
+C2S_MODEL_RESPONSE,          809090,Volvo EX30 EV
+C2S_MODEL_RESPONSE,          809100,Volvo EX40 EV
+C2S_MODEL_RESPONSE,          809200,Volvo EX90 EV
+C2S_MODEL_RESPONSE,          809900,Volvo Unspecified
+C2S_MODEL_RESPONSE,          809910,Volvo Car Unspecified
+C2S_MODEL_RESPONSE,          809920,Volvo Truck Unspecified
+C2S_MODEL_RESPONSE,          809940,Volvo C30
+C2S_MODEL_RESPONSE,          819910,Yugo Car Unspecified
+C2S_MODEL_RESPONSE,          824100,Polestar 1 Plug-In Hybrid
+C2S_MODEL_RESPONSE,          824200,Polestar 2 EV
+C2S_MODEL_RESPONSE,          832000,Misc. Chrysler Colt
+C2S_MODEL_RESPONSE,          834000,Misc. Chrysler Neon
+C2S_MODEL_RESPONSE,          835000,Misc. Chrysler Prowler
+C2S_MODEL_RESPONSE,          835760,Misc. Chrysler Colt Vista
+C2S_MODEL_RESPONSE,          836000,Misc. Chrysler Voyager
+C2S_MODEL_RESPONSE,          839900,Misc. Chrysler Unspecified
+C2S_MODEL_RESPONSE,          839910,Misc. Chrysler Car Unspecified
+C2S_MODEL_RESPONSE,          839920,Misc. Chrysler Truck Unspecified
+C2S_MODEL_RESPONSE,          839930,Misc. Chrysler Van Unspecified
+C2S_MODEL_RESPONSE,          841500,Misc. DaimlerChrysler 2000 GTX
+C2S_MODEL_RESPONSE,          842000,Misc. DaimlerChrysler Colt
+C2S_MODEL_RESPONSE,          842010,Misc. DaimlerChrysler Colt 100
+C2S_MODEL_RESPONSE,          842020,Misc. DaimlerChrysler Colt 200
+C2S_MODEL_RESPONSE,          844000,Misc. DaimlerChrysler Neon
+C2S_MODEL_RESPONSE,          845000,Misc. DaimlerChrysler Prowler
+C2S_MODEL_RESPONSE,          845500,Misc. DaimlerChrysler Viper
+C2S_MODEL_RESPONSE,          845750,Misc. DaimlerChrysler Vista
+C2S_MODEL_RESPONSE,          845760,Misc. DaimlerChrysler Colt Vista
+C2S_MODEL_RESPONSE,          846000,Misc. DaimlerChrysler Voyager
+C2S_MODEL_RESPONSE,          847400,Misc. DaimlerChrysler Stratus Unspecified
+C2S_MODEL_RESPONSE,          849900,Misc. DaimlerChrysler Unspecified
+C2S_MODEL_RESPONSE,          849910,Misc. DaimlerChrysler Car Unspecified
+C2S_MODEL_RESPONSE,          849920,Misc. DaimlerChrysler Truck Unspecified
+C2S_MODEL_RESPONSE,          849930,Misc. DaimlerChrysler Van Unspecified
+C2S_MODEL_RESPONSE,          857500,Misc. GM Suburban Unspecified
+C2S_MODEL_RESPONSE,          859900,Misc. GM Unspecified
+C2S_MODEL_RESPONSE,          859910,Misc. GM Car Unspecified
+C2S_MODEL_RESPONSE,          859920,Misc. GM Truck Unspecified
+C2S_MODEL_RESPONSE,          859930,Misc. GM Van Unspecified
+C2S_MODEL_RESPONSE,          869910,Misc. Division Car Unspecified
+C2S_MODEL_RESPONSE,          869920,Misc. Division Truck Unspecified
+C2S_MODEL_RESPONSE,          869930,Misc. Division Van Unspecified
+C2S_MODEL_RESPONSE,          869940,Misc. Division Vehicle Unspecified
+C2S_MODEL_RESPONSE,          888888,Did Not Indicate New/Used
+C2S_MODEL_RESPONSE,          898889,Used Disposed Model
+C2S_MODEL_RESPONSE,          939993,Did Not Indicate Shop
+C2S_MODEL_RESPONSE,          949994,Not Shopped
+C2S_MODEL_RESPONSE,          959995,No Other Considered
+C2S_MODEL_RESPONSE,          979997,Did Not Dispose
+C2S_MODEL_RESPONSE,          989998,Did Not Own
+C2S_MODEL_RESPONSE,          999999,No Other Owned
+DEMO_EMPLOY,               1,Armed Services
+DEMO_EMPLOY,               2,Senior Executive
+DEMO_EMPLOY,               3,Mid-level manager
+DEMO_EMPLOY,               4,Entry-level professional
+DEMO_EMPLOY,               5,"Owner, Self-Employed"
+DEMO_EMPLOY,               6,Clerical
+DEMO_EMPLOY,               7,Technician
+DEMO_EMPLOY,               8,"Police, Fire, EMT"
+DEMO_EMPLOY,               9,Sales
+DEMO_EMPLOY,              10,"Teacher, Educator"
+DEMO_EMPLOY,              11,Business Professional
+DEMO_EMPLOY,              12,Healthcare Professional
+DEMO_EMPLOY,              13,Specialty worker
+DEMO_EMPLOY,              14,"Programmer, IT"
+DEMO_EMPLOY,              15,"Service worker (food, cleaning)"
+DEMO_EMPLOY,              16,"Craftsworker, Precision production"
+DEMO_EMPLOY,              17,Driver
+DEMO_EMPLOY,              18,"Fabricator, Laborer"
+DEMO_EMPLOY,              19,Student
+DEMO_EMPLOY,              20,Stay-at-home parent/Homemaker
+DEMO_EMPLOY,              21,Unemployed
+DEMO_EMPLOY,              22,Retired
+DEMO_EMPLOY,              23,Other
+OL_MODEL_GRP,               1,Loyal
+OL_MODEL_GRP,               2,Not Loyal
+OL_MODEL_GRP,               9,Did Not Own
+PR_MOST,               1,Overall exterior styling
+PR_MOST,               2,Overall interior styling
+PR_MOST,               3,Quietness
+PR_MOST,               4,Riding comfort
+PR_MOST,               5,Passenger seating capacity
+PR_MOST,               6,Front compartment roominess
+PR_MOST,               7,Rear compartment roominess
+PR_MOST,               8,Ease of getting into/out of back seats
+PR_MOST,               9,Cargo capacity
+PR_MOST,              10,Technical innovations
+PR_MOST,              11,Gas mileage (fuel economy)
+PR_MOST,              12,Price or deal offered
+PR_MOST,              13,Value for the money
+PR_MOST,              14,Warranty coverage
+PR_MOST,              15,Future trade-in or resale value
+PR_MOST,              16,Cost of insurance
+PR_MOST,              17,Exterior color
+PR_MOST,              18,Overall quality of workmanship
+PR_MOST,              19,Safety features
+PR_MOST,              20,Front-wheel drive (FWD) availability
+PR_MOST,              21,Rear-wheel drive (RWD) availability
+PR_MOST,              22,4-wheel/all-wheel drive availability
+PR_MOST,              23,Overall quality of vehicle
+PR_MOST,              24,Ease of accessorizing
+PR_MOST,              25,Overall engine performance
+PR_MOST,              26,Overall power and acceleration
+PR_MOST,              27,Towing capability
+PR_MOST,              28,Smoothness of transmission
+PR_MOST,              29,Ease of handling
+PR_MOST,              30,Fun to drive
+PR_MOST,              31,Prestige
+PR_MOST,              32,Advice of friends and relatives
+PR_MOST,              33,Previous experience with model
+PR_MOST,              34,Manufacturer's reputation
+PR_MOST,              35,Cost of service and repair
+PR_MOST,              36,Convenient dealer location
+PR_MOST,              37,Rebate/low interest rate
+PR_MOST,              38,Durability (long-lasting)
+PR_MOST,              39,Dealer service
+PR_MOST,              40,Reliability (dependability)
+PR_MOST,              41,Environmentally-friendly vehicle
+PR_MOST,              42,Holds road well during hazardous driving
+PR_MOST,              43,Stability during braking
+PR_MOST,              44,Flexibility of fold-down/removable seats
+PR_MOST,              45,Magazine/newspaper/TV reviews
+PR_MOST,              46,Navigation system
+PR_MOST,              47,Previous experience with manufacturer
+PR_MOST,              48,3rd row seating availability
+PR_MOST,              49,Availability of manual transmission
+PR_MOST,              50,Voice-activated media/internet
+PR_MOST,              51,Employee discount
+PR_MOST,              52,Safety communication system
+PR_MOST,              53,Vehicle reputation
+PR_MOST,              54,Dealership sales experience
+PR_MOST,              55,Practical vehicle
+PR_MOST,              56,Satellite radio
+PR_MOST,              57,Family-oriented vehicle
+PR_MOST,              58,Visibility when backing up
+PR_MOST,              59,Visibility when making a turn
+PR_MOST,              60,"Exterior size - length, width, height"
+PR_MOST,              61,Willingness of dealer to negotiate
+PR_MOST,              62,Voice-activated media communication
+PR_MOST,              63,Seating comfort
+PR_MOST,              64,Vehicle expresses my personality
+PR_MOST,              65,Availability of leasing
+PR_MOST,              66,Fuel type
+PR_MOST,              67,Free scheduled maintenance
+PR_MOST,              68,Availability of roof rack
+PR_MOST,              69,Mobile app connectivity
+PR_MOST,              70,Rear seat entertainment
+PR_MOST,              71,"Government benefit (Tax credit/Rebate, Car pool sticker)"
+PR_MOST,              72,Infotainment/Audio system
+PR_MOST,              73,Hitch used for racks/platforms
+PR_MOST,              74,Availability of CVT transmission
+PR_MOST,              75,Overall quality of interior
+PR_MOST,              76,Exterior Metal
+PR_MOST,              77,Vehicle has WiFi Hotspot/Modem/Cellular Connectivity
+PR_MOST,              78,Vehicle Health Alerts/Diagnostics
+PR_MOST,              79,"Ride-sharing (e.g. Uber, Lyft, P2P)"
+PR_MOST,              80,"Smartphone Mirroring (e.g. Carplay, Android)"
+PR_MOST,              81,Overall Cost of Ownership
+PR_MOST,              82,Vehicle Range (including electric miles)
+PR_MOST,              83,Ease  of entry/exit with limited mobility
+PR_MOST,              84,Manufacture Reward Program
+PR_MOST,              85,Ease of upgrading all vehicle software
+PR_MOST,              86,Remote App Services
+PR_MOST,              87,Assisted Driving
+PR_MOST,              88,Dual Climate Control
+PR_MOST,              89,Over the Air/Remote software updates
+PR_MOST,              90,Fast Charging Capability
+PR_MOST,              91,"Battery Warranty, if applicable"
+PR_MOST,              92,Off Road Capability
+ADMARK_STATE,1,AL
+ADMARK_STATE,10,GA
+ADMARK_STATE,11,ID
+ADMARK_STATE,12,IL
+ADMARK_STATE,13,IN
+ADMARK_STATE,14,IA
+ADMARK_STATE,15,KS
+ADMARK_STATE,16,KY
+ADMARK_STATE,17,LA
+ADMARK_STATE,18,ME
+ADMARK_STATE,19,MD
+ADMARK_STATE,2,AZ
+ADMARK_STATE,20,MA
+ADMARK_STATE,21,MI
+ADMARK_STATE,22,MN
+ADMARK_STATE,23,MS
+ADMARK_STATE,24,MO
+ADMARK_STATE,25,MT
+ADMARK_STATE,26,NE
+ADMARK_STATE,27,NV
+ADMARK_STATE,28,NH
+ADMARK_STATE,29,NJ
+ADMARK_STATE,3,AR
+ADMARK_STATE,30,NM
+ADMARK_STATE,31,NY
+ADMARK_STATE,32,NC
+ADMARK_STATE,33,ND
+ADMARK_STATE,34,OH
+ADMARK_STATE,35,OK
+ADMARK_STATE,36,OR
+ADMARK_STATE,37,PA
+ADMARK_STATE,38,RI
+ADMARK_STATE,39,SC
+ADMARK_STATE,4,CA
+ADMARK_STATE,40,SD
+ADMARK_STATE,41,TN
+ADMARK_STATE,42,TX
+ADMARK_STATE,43,UT
+ADMARK_STATE,44,VT
+ADMARK_STATE,45,VA
+ADMARK_STATE,46,WA
+ADMARK_STATE,47,WV
+ADMARK_STATE,48,WI
+ADMARK_STATE,49,WY
+ADMARK_STATE,5,CO
+ADMARK_STATE,50,AK
+ADMARK_STATE,51,HI
+ADMARK_STATE,6,CT
+ADMARK_STATE,7,DC
+ADMARK_STATE,8,DE
+ADMARK_STATE,9,FL
+SRC_TOP1,               1,Family/Friend/Word of mouth
+SRC_TOP1,               2,Magazine advertisements
+SRC_TOP1,               3,Automotive magazine reviews
+SRC_TOP1,               4,Newspaper advertisements
+SRC_TOP1,               5,Newspaper reviews
+SRC_TOP1,               6,"Consumer guides (e.g., Consumer Reports)"
+SRC_TOP1,               7,TV advertisements
+SRC_TOP1,               8,Radio advertisements
+SRC_TOP1,               9,Outdoor advertisements
+SRC_TOP1,              10,Salesperson at the dealership
+SRC_TOP1,              11,Dealer's/Manufacturer's brochures
+SRC_TOP1,              12,Dealer's/Manufacturer's Web sites
+SRC_TOP1,              13,Third party Web sites
+SRC_TOP1,              14,E-mail/Text from dealer/manufacturer
+SRC_TOP1,              15,Direct mail from the dealer/manufacturer
+SRC_TOP1,              16,Auto shows
+SRC_TOP1,              17,Dealer/Manufacturer-sponsored event
+SRC_TOP1,              18,Automotive blog
+SRC_TOP1,              19,Other
+SRC_TOP1,              20,"Social networking sites (e.g., Facebook, Twitter)"
+SRC_TOP1,              21,"Facebook, Google+, LinkedIn"
+SRC_TOP1,              22,Twitter
+SRC_TOP1,              23,"Online videos (e.g., YouTube)"
+SRC_TOP1,              24,"Chat rooms, blogs, forums"
+SRC_TOP1,              25,"Automotive TV shows (e.g., Motorweek)"
+SRC_TOP1,              26,Magazine/Newspaper advertisements
+SRC_TOP1,              27,Automotive magazine/Newspaper reviews
+SRC_TOP1,              28,"Safety ratings (NCAP, IIHS)"
+SRC_TOP1,              29,Mobile App
+SRC_TOP1,              30,Social Media
+SRC_TOP1,              31,Online advertising
+SRC_TOP1,              32,Dealer's Website
+SRC_TOP1,              33,Manufacturer's Website
+SRC_TOP1,              34,Instagram
+SRC_TOP1,              35,Facebook
+SRC_TOP1,              36,Finance Company Website
+SRC_TOP1,              37,TikTok
+BLD_CHILDREN,               0,None
+BLD_CHILDREN,               1,One
+BLD_CHILDREN,               2,Two
+BLD_CHILDREN,               3,Three
+BLD_CHILDREN,               4,Four
+BLD_CHILDREN,               5,Five
+BLD_CHILDREN,               6,Six
+BLD_CHILDREN,               7,Seven
+BLD_CHILDREN,               8,Eight
+DEMO_EMPTY_NESTER,               1,Yes
+DEMO_EMPTY_NESTER,               2,No

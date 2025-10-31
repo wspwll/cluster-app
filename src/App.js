@@ -19,6 +19,7 @@ import {
 import suvPoints from "./data/suv_points.json";
 import puPoints from "./data/pu_points.json";
 import demosMapping from "./data/demos-mapping.json";
+import codeToTextMapRaw from "./data/code-to-text-map.json";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 const COLORS = [
@@ -839,6 +840,46 @@ export default function App() {
     }
     return byField;
   }, []);
+
+  // ---------- Variable display labels (code → friendly text) ----------
+  const VAR_LABELS = useMemo(() => {
+    const map = new Map();
+
+    // Accept common shapes:
+    //  • [{ code: "BLD_AGE_GRP", text: "Age Group" }, ...]
+    //  • [{ CODE: "BLD_AGE_GRP", LABEL: "Age Group" }, ...]
+    //  • [ ["BLD_AGE_GRP", "Age Group"], ... ]
+    for (const row of codeToTextMapRaw || []) {
+      let code = "";
+      let text = "";
+
+      if (Array.isArray(row)) {
+        code = String(row[0] ?? "").trim();
+        text = String(row[1] ?? "").trim();
+      } else if (row && typeof row === "object") {
+        code = String(
+          row.code ??
+            row.CODE ??
+            row.key ??
+            row.Key ??
+            row.variable ??
+            row.VARIABLE ??
+            ""
+        ).trim();
+        text = String(
+          row.text ?? row.label ?? row.LABEL ?? row.display ?? row.Display ?? ""
+        ).trim();
+      }
+
+      if (code) map.set(code, text || code);
+    }
+    return map;
+  }, [codeToTextMapRaw]);
+
+  function varLabel(code) {
+    const c = String(code ?? "").trim();
+    return VAR_LABELS.get(c) || c;
+  }
 
   // Resolve full state name from row
   const getRowStateName = useMemo(() => {
@@ -1756,7 +1797,7 @@ export default function App() {
                       color: "#e5e7eb",
                     }}
                   >
-                    {section.field}
+                    {varLabel(section.field)}
                   </div>
 
                   {/* Numeric KPI (Financing averages) */}
@@ -1919,7 +1960,7 @@ export default function App() {
                   >
                     {LOYALTY_VARS.map((v) => (
                       <option key={v} value={v}>
-                        {v}
+                        {varLabel(v)}
                       </option>
                     ))}
                   </select>
@@ -1943,7 +1984,7 @@ export default function App() {
                   >
                     {WTP_VARS.map((v) => (
                       <option key={v} value={v}>
-                        {v}
+                        {varLabel(v)}
                       </option>
                     ))}
                   </select>
@@ -1960,7 +2001,7 @@ export default function App() {
                   <XAxis
                     type="number"
                     dataKey="x"
-                    name={attXVar}
+                    name={varLabel(attXVar)}
                     tickFormatter={(v) => `${v.toFixed(0)}%`}
                     tick={{ fill: "#cbd5e1", fontSize: 12 }}
                     stroke="#334155"
@@ -1969,7 +2010,7 @@ export default function App() {
                   <YAxis
                     type="number"
                     dataKey="y"
-                    name={attYVar}
+                    name={varLabel(attXVar)}
                     tickFormatter={(v) => `${v.toFixed(0)}%`}
                     tick={{ fill: "#cbd5e1", fontSize: 12 }}
                     stroke="#334155"
@@ -1984,15 +2025,22 @@ export default function App() {
                       color: "#e5e7eb",
                       borderRadius: 8,
                     }}
-                    formatter={(value, name, payload) => {
+                    formatter={(value, name) => {
                       if (name === "x")
-                        return [`${Number(value).toFixed(1)}%`, attXVar];
+                        return [
+                          `${Number(value).toFixed(1)}%`,
+                          varLabel(attXVar),
+                        ];
                       if (name === "y")
-                        return [`${Number(value).toFixed(1)}%`, attYVar];
+                        return [
+                          `${Number(value).toFixed(1)}%`,
+                          varLabel(attYVar),
+                        ];
                       return [value, name];
                     }}
                     labelFormatter={() => ""}
                   />
+
                   {attitudesPoints.map((pt) => (
                     <Scatter
                       key={`att-${pt.key}`}

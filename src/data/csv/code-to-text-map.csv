@@ -1,0 +1,57 @@
+BLD_AGE_GRP , Age Group
+DEMO_EDUCATION , Education
+GENERATION_GRP , Generation
+DEMO_GENDER1 , Gender
+BLD_HOBBY1_GRP , Hobbies
+DEMO_INCOME , Income
+BLD_LIFESTAGE , Life Stage
+DEMO_LOCATION , Location
+DEMO_MARITAL , Marital Status
+DEMO_EMPLOY , Occupation
+ADMARK_STATE , State
+BLD_CHILDREN , Number of Children
+DEMO_EMPTY_NESTER , Empty Nester
+C1_PL , Purchase or Lease Vehicle
+FIN_PU_APR , Purchase Price
+FIN_PU_DOWN_PAY , Amount of Down Payment
+FIN_PU_TRADE_IN , Trade-In Allowance
+BLD_FIN_TOTAL_MONPAY , Amount of Monthly Payment
+FIN_LE_LENGTH , Length of Lease
+FIN_PU_LENGTH , Length of Loan
+FIN_CREDIT , Description of Credit History
+PR_MOST , Most important purchase reason
+C2S_MODEL_RESPONSE , Most Seriously Considered: Model
+SRC_TOP1 , Most Influential Source of Information
+OL_MODEL_GRP , Loyalty to model
+STATE_BUY_BEST ," ""Buying the best vehicle is more important than the manufacturer's nationality."""
+STATE_CONTINUE ," ""I am likely to continue buying this brand's products."""
+STATE_FEEL_GOOD ," ""I feel good about my vehicle brand."""
+STATE_REFER ," ""I provide enthusiastic referrals of this vehicle's brand to others."""
+STATE_PRESTIGE ," ""I would never acquire a vehicle from a brand known mostly for its prestige."""
+STATE_EURO ," ""I would only consider acquiring a European-brand vehicle."""
+STATE_AMER ," ""I would only consider acquiring an American-brand vehicle."""
+STATE_ASIAN ," ""I would only consider acquiring an Asian-brand vehicle."""
+STATE_SWITCH_FEAT ," ""I would switch brands to get the vehicle features I want with little concern for the vehicle's brand."""
+STATE_VALUES ," ""When I shop for a vehicle, I want a brand that aligns with my values."""
+PV_TAX_INS ," ""I bought a lesser vehicle than I wanted because of tax and/or insurance costs."""
+PV_SPEND_LUXURY ," ""I spend more money for extra luxury/options when I buy a new vehicle."""
+PV_PRESTIGE ," ""I want to buy a prestigious vehicle."""
+PV_QUALITY ," ""I will definitely pay more for the highest quality vehicle."""
+PV_RESALE ," ""I will only consider purchasing a vehicle that will maintain a high resale value."""
+PV_INEXP_MAINTAIN ," ""I will only purchase a vehicle that is inexpensive to maintain."""
+PV_AVOID ," ""I will pay for more features that help me avoid an accident."""
+PV_SURVIVE ," ""I will pay for more features that help me survive a crash."""
+PV_PAY_MORE ," ""I will pay more for features that take some work out of driving."""
+PV_BREAKDOWN ," ""I will pay more to be confident my vehicle will not break down."""
+PV_VALUE ," ""Getting the most value for the money is the most important consideration when I buy a new vehicle."""
+PV_SPEND ," ""I'd rather spend more money to get the vehicle I really want than settle for less."""
+PV_LEASE ," ""The option to lease determined the vehicle I bought."""
+PV_PUTOFF ," ""To me, buying a new vehicle is something I put off as long as long as possible."""
+STATE_BALANCE ," ""A balanced mix of performance and options for the price makes a vehicle a good value."""
+STATE_WAIT ," ""I am willing to wait for a vehicle if it isn't immediately available."""
+STATE_ENJOY_PRESTIGE ," ""I enjoy the prestige of acquiring a high-priced brand of vehicle."""
+STATE_FIRST_YR ," ""I would never buy a new model the first year it is sold."""
+STATE_NO_LOW_PRICE ," ""I would never consider acquiring the lowest-priced model in a vehicle class due to concerns about its quality."""
+STATE_AUDIO ," ""I would pay more for premium audio."""
+STATE_MON_PAY ," ""The monthly payment is more important than the total price."""
+STATE_SHOP_MANY ," ""To get the lowest price, I shop as many dealers as possible."""
