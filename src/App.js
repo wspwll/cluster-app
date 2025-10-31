@@ -780,9 +780,14 @@ export default function App() {
         !Number.isFinite(cl)
       )
         continue;
+
       out.push({
         ...r,
         model: String(modelVal),
+        // keep a permanent copy of the raw UMAP coords
+        raw_x: x,
+        raw_y: y,
+        // these are the *displayed* coords (may be lerped later)
         emb_x: x,
         emb_y: y,
         cluster: cl,
@@ -797,7 +802,7 @@ export default function App() {
   );
 
   const [selectedModels, setSelectedModels] = useState(allModels);
-  const [colorMode, setColorMode] = useState("model");
+  const [colorMode, setColorMode] = useState("cluster");
   const [zoomCluster, setZoomCluster] = useState(null);
   const [centerT, setCenterT] = useState(0);
   const [selectedStateName, setSelectedStateName] = useState(null);
@@ -925,7 +930,7 @@ export default function App() {
   }, [plotFrame, colorMode]);
 
   const plotDataCentered = useMemo(() => {
-    if (centerT <= 0) return plotFrame;
+    if (centerT <= 0) return plotFrame; // uses emb_x/emb_y == raw_x/raw_y
     const out = new Array(plotFrame.length);
     for (let i = 0; i < plotFrame.length; i++) {
       const r = plotFrame[i];
@@ -934,8 +939,9 @@ export default function App() {
       out[i] = c
         ? {
             ...r,
-            emb_x: lerp(r.emb_x, c.cx, centerT),
-            emb_y: lerp(r.emb_y, c.cy, centerT),
+            // keep raw_x/raw_y intact; only change displayed emb_x/emb_y
+            emb_x: lerp(r.raw_x, c.cx, centerT),
+            emb_y: lerp(r.raw_y, c.cy, centerT),
           }
         : r;
     }
@@ -1252,7 +1258,7 @@ export default function App() {
       }}
     >
       <h1 style={{ margin: 0, marginBottom: 8, color: "#FF5432" }}>
-        {group === "SUV" ? "SUV" : "Pickup"} Interactive Clusters
+        Customer Groups
       </h1>
 
       {/* tiny status line */}
@@ -1495,19 +1501,82 @@ export default function App() {
               <XAxis
                 type="number"
                 dataKey="emb_x"
-                name="UMAP 1"
-                tick={{ fill: "#cbd5e1", fontSize: 12 }}
-                stroke="#334155"
                 domain={animX}
+                tickFormatter={() => ""}
+                tickLine={false}
+                axisLine={false}
+                tickMargin={0}
               />
               <YAxis
                 type="number"
                 dataKey="emb_y"
-                name="UMAP 2"
-                tick={{ fill: "#cbd5e1", fontSize: 12 }}
-                stroke="#334155"
                 domain={animY}
+                tickFormatter={() => ""}
+                tickLine={false}
+                axisLine={false}
+                tickMargin={0}
               />
+
+              <Tooltip
+                cursor={{ stroke: "#334155" }}
+                content={({ active, payload }) => {
+                  if (!active || !payload?.length) return null;
+                  // Recharts gives one entry per series; read the first payload:
+                  const p = payload[0]?.payload ?? {};
+                  const umapX = Number(p.raw_x); // original UMAP 1 (from JSON)
+                  const umapY = Number(p.raw_y); // original UMAP 2 (from JSON)
+                  const dispX = Number(p.emb_x); // what’s currently plotted (may be centered)
+                  const dispY = Number(p.emb_y);
+                  const seriesName = payload[0]?.name ?? "";
+
+                  return (
+                    <div
+                      style={{
+                        background: "#0b1220",
+                        border: "1px solid #334155",
+                        color: "#e5e7eb",
+                        borderRadius: 8,
+                        padding: "8px 10px",
+                        fontSize: 12,
+                        maxWidth: 240,
+                      }}
+                    >
+                      {seriesName && (
+                        <div style={{ fontWeight: 700, marginBottom: 4 }}>
+                          {seriesName}
+                        </div>
+                      )}
+
+                      {/* Raw UMAP coordinates — use these for range rules */}
+                      <div style={{ opacity: 0.85, marginBottom: 4 }}>
+                        UMAP (raw)
+                      </div>
+                      <div>
+                        UMAP&nbsp;1 (x):{" "}
+                        {Number.isFinite(umapX) ? umapX.toFixed(4) : "—"}
+                      </div>
+                      <div>
+                        UMAP&nbsp;2 (y):{" "}
+                        {Number.isFinite(umapY) ? umapY.toFixed(4) : "—"}
+                      </div>
+
+                      {/* Current display (changes when Center focus > 0) */}
+                      <div
+                        style={{ opacity: 0.85, marginTop: 8, marginBottom: 4 }}
+                      >
+                        Displayed{centerT > 0 ? " (centered)" : ""}
+                      </div>
+                      <div>
+                        x: {Number.isFinite(dispX) ? dispX.toFixed(4) : "—"}
+                      </div>
+                      <div>
+                        y: {Number.isFinite(dispY) ? dispY.toFixed(4) : "—"}
+                      </div>
+                    </div>
+                  );
+                }}
+              />
+
               <Legend wrapperStyle={{ color: "#e5e7eb" }} />
               {series.map(({ key, data }) => (
                 <Scatter
